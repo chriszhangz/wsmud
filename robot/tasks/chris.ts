@@ -96,11 +96,11 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 您好, ${userName}！`);
                         }
                         lastchat = new Date();
-                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('功能')>=0)) {
+                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0)) {
                         var userName = data.name;
                         await session.sendAsync(`${ch} 您好${userName}，我目前只记录上一次世界Boss出现时间。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
-                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('是谁')>=0) {
+                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         var userName = data.name;
                         await session.sendAsync(`${ch} 您好${userName}，我的主人是咬人的豆包。`);
                         lastchat = new Date();
