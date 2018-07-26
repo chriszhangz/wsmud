@@ -76,7 +76,7 @@ export class ChrisTask extends Task {
                     lastbook = new Date();
                  }
                 }else if (data.ch === ch) {
-                console.log(data.name+":"+data.content);
+                //console.log(data.name+":"+data.content);
                 if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
                     //console.log(data.name+"::"+data.content);
                     var content = data.content.trim().toLowerCase();
