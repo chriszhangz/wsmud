@@ -3,6 +3,7 @@ import { Session } from '../../core';
 import { Msg } from '../../core/data';
 import { Promise } from "bluebird";
 import { Task } from "../task";
+import { appendFile } from "fs";
 
 //const r = /<hig>你获得了(\d+)点/;
 
@@ -68,8 +69,11 @@ export class ChrisTask extends Task {
         async function processMsg(data: Msg) {
              if (data.ch === "rumor") {
                  if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
-                     newbook = true;
-                     lastbook = new Date();
+                    var myDate = new Date();
+                    var mytime=myDate.toLocaleTimeString(); 
+                    await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+'出现BOSS，距上个boss'+GetZNTimes()+`\n`);
+                    newbook = true;
+                    lastbook = new Date();
                  }
                 }else if (data.ch === ch) {
                 console.log(data.name+":"+data.content);
@@ -85,7 +89,7 @@ export class ChrisTask extends Task {
                         if(data.name==='燧人氏'){
                             await session.sendAsync(`${ch} 燧大侠您好^^！`);
                         }else if(data.name==='半俗'){
-                            await session.sendAsync(`${ch} 小半俗你好，钱攒够了么^^？`);
+                            await session.sendAsync(`${ch} 小半俗你好^^！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好, ${userName}！`);
                         }else if(data.lv===4){
