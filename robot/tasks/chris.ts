@@ -84,6 +84,9 @@ export class ChrisTask extends Task {
                     //     await session.sendAsync(`${ch} 目前的挖矿指南是+${current}已持续${GetZNTimes()}`);
                     //     lastchat = new Date();
                     // }
+                    if (content.indexOf('白如盈') >=0 &&( content.indexOf('口')>=0||content.indexOf('摸')>=0||content.indexOf('床')>=0||content.indexOf('到我')>=0)) {
+                        return;
+                    }
                     if (content.indexOf('白如盈') >=0 && content.indexOf('你好')>=0) {
                         var userName = data.name;
                         if(data.name==='燧人氏'){
