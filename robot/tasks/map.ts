@@ -109,9 +109,9 @@ export class MapTask extends Task {
             }
 
             console.log(`${roomId} ${room.name}`);
-            var myDate = new Date();
-            var mytime=myDate.toLocaleTimeString(); 
-            await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+`${roomId} ${room.name}\n`);
+            //var myDate = new Date();
+            //var mytime=myDate.toLocaleTimeString(); 
+            //await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+`${roomId} ${room.name}\n`);
             for (const key in exitsData) {
                 const ex: Exitd = { type: "go", action: key, to: '' };
                 room.exits.push(ex);
