@@ -24,7 +24,8 @@ export interface Roles {
 
 export interface Item {
     id: string,
-    name: string
+    name: string,
+    p:number
 }
 
 export interface Items {

@@ -9,7 +9,8 @@ export var test2: UserConfig = {
         pwd: "246369"
     },
     tasks: [
-        new tasks.MapTask()
+        //new tasks.MapTask()
+        new tasks.MineTask()
         //new tasks.SmTask("jh fam 6 start;go down", "左全", "twz221f3941", new Date(2018, 4, 21))
     ]
 };
