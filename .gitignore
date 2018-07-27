@@ -66,3 +66,7 @@ typings/
 # compiled
 *.js
 *.js.map
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/wsmud.iml
