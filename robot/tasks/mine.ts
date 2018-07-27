@@ -12,14 +12,15 @@ export class MineTask extends Task {
     private cmds: string[] = ["jh fam 1 start","go north"];
     async start(session: Session, config: UserConfig) {
         for (let i = 0; i < this.cmds.length; i++) {
+            console.log('Execute:'+this.cmds[i]);
             await session.sendAsync(this.cmds[i]);
             await Promise.delay(1000);
             let roomData = session.world.room;
             console.log(roomData.name);
-            await Promise.delay(1000);
+            await Promise.delay(100);
             let items = session.world.items;
             for(const item in items){
-                if(items[item].p!=1)
+                if(items[item].p!=1&&items[item].name)
                 console.log(items[item].name);
             }
         }
