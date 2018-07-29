@@ -19,7 +19,9 @@ export class ChrisTask extends Task {
         let newbook = false; //是否有新的book
         //let current = 0; //当前数值
         let lastbook = new Date();
+        let lastHour = -1;
         let lastchat = new Date();
+        let positions = '';
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
         const ch = "chat";
         /**
@@ -32,7 +34,34 @@ export class ChrisTask extends Task {
             var secs = Math.floor(time % 60);
             return `${mins}分${secs}秒`;
         }
-
+        function GetChinaTime() {
+            var d=new Date(); //创建一个Date对象
+            var localTime = d.getTime();
+            var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
+            var utc = localTime + localOffset; //utc即GMT时间
+            var offset = 8; 
+            var hawaii = utc + (3600000 * offset);
+            var nd = new Date(hawaii);
+            var hour = nd.getHours();
+            //console.log("Hawaii time is " + nd.toLocaleString());
+            if(hour===21&&(nd.getDay()===2||nd.getDay()===4||nd.getDay()===6)){
+                var time = new Date().getTime() - lastbook.getTime();
+                time = time / 1000;
+                var mins = Math.floor(time / 60);
+                var secs = Math.floor(time % 60);
+                return `${ch} 上一个BOSS出现在${mins}分${secs}秒以前`;
+            }
+            if(nd.getHours()===lastHour){
+                var time = new Date().getTime() - lastbook.getTime();
+                time = time / 1000;
+                var mins = Math.floor(time / 60);
+                var secs = Math.floor(time % 60);
+                return `${ch} ${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
+            }else{
+                return `${ch} ${hour}点BOSS还未刷新，请耐心等待~`;
+            }
+            //return `${mins}分${secs}秒`;
+        }   
         /**
          * 处理普通文本消息，这个函数只处理经验获得消息
          * @param msg 普通文本消息
@@ -71,11 +100,22 @@ export class ChrisTask extends Task {
                  if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
                     var myDate = new Date();
                     var mytime=myDate.toLocaleTimeString(); 
-                    await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+'出现BOSS，距上个boss'+GetZNTimes()+`\n`);
+                    //await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+'出现BOSS，距上个boss'+GetZNTimes()+`\n`);
                     newbook = true;
                     lastbook = new Date();
+                    positions = '';
+                    var localTime = lastbook.getTime();
+                    var localOffset = lastbook.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
+                    var utc = localTime + localOffset; //utc即GMT时间
+                    var offset = 8; 
+                    var hawaii = utc + (3600000 * offset);
+                    var nd = new Date(hawaii);
+                    lastHour = nd.getHours();
                  }
-                }else if (data.ch === ch) {
+                }else if(data.ch === 'tm'){
+                    console.log(data.name+":"+data.content);
+                    positions+=data.content;
+               }else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
                 if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
                     //console.log(data.name+"::"+data.content);
@@ -90,9 +130,9 @@ export class ChrisTask extends Task {
                     if (content.indexOf('白如盈') >=0 && content.indexOf('你好')>=0) {
                         var userName = data.name;
                         if(data.name==='燧人氏'){
-                            await session.sendAsync(`${ch} 燧大侠您好^^！`);
+                            await session.sendAsync(`${ch} 燧大侠~ 您好^^！`);
                         }else if(data.name==='半俗'){
-                            await session.sendAsync(`${ch} 小半俗你好^^！`);
+                            await session.sendAsync(`${ch} 俗~ 今天玫瑰送了没^^？`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好, ${userName}！`);
                         }else if(data.lv===4){
@@ -105,7 +145,7 @@ export class ChrisTask extends Task {
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0)) {
                         var userName = data.name;
-                        await session.sendAsync(`${ch} 您好${userName}，我目前只记录上一次世界Boss出现时间。如有需要请联系我的主人谢谢。`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         var userName = data.name;
@@ -142,7 +182,10 @@ export class ChrisTask extends Task {
                         lastchat = new Date();
                     }else if (content === "boss" ||content === "b" ){
                         if(newbook){
-                            await session.sendAsync(`${ch} 上一个BOSS出现在${GetZNTimes()}以前。`);
+                            if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
+                                positions = '';
+                               }
+                            await session.sendAsync(`${GetChinaTime()}`+positions);
                         }else{
                             await session.sendAsync(`${ch} 抱歉，我刚升级完毕,将等待下一个BOSS出现后开始计时。`);
                         }

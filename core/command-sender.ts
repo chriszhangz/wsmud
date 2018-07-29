@@ -1,6 +1,6 @@
 import { Promise } from "bluebird";
 
-const LIMIT_CMD_COUNT = 20;
+const LIMIT_CMD_COUNT = 60;
 const LIMIT_CMD_INTERVAL = 8000;
 
 /**

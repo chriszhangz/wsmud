@@ -4,7 +4,7 @@ import { Msg } from '../../core/data';
 import { UserConfig } from "../interface";
 import {Promise} from "bluebird";
 
-export class MineTask extends Task {
+export class MineTask2 extends Task {
 
     constructor() {
         super();
@@ -12,35 +12,35 @@ export class MineTask extends Task {
     }
 
     private cmds: cmd[] = [{content:"stopstate",type:0},
-    // {content:"jh fam 1 start",type:1},{content:"go north",type:1},{content:"go south",type:0},
-    // {content:"go west",type:1},{content:"go west",type:1},{content:"go east",type:0},{content:"go northup",type:1},
-    // {content:"go north",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go west",type:1},
-    // {content:"go northup",type:1},{content:"go northup",type:1},{content:"go northup",type:1},{content:"go north",type:1},
-    // {content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
-    // {content:"jh fam 2 start",type:1},{content:"go north",type:1},{content:"go west",type:1},{content:"go east",type:0},
-    // {content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},{content:"go northup",type:1},{content:"go southdown",type:0},{content:"go northwest",type:1},
-    // {content:"go northeast",type:1},{content:"go southeast",type:1},{content:"go northwest",type:0},{content:"go north",type:1},
-    // {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
-    // {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
-    // {content:"go west",type:1},{content:"go east",type:0},{content:"go north",type:1},{content:"go north",type:1},
-    // {content:"jh fam 4 start",type:1},{content:"go northup",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go southdown",type:0},
-    // {content:"go west",type:1},{content:"go south",type:1},{content:"go west",type:1},{content:"go north",type:1},{content:"go north",type:1},
-    // {content:"go south",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
-    // {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:0},{content:"go east",type:1},
-    // {content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:1},
-    {content:"jh fam 5 start",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go south",type:0},{content:"go south",type:0},
-    {content:"go west",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:0},{content:"go south",type:1},
-    {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:1},{content:"go north",type:1},
-    {content:"go south",type:0},{content:"go south",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},
-    {content:"go west",type:0},{content:"go down",type:1},{content:"go down",type:1},
-    {content:"jh fam 6 start",type:1},{content:"go down",type:1},{content:"go east",type:1},{content:"go east",type:1},{content:"go east",type:1},
-    {content:"go up",type:1},{content:"go down",type:0},{content:"go east",type:1},{content:"go east",type:1},{content:"go up",type:1},
-    {content:"jh fam 3 start",type:1},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
-    {content:"go south",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go south",type:0},{content:"go east",type:1},
-    {content:"go west",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
-    {content:"go southup",type:1},{content:"go southup",type:1},//break bi
-    {content:"go northdown",type:0},{content:"go northdown",type:0},{content:"go north",type:0},{content:"go eastdown",type:1},{content:"go eastup",type:1},
-    {content:"go southup",type:1}, // jumpdown
+    {content:"jh fam 1 start",type:1},{content:"go north",type:1},{content:"go south",type:0},
+    {content:"go west",type:1},{content:"go west",type:1},{content:"go east",type:0},{content:"go northup",type:1},
+    {content:"go north",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go west",type:1},
+    {content:"go northup",type:1},{content:"go northup",type:1},{content:"go northup",type:1},{content:"go north",type:1},
+    {content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
+    {content:"jh fam 2 start",type:1},{content:"go north",type:1},{content:"go west",type:1},{content:"go east",type:0},
+    {content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},{content:"go northup",type:1},{content:"go southdown",type:0},{content:"go northwest",type:1},
+    {content:"go northeast",type:1},{content:"go southeast",type:1},{content:"go northwest",type:0},{content:"go north",type:1},
+    {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
+    {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
+    {content:"go west",type:1},{content:"go east",type:0},{content:"go north",type:1},{content:"go north",type:1},
+    {content:"jh fam 4 start",type:1},{content:"go northup",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go southdown",type:0},
+    {content:"go west",type:1},{content:"go south",type:1},{content:"go west",type:1},{content:"go north",type:1},{content:"go north",type:1},
+    {content:"go south",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
+    {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:0},{content:"go east",type:1},
+    {content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:1},
+    // {content:"jh fam 5 start",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go south",type:0},{content:"go south",type:0},
+    // {content:"go west",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:0},{content:"go south",type:1},
+    // {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:1},{content:"go north",type:1},
+    // {content:"go south",type:0},{content:"go south",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},
+    // {content:"go west",type:0},{content:"go down",type:1},{content:"go down",type:1},
+    // {content:"jh fam 6 start",type:1},{content:"go down",type:1},{content:"go east",type:1},{content:"go east",type:1},{content:"go east",type:1},
+    // {content:"go up",type:1},{content:"go down",type:0},{content:"go east",type:1},{content:"go east",type:1},{content:"go up",type:1},
+    // {content:"jh fam 3 start",type:1},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
+    // {content:"go south",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go south",type:0},{content:"go east",type:1},
+    // {content:"go west",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
+    // {content:"go southup",type:1},{content:"go southup",type:1},//break bi
+    // {content:"go northdown",type:0},{content:"go northdown",type:0},{content:"go north",type:0},{content:"go eastdown",type:1},{content:"go eastup",type:1},
+    // {content:"go southup",type:1}, // jumpdown
     {content:"jh fam 0 start",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"wa",type:0}
 ];
     async start(session: Session, config: UserConfig) {
@@ -73,7 +73,7 @@ export class MineTask extends Task {
                 await Promise.delay(500);
                 //await Promise.delay(100);
                 let items = session.world.items;
-                while(lastid===items[0].id&&items[0].id!='94wc287e07b'){     
+                while(lastid===items[0].id&&items[0].id!='33u22883913'){     
                     //console.log('wait'+items[0].id);
                     //if(items.length===1)lastid='0';               
                 await Promise.delay(100);

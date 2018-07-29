@@ -5,6 +5,7 @@ import { ChrisTask } from "./chris";
 import { ConnectTask } from "./connect";
 import { MapTask } from "./map";
 import { MineTask } from "./mine";
-export { SmTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask }
+import { MineTask2 } from "./mine2";
+export { SmTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2 }
 
 
