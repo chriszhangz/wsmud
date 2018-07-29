@@ -67,10 +67,10 @@ export class MineTask extends Task {
                 //console.log('Execute:'+cmdss[i].content);
                 await session.sendAsync(cmdss[i].content);
                 if(cmdss[i].type===0){
-                    await Promise.delay(200);
+                    await Promise.delay(300);
                     continue;
                 }
-                await Promise.delay(500);
+                await Promise.delay(600);
                 //await Promise.delay(100);
                 let items = session.world.items;
                 while(lastid===items[0].id&&items[0].id!='94wc287e07b'){     
