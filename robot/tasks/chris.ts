@@ -133,6 +133,14 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 燧大侠~ 您好^^！`);
                         }else if(data.name==='半俗'){
                             await session.sendAsync(`${ch} 俗~ 今天玫瑰送了没^^？`);
+                        }else if(data.name==='法王孙笑川'){
+                            await session.sendAsync(`${ch} 新人导师法王孙笑川~ 您好^^！`);
+                        }else if(data.name==='讓叁招'){
+                            await session.sendAsync(`${ch} 阿三~ 你好^^！`);
+                        }else if(data.name==='诸葛擎'){
+                            await session.sendAsync(`${ch} 萌新导师诸葛擎~ 您好^^！`);
+                        }else if(data.name==='关心'){
+                            await session.sendAsync(`${ch} 关心小姐姐好^^！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好, ${userName}！`);
                         }else if(data.lv===4){
@@ -145,7 +153,7 @@ export class ChrisTask extends Task {
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0)) {
                         var userName = data.name;
-                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置。如有需要请联系我的主人谢谢。`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置（华山部分地图除外）。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         var userName = data.name;
@@ -159,7 +167,7 @@ export class ChrisTask extends Task {
                         var userName = data.name;
                         await session.sendAsync(`${ch} 您好${userName}，我在挖矿^^。`);
                         lastchat = new Date();
-                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('我爱你')>=0) {
+                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('爱你')>=0) {
                         var userName = data.name;
                         await session.sendAsync(`${ch} *咯咯`);
                         lastchat = new Date();

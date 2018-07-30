@@ -119,13 +119,13 @@ export class MineTask2 extends Task {
                else if (data.ch === ch) {
                //console.log(data.name+":"+data.content);
                if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
-                   if(data.name==="咬人的馒头"){
-                    console.log(data.name+":"+data.content);
-                    newbook = true;
-                    lastbook = new Date();
-                    clearBoss();
-                    processBoss(cmdss);
-                   }
+                //    if(data.name==="咬人的馒头"){
+                //     console.log(data.name+":"+data.content);
+                //     newbook = true;
+                //     lastbook = new Date();
+                //     clearBoss();
+                //     processBoss(cmdss);
+                //    }
                    //console.log(data.name+"::"+data.content);
                 //    var content = data.content.trim().toLowerCase();
                 //    // if (content === "wkzn" || content == "k") {
