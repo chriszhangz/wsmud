@@ -3,7 +3,6 @@ import { Session } from '../../core';
 import { Msg } from '../../core/data';
 import { Promise } from "bluebird";
 import { Task } from "../task";
-import { appendFile } from "fs";
 
 //const r = /<hig>你获得了(\d+)点/;
 
@@ -27,13 +26,13 @@ export class ChrisTask extends Task {
         /**
          * 获取指南持续时间的中文描述
          */
-        function GetZNTimes() {
-            var time = new Date().getTime() - lastbook.getTime();
-            time = time / 1000;
-            var mins = Math.floor(time / 60);
-            var secs = Math.floor(time % 60);
-            return `${mins}分${secs}秒`;
-        }
+        // function GetZNTimes() {
+        //     var time = new Date().getTime() - lastbook.getTime();
+        //     time = time / 1000;
+        //     var mins = Math.floor(time / 60);
+        //     var secs = Math.floor(time % 60);
+        //     return `${mins}分${secs}秒`;
+        // }
         function GetChinaTime() {
             var d=new Date(); //创建一个Date对象
             var localTime = d.getTime();
@@ -98,8 +97,8 @@ export class ChrisTask extends Task {
         async function processMsg(data: Msg) {
              if (data.ch === "rumor") {
                  if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
-                    var myDate = new Date();
-                    var mytime=myDate.toLocaleTimeString(); 
+                    //var myDate = new Date();
+                    //var mytime=myDate.toLocaleTimeString(); 
                     //await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+'出现BOSS，距上个boss'+GetZNTimes()+`\n`);
                     newbook = true;
                     lastbook = new Date();

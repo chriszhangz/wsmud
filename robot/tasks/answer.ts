@@ -21,13 +21,13 @@ export class AnswerTask extends Task {
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
         const ch = "chat";
         const rumor = "rumor";
-        function GetZNTimes() {
-            var time = new Date().getTime() - lastbook.getTime();
-            time = time / 1000;
-            var mins = Math.floor(time / 60);
-            var secs = Math.floor(time % 60);
-            return `${mins}分${secs}秒`;
-        }
+        // function GetZNTimes() {
+        //     var time = new Date().getTime() - lastbook.getTime();
+        //     time = time / 1000;
+        //     var mins = Math.floor(time / 60);
+        //     var secs = Math.floor(time % 60);
+        //     return `${mins}分${secs}秒`;
+        // }
         function GetChinaTime() {
             var d=new Date(); //创建一个Date对象
             var localTime = d.getTime();

@@ -45,21 +45,15 @@ export class MineTask extends Task {
 ];
     async start(session: Session, config: UserConfig) {
         let cmdss = this.cmds;
-        let newbook = false; //是否有新的book
+        //let newbook = false; //是否有新的book
         //let current = 0; //当前数值
-        let lastbook = new Date();
+        //let lastbook = new Date();
         let lastchat = new Date();
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
         const ch = "chat";
         const tm = "tm";
         const rumor = "rumor";
-        function GetZNTimes() {
-            var time = new Date().getTime() - lastbook.getTime();
-            time = time / 1000;
-            var mins = Math.floor(time / 60);
-            var secs = Math.floor(time % 60);
-            return `${mins}分${secs}秒`;
-        }
+
         //this.priority = -1;
         async function processBoss( cmdss:cmd[] ) {
             let lastid ='0';
@@ -73,11 +67,13 @@ export class MineTask extends Task {
                 await Promise.delay(600);
                 //await Promise.delay(100);
                 let items = session.world.items;
-                while(lastid===items[0].id&&items[0].id!='94wc287e07b'){     
+                let count =0;
+                while(lastid===items[0].id&&items[0].id!='94wc287e07b'&&count<20){     
                     //console.log('wait'+items[0].id);
                     //if(items.length===1)lastid='0';               
                 await Promise.delay(100);
                 items = session.world.items;
+                count++;
                 }
                 const roomData = session.world.room;
                 const roomName = roomData.name;
@@ -86,7 +82,7 @@ export class MineTask extends Task {
                 for(const item in items){
                     if(items[item].p!=1&&items[item].name)
                     {
-                    console.log(roomName+':'+items[item].name);
+                    //console.log(roomName+':'+items[item].name);
                     let cont = searchBoss(items[item].name,roomName);
                     if(cont && cont!=''){
                         await session.sendAsync(`${tm} ${cont}`);
@@ -94,11 +90,11 @@ export class MineTask extends Task {
                     }
                 }
             }
-            for (const key in dic) {
-                if (dic[key]!="") {
-                    console.log('found boss '+key+' at '+dic[key]);
-                }
-            }
+            // for (const key in dic) {
+            //     if (dic[key]!="") {
+            //         console.log('found boss '+key+' at '+dic[key]);
+            //     }
+            // }
         }
         async function processMessage(msg: string) {
 
@@ -110,8 +106,8 @@ export class MineTask extends Task {
                 if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
                    //var myDate = new Date();
                    //var mytime=myDate.toLocaleTimeString(); 
-                   newbook = true;
-                   lastbook = new Date();
+                   //newbook = true;
+                   //lastbook = new Date();
                    clearBoss();
                    processBoss(cmdss);
                 }
