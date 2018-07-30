@@ -57,6 +57,9 @@ export class ChrisTask extends Task {
                 var secs = Math.floor(time % 60);
                 return `${ch} ${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
             }else{
+                if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
+                    positions = '';
+                   }
                 return `${ch} ${hour}点BOSS还未刷新，请耐心等待~`;
             }
             //return `${mins}分${secs}秒`;
@@ -191,9 +194,6 @@ export class ChrisTask extends Task {
                         lastchat = new Date();
                     }else if (content === "boss" ||content === "b" ){
                         if(newbook){
-                            if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
-                                positions = '';
-                               }
                             await session.sendAsync(`${GetChinaTime()}`+positions);
                         }else{
                             await session.sendAsync(`${ch} 抱歉，我刚升级完毕,将等待下一个BOSS出现后开始计时。`);
