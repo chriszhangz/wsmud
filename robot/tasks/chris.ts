@@ -141,6 +141,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 萌新导师诸葛擎~ 您好^^！`);
                         }else if(data.name==='关心'){
                             await session.sendAsync(`${ch} 关心小姐姐好^^！`);
+                        }else if(data.name==='轩辕天宇'){
+                            await session.sendAsync(`${ch} 天宇小姐姐好^^！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好, ${userName}！`);
                         }else if(data.lv===4){
