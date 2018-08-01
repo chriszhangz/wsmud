@@ -38,9 +38,10 @@ export class MineTask extends Task {
     {content:"jh fam 3 start",type:1},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
     {content:"go south",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go south",type:0},{content:"go east",type:1},
     {content:"go west",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
-    {content:"go southup",type:1},{content:"go southup",type:1},//break bi
+    {content:"go southup",type:1},{content:"go southup",type:1},{content:"break bi",type:0},{content:"go enter",type:1},//break bi
+    {content:"go westup",type:1},{content:"go westup",type:1},{content:"go eastdown",type:0},{content:"go eastdown",type:0},{content:"go out",type:0},
     {content:"go northdown",type:0},{content:"go northdown",type:0},{content:"go north",type:0},{content:"go eastdown",type:1},{content:"go eastup",type:1},
-    {content:"go southup",type:1}, // jumpdown
+    {content:"go southup",type:1},{content:"jumpdown",type:1},{content:"go southup",type:1},{content:"go south",type:1},{content:"go east",type:1}, // jumpdown
     {content:"jh fam 0 start",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"wa",type:0}
 ];
     async start(session: Session, config: UserConfig) {
@@ -68,7 +69,7 @@ export class MineTask extends Task {
                 //await Promise.delay(100);
                 let items = session.world.items;
                 let count =0;
-                while(lastid===items[0].id&&items[0].id!='94wc287e07b'&&count<20){     
+                while(lastid===items[0].id&&items[0].id!='47vx2543965'&&count<20){     
                     //console.log('wait'+items[0].id);
                     //if(items.length===1)lastid='0';               
                 await Promise.delay(100);
@@ -117,8 +118,6 @@ export class MineTask extends Task {
                if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
                 //    if(data.name==="咬人的馒头"){
                 //     console.log(data.name+":"+data.content);
-                //     newbook = true;
-                //     lastbook = new Date();
                 //     clearBoss();
                 //     processBoss(cmdss);
                 //    }
