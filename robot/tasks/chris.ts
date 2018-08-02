@@ -42,19 +42,22 @@ export class ChrisTask extends Task {
             var hawaii = utc + (3600000 * offset);
             var nd = new Date(hawaii);
             var hour = nd.getHours();
-            //console.log("Hawaii time is " + nd.toLocaleString());
+            //console.log("Hawaii time is " + nd.toLocaleString()); 
             if(hour===21&&(nd.getDay()===2||nd.getDay()===4||nd.getDay()===6)){
                 var time = new Date().getTime() - lastbook.getTime();
                 time = time / 1000;
                 var mins = Math.floor(time / 60);
                 var secs = Math.floor(time % 60);
                 return `${ch} 🐾上一个BOSS出现在${mins}分${secs}秒以前`;
-            }
+            }          
             if(nd.getHours()===lastHour){
                 var time = new Date().getTime() - lastbook.getTime();
                 time = time / 1000;
                 var mins = Math.floor(time / 60);
                 var secs = Math.floor(time % 60);
+                if(hour===18||hour===19||hour===20||hour===21||hour===22){
+                    return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前，门派战期间我不敢去搜索BOSS，抱歉😭`;
+                } 
                 return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
             }else{
                 if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){

@@ -104,13 +104,23 @@ export class MineTask extends Task {
             //console.log("^^^^^:"+data.content);
             if (data.ch === rumor) {
                //console.log("****:"+data.content);
-                if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
-                   //var myDate = new Date();
-                   //var mytime=myDate.toLocaleTimeString(); 
-                   //newbook = true;
-                   //lastbook = new Date();
-                   clearBoss();
-                   processBoss(cmdss);
+                if (data.content.indexOf('听说') >= 0 && data.content.indexOf('出现') >= 0) {
+                    //var myDate = new Date();
+                    //var mytime=myDate.toLocaleTimeString(); 
+                    //newbook = true;
+                    //lastbook = new Date();
+                    var d = new Date(); //创建一个Date对象
+                    var localTime = d.getTime();
+                    var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
+                    var utc = localTime + localOffset; //utc即GMT时间
+                    var offset = 8;
+                    var hawaii = utc + (3600000 * offset);
+                    var nd = new Date(hawaii);
+                    var hour = nd.getHours();
+                    clearBoss();
+                    if (hour != 18&&hour != 19 && hour != 20 && hour != 21 && hour != 22) {
+                        processBoss(cmdss);
+                    }
                 }
                }
                else if (data.ch === ch) {

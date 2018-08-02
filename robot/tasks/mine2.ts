@@ -107,8 +107,18 @@ export class MineTask2 extends Task {
                    //var myDate = new Date();
                    //var mytime=myDate.toLocaleTimeString(); 
                    //newbook = true;
+                   var d = new Date(); //创建一个Date对象
+                   var localTime = d.getTime();
+                   var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
+                   var utc = localTime + localOffset; //utc即GMT时间
+                   var offset = 8;
+                   var hawaii = utc + (3600000 * offset);
+                   var nd = new Date(hawaii);
+                   var hour = nd.getHours();
                    clearBoss();
-                   processBoss(cmdss);
+                   if (hour != 18&&hour != 19 && hour != 20 && hour != 21 && hour != 22) {
+                       processBoss(cmdss);
+                   }
                 }
                }
                else if (data.ch === ch) {
