@@ -145,7 +145,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='诸葛擎'){
                             await session.sendAsync(`${ch} ‍‍‍‍‍🧙‍♂️萌新导师诸葛擎~ 您好^^！`);
                         }else if(data.name==='东方友利'){
-                            await session.sendAsync(`${ch} ‍‍‍‍‍东方前辈，请领教下阁下的白云踏歌^^！`);
+                            await session.sendAsync(`${ch} ‍‍‍‍‍🤭东方前辈，盈盈要领教下阁下的白云踏歌^^！`);
                         }else if(data.name==='关心'){
                             await session.sendAsync(`${ch} 😄关心小姐姐好^^！`);
                         }else if(data.name==='轩辕天宇'){
@@ -161,7 +161,7 @@ export class ChrisTask extends Task {
                         }
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
-                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置（华山部分地图除外）。如有需要请联系我的主人谢谢。`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         await session.sendAsync(`${ch} 😊您好${userName}，我的主人是咬人的豆包。`);
