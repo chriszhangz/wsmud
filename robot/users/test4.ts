@@ -10,7 +10,7 @@ export var test4: UserConfig = {
     },
     tasks: [
         //new tasks.MapTask()
-        new tasks.MineTask()
-        //new tasks.SmTask("jh fam 6 start;go down", "左全", "twz221f3941", new Date(2018, 4, 21))
+        //new tasks.MineTask()
+        new tasks.ShimenTask("jh fam 3 start", "高根明", "956z2902a39", new Date(2018, 4, 21))
     ]
 };
