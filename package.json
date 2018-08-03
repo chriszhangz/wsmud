@@ -16,6 +16,7 @@
   "scripts": {
     "test2": "node ./robot/index.js -u=test2",
     "test3": "node ./robot/index.js -u=test3",
+    "test4": "node ./robot/index.js -u=test4",
     "chris": "node ./robot/index.js -u=chris"
   },
   "keywords": [

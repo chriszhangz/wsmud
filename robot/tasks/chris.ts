@@ -172,7 +172,7 @@ export class ChrisTask extends Task {
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('在哪儿')>=0) { 
                         await session.sendAsync(`${ch} 😄您好${userName}，我在挖矿^^。`);
                         lastchat = new Date();
-                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('不') <0 && (content.indexOf('爱你')>=0||content.indexOf('美')>=0||content.indexOf('漂亮')>=0||content.indexOf('好看')>=0)) {
+                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('不') <0 && (content.indexOf('爱你')>=0||content.indexOf('美')>=0||content.indexOf('漂亮')>=0||content.indexOf('好看')>=0||content.indexOf('可爱')>=0)) {
                         await session.sendAsync(`${ch} *脸红`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0 &&( content.indexOf('傻')>=0||content.indexOf('笨')>=0||content.indexOf('贱')>=0||content.indexOf('蠢')>=0||content.indexOf('白痴')>=0||content.indexOf('弱智')>=0)) {
