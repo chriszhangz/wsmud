@@ -12,18 +12,18 @@ export class MineTask2 extends Task {
     }
 
     private cmds: cmd[] = [{content:"stopstate",type:0},
-    {content:"jh fam 1 start",type:1},{content:"go north",type:1},{content:"go south",type:0},
+    {content:"jh fam 1 start",type:2},{content:"go north",type:1},{content:"go south",type:0},
     {content:"go west",type:1},{content:"go west",type:1},{content:"go east",type:0},{content:"go northup",type:1},
     {content:"go north",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go west",type:1},
     {content:"go northup",type:1},{content:"go northup",type:1},{content:"go northup",type:1},{content:"go north",type:1},
     {content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
-    {content:"jh fam 2 start",type:1},{content:"go north",type:1},{content:"go west",type:1},{content:"go east",type:0},
+    {content:"jh fam 2 start",type:2},{content:"go north",type:1},{content:"go west",type:1},{content:"go east",type:0},
     {content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},{content:"go northup",type:1},{content:"go southdown",type:0},{content:"go northwest",type:1},
     {content:"go northeast",type:1},{content:"go southeast",type:1},{content:"go northwest",type:0},{content:"go north",type:1},
     {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
     {content:"go west",type:1},{content:"go east",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go north",type:1},
     {content:"go west",type:1},{content:"go east",type:0},{content:"go north",type:1},{content:"go north",type:1},
-    {content:"jh fam 4 start",type:1},{content:"go northup",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go southdown",type:0},
+    {content:"jh fam 4 start",type:2},{content:"go northup",type:1},{content:"go east",type:1},{content:"go west",type:0},{content:"go southdown",type:0},
     {content:"go west",type:1},{content:"go south",type:1},{content:"go west",type:1},{content:"go north",type:1},{content:"go north",type:1},
     {content:"go south",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
     {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:0},{content:"go east",type:1},
@@ -63,8 +63,11 @@ export class MineTask2 extends Task {
                 if(cmdss[i].type===0){
                     await Promise.delay(300);
                     continue;
+                }else if(cmdss[i].type===2){
+                    await Promise.delay(1000);
+                }else{
+                    await Promise.delay(600);
                 }
-                await Promise.delay(600);
                 //await Promise.delay(100);
                 let items = session.world.items;
                 let count =0;

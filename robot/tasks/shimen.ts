@@ -28,7 +28,7 @@ export class ShimenTask extends Task {
     async  start(session: Session, config: UserConfig) {
         var self = this;
         async function callback() {
-            await session.sendAsync("tasks;stopstate");
+            await session.sendAsync("stopstate");
             await session.sendAsync(self.taskPath);
             await Promise.delay(5050);
             await session.sendAsync("tasks");

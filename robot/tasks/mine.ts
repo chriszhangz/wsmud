@@ -28,14 +28,14 @@ export class MineTask extends Task {
     // {content:"go south",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
     // {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:0},{content:"go east",type:1},
     // {content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:1},
-    {content:"jh fam 5 start",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go south",type:0},{content:"go south",type:0},
+    {content:"jh fam 5 start",type:2},{content:"go north",type:1},{content:"go north",type:1},{content:"go south",type:0},{content:"go south",type:0},
     {content:"go west",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go east",type:0},{content:"go south",type:1},
     {content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},{content:"go east",type:1},{content:"go north",type:1},
     {content:"go south",type:0},{content:"go south",type:1},{content:"go south",type:1},{content:"go north",type:0},{content:"go north",type:0},
     {content:"go west",type:0},{content:"go down",type:1},{content:"go down",type:1},
-    {content:"jh fam 6 start",type:1},{content:"go down",type:1},{content:"go east",type:1},{content:"go east",type:1},{content:"go east",type:1},
+    {content:"jh fam 6 start",type:2},{content:"go down",type:1},{content:"go east",type:1},{content:"go east",type:1},{content:"go east",type:1},
     {content:"go up",type:1},{content:"go down",type:0},{content:"go east",type:1},{content:"go east",type:1},{content:"go up",type:1},
-    {content:"jh fam 3 start",type:1},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
+    {content:"jh fam 3 start",type:2},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
     {content:"go south",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go south",type:0},{content:"go east",type:1},
     {content:"go west",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
     {content:"go southup",type:1},{content:"go southup",type:1},{content:"break bi",type:0},{content:"go enter",type:1},//break bi
@@ -64,8 +64,11 @@ export class MineTask extends Task {
                 if(cmdss[i].type===0){
                     await Promise.delay(300);
                     continue;
+                }else if(cmdss[i].type===2){
+                    await Promise.delay(1000);
+                }else{
+                    await Promise.delay(600);
                 }
-                await Promise.delay(600);
                 //await Promise.delay(100);
                 let items = session.world.items;
                 let count =0;
