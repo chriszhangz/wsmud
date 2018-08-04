@@ -51,12 +51,19 @@ export interface Exits {
     items: any
 }
 
-export type Dialog = TaskDialog;
+export type Dialog = TaskDialog | PackDialog;
 
 export interface TaskDialog {
     type: "dialog",
     dialog: "tasks",
     items: Task[]
+}
+
+export interface PackDialog {
+    type: "dialog",
+    dialog: "pack",
+    name: string,
+    id: string
 }
 
 export interface Task {

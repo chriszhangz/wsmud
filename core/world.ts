@@ -1,5 +1,5 @@
 import { User } from "./user";
-import { Role, Item, Room, Exits, Task } from "./data";
+import { Role, Item, Room, Exits, Task, PackDialog } from "./data";
 
 export class World {
     room: Room;
@@ -7,5 +7,6 @@ export class World {
     roles: Role[];
     items: Item[];
     tasks: Task[];
+    pack: PackDialog;
     me: User;
 }

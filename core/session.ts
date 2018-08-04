@@ -48,6 +48,8 @@ export class Session extends EventEmitter {
             case "dialog":
                 if (data.dialog === "tasks") {
                     this.world.tasks = data.items;
+                }else if(data.dialog === "pack"){
+                    this.world.pack = data;
                 }
                 break;
             default:
