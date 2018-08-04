@@ -9,6 +9,7 @@ const ONE_DAY_MS = 86400000;
 const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
+let shimen = 0;
 let msgs = [""];
 export class ShimenTask extends Task {
 
@@ -42,26 +43,63 @@ export class ShimenTask extends Task {
 
             if (master) {
                 console.log(new Date() + "任务开始..")
-                while (true) {
+                while (shimen==0) {
+                    //console.log(new Date() + "excute任务..")
                     await session.sendAsync(`task sm ${master.id}`);
-                    await Promise.delay(1000);
+                    await Promise.delay(500);
                     var found=0;
+                    //console.log(new Date() + "check任务..")
                     for(let msg in msgs){
+                        //console.log('msg..'+msgs[msg]);
                         var match;
                         if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
+                            console.log(new Date() + "发现任务..")
                             msgs=[""];
                             await session.sendAsync(`task sm ${master.id} give ${self.tokenId}`);
-                            await Promise.delay(1000);
+                            //await Promise.delay(1000);
                             found=1;
                             break;
                         }
                     }
                     if(found==0){
                         await session.sendAsync(`task sm ${master.id} giveup`);
-                        await Promise.delay(1000);
+                        //await Promise.delay(1000);
                     }
+                    await Promise.delay(1000);
                 }
-
+                console.log(new Date() + "开始副本..")
+                for(var i=0;i<20;i++){
+                    await session.sendAsync("jh fb 0 start1");
+                    await session.sendAsync("cr yz/lw/shangu");
+                    await session.sendAsync("cr over");
+                    await Promise.delay(1000);
+                }
+                console.log("完成副本..");
+                console.log(new Date() + "开始追捕..")
+                await session.sendAsync("taskover signin");
+                await Promise.delay(1000);
+                await session.sendAsync("shop 0 20");
+                await Promise.delay(1000);
+                await session.sendAsync("jh fam 0 start");
+                await session.sendAsync("go west");
+                await session.sendAsync("go north");
+                await session.sendAsync("go north");
+                await Promise.delay(2000);
+                const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
+                if (zhifu) {
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(10000);
+                    console.log("完成追捕..");
+                    await session.sendAsync("jh fam 0 start");
+                    await session.sendAsync("go west");
+                    await session.sendAsync("go west");
+                    await session.sendAsync("go west");
+                    await session.sendAsync("go west");
+                    await session.sendAsync("wa");
+                }
+                console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                self.priority=-1;
+                return;
             }
    
         }
@@ -70,26 +108,25 @@ export class ShimenTask extends Task {
             console.log(msg);
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
-                console.log(new Date() + "任务完成..")
-                await session.sendAsync("jh fam 0 start");
-                await session.sendAsync("go west");
-                await session.sendAsync("go west");
-                await session.sendAsync("go west");
-                await session.sendAsync("wa");
-                self.priority = -1;    
+                //self.priority = -1;    
+                shimen=1;
+                //console.log(new Date() + "师门完成..")
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                return;
             }
             if(msgs.length<10){
                 msgs.push(msg);
             }else{
-                msgs.pop();
+                msgs.shift();
+                msgs.push(msg);
             }
         };
         
         async function processData(data: Data) {
             if (data.type==='dialog'&&data.dialog === "pack") {
-                if(data.name.indexOf('养精丹')>=0){
-                console.log(new Date() + "使用养精丹 ..");
-                await session.sendAsync("use ${data.id}");
+                if(data.name&&data.name.indexOf('养精丹')>=0){
+                console.log(new Date() + "************************************使用养精丹 ..");
+                await session.sendAsync(`use ${data.id}`);
                 }
             }
         };
