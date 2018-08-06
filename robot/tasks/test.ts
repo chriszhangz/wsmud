@@ -1,6 +1,5 @@
 import { Task } from "../task";
 import { Session } from "../../core";
-import { Msg } from '../../core/data';
 import { UserConfig } from "../interface";
 import {Promise} from "bluebird";
 
