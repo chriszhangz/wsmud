@@ -3,14 +3,13 @@ import { Data } from "../../core/data";
 import { Promise } from 'bluebird';
 import { UserConfig } from '../interface';
 import { Task } from "../task";
-import * as cron from "node-schedule";
 
-const ONE_DAY_MS = 86400000;
 const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
 let shimen = 0;
 let msgs = [""];
+const pty = "pty";
 export class ShimenTask extends Task {
 
     constructor(
@@ -41,19 +40,21 @@ export class ShimenTask extends Task {
             await session.sendAsync("tasks");
             const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
 
-            if (master) {
-                console.log(new Date() + "任务开始..")
+            if (master) {                
+                shimen=0;
+                //console.log(new Date() + "任务开始..")
+                await session.sendAsync(`${pty} 开始师门任务..`);
                 while (shimen==0) {
                     //console.log(new Date() + "excute任务..")
                     await session.sendAsync(`task sm ${master.id}`);
-                    await Promise.delay(500);
+                    await Promise.delay(1000);
                     var found=0;
                     //console.log(new Date() + "check任务..")
                     for(let msg in msgs){
                         //console.log('msg..'+msgs[msg]);
                         var match;
                         if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
-                            console.log(new Date() + "发现任务..")
+                            //console.log(new Date() + "发现任务..")
                             msgs=[""];
                             await session.sendAsync(`task sm ${master.id} give ${self.tokenId}`);
                             //await Promise.delay(1000);
@@ -67,15 +68,17 @@ export class ShimenTask extends Task {
                     }
                     await Promise.delay(1000);
                 }
-                console.log(new Date() + "开始副本..")
+                await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
+                //console.log(new Date() + "开始副本..")
                 for(var i=0;i<20;i++){
                     await session.sendAsync("jh fb 0 start1");
                     await session.sendAsync("cr yz/lw/shangu");
                     await session.sendAsync("cr over");
                     await Promise.delay(1000);
                 }
-                console.log("完成副本..");
-                console.log(new Date() + "开始追捕..")
+                await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
+                //console.log("完成副本..");
+                //console.log(new Date() + "开始追捕..")
                 await session.sendAsync("taskover signin");
                 await Promise.delay(1000);
                 await session.sendAsync("shop 0 20");
@@ -87,9 +90,13 @@ export class ShimenTask extends Task {
                 await Promise.delay(2000);
                 const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
                 if (zhifu) {
+                    await session.sendAsync(`ask1 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask2 ${zhifu.id}`);
+                    await Promise.delay(500);
                     await session.sendAsync(`ask3 ${zhifu.id}`);
                     await Promise.delay(10000);
-                    console.log("完成追捕..");
+                    //console.log("完成追捕..");
                     await session.sendAsync("jh fam 0 start");
                     await session.sendAsync("go west");
                     await session.sendAsync("go west");
@@ -97,7 +104,8 @@ export class ShimenTask extends Task {
                     await session.sendAsync("go west");
                     await session.sendAsync("wa");
                 }
-                console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
                 self.priority=-1;
                 return;
             }
@@ -105,7 +113,7 @@ export class ShimenTask extends Task {
         }
 
         async function processMessage(msg: string) {
-            console.log(msg);
+            //console.log(msg);
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
                 //self.priority = -1;    
@@ -125,7 +133,7 @@ export class ShimenTask extends Task {
         async function processData(data: Data) {
             if (data.type==='dialog'&&data.dialog === "pack") {
                 if(data.name&&data.name.indexOf('养精丹')>=0){
-                console.log(new Date() + "************************************使用养精丹 ..");
+                //console.log(new Date() + "************************************使用养精丹 ..");
                 await session.sendAsync(`use ${data.id}`);
                 }
             }
@@ -161,13 +169,7 @@ export class ShimenTask extends Task {
         }
     }
 
-    private isChiefDate(fireDate: Date) {
-        const today = new Date(fireDate.getFullYear(), fireDate.getMonth(), fireDate.getDate()).getTime();
-        var days = (today - this.firstChiefTime) / ONE_DAY_MS;
-        var offset = (days & 1) == 0;
-        console.log(`${fireDate} ${offset ? 'is' : 'is not'} chief date`);
-        return offset;
-    }
+
 }
 
 
