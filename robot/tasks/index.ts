@@ -8,6 +8,7 @@ import { MapTask } from "./map";
 import { MineTask } from "./mine";
 import { MineTask2 } from "./mine2";
 import { TestTask } from "./test";
-export { SmTask,ShimenTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask }
+import { XiyanTask } from "./xiyan";
+export { SmTask,ShimenTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask,XiyanTask }
 
 
