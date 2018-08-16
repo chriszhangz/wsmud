@@ -24,7 +24,7 @@ export class XiyanTask extends Task {
                 if (data.content.indexOf('婚庆主持') >= 0 && data.content.indexOf('婚礼将在一分钟后开始') >= 0) {
                     console.log('Found wedding...');
                     await session.sendAsync("stopstate");
-                    await Promise.delay(50000);
+                    await Promise.delay(2000);
                     await session.sendAsync("jh fam 0 start");
                     await session.sendAsync("go north");
                     await session.sendAsync("go north");
