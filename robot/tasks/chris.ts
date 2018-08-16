@@ -152,8 +152,10 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄天宇小姐姐好^^！`);
                         }else if(data.name==='百夫长'){
                             await session.sendAsync(`${ch} 😄百夫皮皮,你今天好像又变帅了一点^^！`);
+                        }else if(data.name==='飞沙石'){
+                            await session.sendAsync(`${ch} 😄女装大佬莎莎姐好！`);
                         }else if(data.lv===5){
-                            await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`);
+                            await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
                             await session.sendAsync(`${ch} 您好武圣大佬😊, ${userName}！`);
                         }else if(data.lv===3){
