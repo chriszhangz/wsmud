@@ -102,7 +102,7 @@ export class ChrisTask extends Task {
          */
         async function processMsg(data: Msg) {
              if (data.ch === "rumor") {
-                 if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0) {
+                 if (data.content.indexOf('听说') >= 0&&data.content.indexOf('出现')>=0&&data.content.indexOf('踢下了擂台')<0) {
                     //var myDate = new Date();
                     //var mytime=myDate.toLocaleTimeString(); 
                     //await Promise.promisify(appendFile)(`./core/rooms/test.json`, mytime+'出现BOSS，距上个boss'+GetZNTimes()+`\n`);

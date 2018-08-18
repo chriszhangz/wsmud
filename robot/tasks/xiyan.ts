@@ -55,7 +55,7 @@ export class XiyanTask extends Task {
                 }
            }
        }
-
+       session.removeAllListeners('msg');
         session.on('msg', processMsg);
 
         while (true) {
