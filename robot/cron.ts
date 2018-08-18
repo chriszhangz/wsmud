@@ -109,6 +109,13 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();          
         
+        config = {key: "test4",name: "赵鲛帝",server: 2,account: {code: "apollozz1",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "h1ca2a324ec", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();            
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
     //var rule = new RecurrenceRule();
