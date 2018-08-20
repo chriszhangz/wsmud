@@ -18,7 +18,7 @@ export class XiyanTask extends Task {
 
 
         async function processMsg(data: Msg) {
-            //console.log("^^^^^:"+data.content);
+            //console.log(data.name+":"+data.content);
             if (data.ch === sys) {
                //console.log("****:"+data.content);
                 if (data.content.indexOf('婚庆主持') >= 0 && data.content.indexOf('婚礼将在一分钟后开始') >= 0) {
@@ -71,6 +71,7 @@ export class XiyanTask extends Task {
                 }
            }
        }
+       this.isCancellationRequested=false;
        session.removeAllListeners('msg');
         session.on('msg', processMsg);
 

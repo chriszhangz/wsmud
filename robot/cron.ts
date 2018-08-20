@@ -115,13 +115,88 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();            
+        await new TaskSchedule(config.tasks, session, config).Run();          
+
+        //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        config = {key: "test4",name: "施珺",server: 2,account: {code: "apollozzzz",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 5 start", "苏星河", "sa512a64ea9", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();  
+                
+        config = {key: "test4",name: "卫俣列",server: 2,account: {code: "apollozz3",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "b1xr2928719", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();                  
+
+        config = {key: "test4",name: "彭飒俯",server: 2,account: {code: "apollozz3",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "p2b02a63a1f", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "葛僧",server: 2,account: {code: "apollozz3",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "92382a63a3e", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "苏矢亮",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "3if02a63a5c", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "秦储朗",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "hdwp2a63a7c", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "蒋川风",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "gd0a2a63a9b", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "赫连侃璟",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "7xw42a63ab5", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+
+        config = {key: "test4",name: "巫马碧",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "q36w2a64cf5", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();   
+
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 30 09 * * *', async function() {
+    new CronJob('00 00 19 * * *', async function() {
         await callback();
       }, null, true, 'America/Los_Angeles');
 

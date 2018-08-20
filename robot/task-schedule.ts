@@ -2,6 +2,7 @@ import { Task } from "./task";
 import { UserConfig } from "./interface";
 import { Session, ConnectionError } from "../core";
 import { ConnectTask } from "./tasks";
+import {Promise} from "bluebird";
 
 export class TaskSchedule {
 
@@ -32,6 +33,9 @@ export class TaskSchedule {
                 await this.currentTask.start(this.session, this.config);
             } catch (error) {
                 if (error instanceof ConnectionError) {
+                    console.log(`wait 30 mis to reconnect`);
+                    await Promise.delay(1800000);
+                    console.log(`reconnect..`);
                     this.connectTask.priority = 1000;
                 } else {
                     console.log(`任务中断，当前任务：${typeof (this.currentTask)}`);
