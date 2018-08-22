@@ -1,12 +1,12 @@
 import { UserConfig } from "../interface";
 import * as tasks from "../tasks";
-export var test4: UserConfig = {
-    key: "test4",
-    name: "讓叁招",
+export var test5: UserConfig = {
+    key: "test5",
+    name: "咬人的豆包",
     server: 2,
     account: {
-        code: "avrin09",
-        pwd: "avrin0905"
+        code: "apollozzz",
+        pwd: "1982525"
     },
     tasks: [
         new tasks.XiyanTask()

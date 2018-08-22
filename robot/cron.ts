@@ -191,12 +191,28 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();   
 
+        config = {key: "test4",name: "窦封",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "9rnu2a93695", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4",name: "宗政鲛众",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "05wo2a7d49c", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();  
+
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 00 19 * * *', async function() {
+    new CronJob('00 30 14 * * *', async function() {
         await callback();
       }, null, true, 'America/Los_Angeles');
 

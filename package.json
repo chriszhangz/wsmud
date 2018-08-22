@@ -19,6 +19,7 @@
     "test2": "node ./robot/index.js -u=test2",
     "test3": "node ./robot/index.js -u=test3",
     "test4": "node ./robot/index.js -u=test4",
+    "test5": "node ./robot/index.js -u=test5",
     "cron": "node ./robot/cron.js",
     "chris": "node ./robot/index.js -u=chris"
   },
