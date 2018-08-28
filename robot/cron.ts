@@ -117,6 +117,41 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();          
 
+        config = {key: "test4",name: "彭轩宽",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "91ql2b1d127", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        config = {key: "test4",name: "魏磊征",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "wvrl2b1d1a3", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        config = {key: "test4",name: "何魁晸",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "7rrn2b1d225", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        config = {key: "test4",name: "吕曾守",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "3trc2b1d28d", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        config = {key: "test4",name: "轩辕闻",server: 2,account: {code: "huashanwushi",pwd: "1982525"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "xl4j2b1d31a", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();                                            
         //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         config = {key: "test4",name: "施珺",server: 2,account: {code: "apollozzzz",pwd: "1982525"},
