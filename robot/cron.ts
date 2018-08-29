@@ -145,7 +145,7 @@ async function start() {
         }
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();    
-        config = {key: "test4",name: "轩辕闻",server: 2,account: {code: "huashanwushi",pwd: "1982525"},
+        config = {key: "test4",name: "轩辕闻",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "xl4j2b1d31a", new Date(2018, 4, 21))
             ]
