@@ -140,8 +140,6 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😊俗~ 今天玫瑰送了没^^？`);
                         }else if(data.name==='法王孙笑川'){
                             await session.sendAsync(`${ch} ‍🧙‍♂️新人导师法王孙笑川~ 您好^^！`);
-                        }else if(data.name==='讓叁招'){
-                            await session.sendAsync(`${ch} 阿三~ 你好^^！`);
                         }else if(data.name==='诸葛擎'){
                             await session.sendAsync(`${ch} ‍‍‍‍‍🧙‍♂️萌新导师诸葛擎~ 您好^^！`);
                         }else if(data.name==='东方友利'){
@@ -150,10 +148,12 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄关心小姐姐好^^！`);
                         }else if(data.name==='轩辕天宇'){
                             await session.sendAsync(`${ch} 😄天宇小姐姐好^^！`);
-                        }else if(data.name==='百夫长'){
+                        }else if(data.name==='缨别扭'){
                             await session.sendAsync(`${ch} 😄百夫皮皮,你今天好像又变帅了一点^^！`);
                         }else if(data.name==='飞沙石'){
                             await session.sendAsync(`${ch} 😄女装大佬莎莎姐好！`);
+                        }else if(data.name==='讓叁拳'){
+                            await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
