@@ -84,8 +84,11 @@ export class ShimenTask extends Task {
                 await session.sendAsync("shop 0 20");
                 await Promise.delay(1000);
                 await session.sendAsync("jh fam 0 start");
+                await Promise.delay(500);
                 await session.sendAsync("go west");
+                await Promise.delay(500);
                 await session.sendAsync("go north");
+                await Promise.delay(500);
                 await session.sendAsync("go north");
                 await Promise.delay(2000);
                 const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));

@@ -17,6 +17,10 @@ export class ChrisTask extends Task {
 
         let newbook = false; //是否有新的book
         //let current = 0; //当前数值
+        let newXYs = false;
+        let newXYe = false;
+        let lastXYs = new Date();
+        let lastXYe = new Date().getTime();
         let lastbook = new Date();
         let lastHour = -1;
         let lastchat = new Date();
@@ -116,9 +120,21 @@ export class ChrisTask extends Task {
                     var hawaii = utc + (3600000 * offset);
                     var nd = new Date(hawaii);
                     lastHour = nd.getHours();
+                 }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('近日将会进攻襄阳')>=0){
+                    //console.log(`襄阳保卫战现在开启`);
+                    newXYs = true;
+                    newXYe = false;
+                    lastXYs = new Date();
                  }
-                }else if(data.ch === 'tm'){
-                    console.log(data.name+":"+data.content);
+                }else if(data.ch === 'sys'){
+                 if(data.content.indexOf('襄阳城大获全胜') >= 0 || data.content.indexOf('襄阳城失守')>=0){
+                    //console.log(`襄阳保卫战over`);
+                    newXYs = false;
+                    newXYe = true;
+                    lastXYe = new Date().getTime()+3600000*2;
+                 }
+               }else if(data.ch === 'tm'){
+                    //console.log(data.name+":"+data.content);
                     positions+=data.content;
                }else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
@@ -165,7 +181,7 @@ export class ChrisTask extends Task {
                         }
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
-                        await session.sendAsync(`${ch} 您好${userName}，我已升级2.0版，能报boss时间以及具体位置。如有需要请联系我的主人谢谢。`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体位置以及襄阳相关时间。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         await session.sendAsync(`${ch} 😊您好${userName}，我的主人是咬人的豆包。`);
@@ -199,6 +215,28 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${GetChinaTime()}`+positions);
                         }else{
                             await session.sendAsync(`${ch} 😉抱歉，我刚升级完毕,将等待下一个BOSS出现后开始计时。`);
+                        }
+                        lastchat = new Date();
+                    }else if (content === "xy" ||content === "x" ){
+                        if(newXYs){
+                            var time = new Date().getTime() - lastXYs.getTime();
+                            time = time / 1000;
+                            var mins = Math.floor(time / 60);
+                            var secs = Math.floor(time % 60);
+                            await session.sendAsync(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                            //console.log(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                        }else if(newXYe){
+                            var time = lastXYe - new Date().getTime();
+                            if(time>=0){
+                                time = time / 1000;
+                                var mins = Math.floor(time / 60);
+                                var secs = Math.floor(time % 60);
+                                await session.sendAsync(`😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
+                                //console.log(`😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
+                            }else{
+                                await session.sendAsync(`😄襄阳保卫战现在可以开启`);
+                                //console.log(`😄襄阳保卫战现在可以开启`);
+                            }
                         }
                         lastchat = new Date();
                     }
