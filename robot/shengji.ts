@@ -15,10 +15,10 @@ async function start() {
         //const config = getConfig();
         //let cmds: string[] = ['jh fam 0 start','go south','go south','go west'];
         //let cmds: string[] = ['jh fam 3 start','go westup','go north','go north'];
-        let cmds: string[] = ['jh fam 0 start','go south','go south','go east','go east','go east','go north'];
-        //let cmds: string[] = ['jh fam 0 start'];
+        //let cmds: string[] = ['jh fam 0 start','go south','go south','go east','go east','go east','go north'];
+        let cmds: string[] = ['jh fam 0 start'];
         //let cmds: string[] = ['jh fam 3 start'];
-        let master:string = '高根明';
+        let master:string = '金古易';
         //let wugong:string = 'dodge';
         //let wugong:string = 'parry';
         //let wugong:string = 'force';

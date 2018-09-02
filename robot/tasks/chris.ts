@@ -223,7 +223,7 @@ export class ChrisTask extends Task {
                             time = time / 1000;
                             var mins = Math.floor(time / 60);
                             var secs = Math.floor(time % 60);
-                            await session.sendAsync(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                            await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
                             //console.log(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
                         }else if(newXYe){
                             var time = lastXYe - new Date().getTime();
@@ -231,10 +231,10 @@ export class ChrisTask extends Task {
                                 time = time / 1000;
                                 var mins = Math.floor(time / 60);
                                 var secs = Math.floor(time % 60);
-                                await session.sendAsync(`😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
+                                await session.sendAsync(`${ch} 😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
                                 //console.log(`😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
                             }else{
-                                await session.sendAsync(`😄襄阳保卫战现在可以开启`);
+                                await session.sendAsync(`${ch} 😄襄阳保卫战现在可以开启`);
                                 //console.log(`😄襄阳保卫战现在可以开启`);
                             }
                         }

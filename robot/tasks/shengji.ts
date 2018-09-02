@@ -54,12 +54,12 @@ export class ShengJiTask extends Task {
                 //await session.sendAsync(`bai ${master.id}`);
                 await Promise.delay(500);
                 //console.log(new Date() + "excute任务..")
-                await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
-                await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
+                //await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
+                //await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
                 
                 //await session.sendAsync(`enable force huashanxinfa`);
                 //await Promise.delay(500);
-                //await session.sendAsync(`levelup ${master.id}`);
+                await session.sendAsync(`levelup ${master.id}`);
                 await Promise.delay(1000);
                     
                 self.priority=-1;
