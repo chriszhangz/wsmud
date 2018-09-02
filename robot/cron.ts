@@ -239,7 +239,7 @@ async function start() {
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "05wo2a7d49c", new Date(2018, 4, 21))
             ]
         }
-        //console.log("begin ......................................" + config.name);
+        console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();   
         
         config = {key: "test4",name: "戚弩",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -282,7 +282,7 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();     
         
-        config = {key: "test4",name: "金浩振一",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        config = {key: "test4",name: "金浩振一",server: 2,account: {code: "apollozz7",pwd: "1982525"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "mhem2b73353", new Date(2018, 4, 21))
             ]
@@ -290,7 +290,7 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();       
         
-        config = {key: "test4",name: "金浩振二",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        config = {key: "test4",name: "金浩振二",server: 2,account: {code: "apollozz7",pwd: "1982525"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "j1vi2b7334e", new Date(2018, 4, 21))
             ]
@@ -298,7 +298,7 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();       
         
-        config = {key: "test4",name: "金浩振三",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        config = {key: "test4",name: "金浩振三",server: 2,account: {code: "apollozz7",pwd: "1982525"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "p7uu2b73339", new Date(2018, 4, 21))
             ]
@@ -306,7 +306,7 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();       
         
-        config = {key: "test4",name: "金浩振四",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        config = {key: "test4",name: "金浩振四",server: 2,account: {code: "apollozz7",pwd: "1982525"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "ws7b2b7330b", new Date(2018, 4, 21))
             ]
@@ -314,7 +314,7 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();       
         
-        config = {key: "test4",name: "金浩振五",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        config = {key: "test4",name: "金浩振五",server: 2,account: {code: "apollozz7",pwd: "1982525"},
             tasks: [
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "l8dq2b731ab", new Date(2018, 4, 21))
             ]
@@ -328,7 +328,7 @@ async function start() {
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 30 14 * * *', async function() {
+    new CronJob('00 39 14 * * *', async function() {
         await callback();
       }, null, true, 'America/Los_Angeles');
 
