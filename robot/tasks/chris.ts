@@ -152,8 +152,8 @@ export class ChrisTask extends Task {
                     if (content.indexOf('白如盈') >=0 && content.indexOf('你好')>=0) {
                         if(data.name==='燧人氏'){
                             await session.sendAsync(`${ch} 😍燧大侠~ 您好^^！`);
-                        }else if(data.name==='半俗'){
-                            await session.sendAsync(`${ch} 😊俗~ 今天玫瑰送了没^^？`);
+                        }else if(data.name==='欧洲君'){
+                            await session.sendAsync(`${ch} 😊俗~ 紫药王分解了没^^？`);
                         }else if(data.name==='法王孙笑川'){
                             await session.sendAsync(`${ch} ‍🧙‍♂️新人导师法王孙笑川~ 您好^^！`);
                         }else if(data.name==='诸葛擎'){
@@ -167,7 +167,17 @@ export class ChrisTask extends Task {
                         }else if(data.name==='缨别扭'){
                             await session.sendAsync(`${ch} 😄百夫皮皮,你今天好像又变帅了一点^^！`);
                         }else if(data.name==='飞沙石'){
-                            await session.sendAsync(`${ch} 😄女装大佬莎莎姐好！`);
+                            await session.sendAsync(`${ch} 😄女...大佬莎莎姐好！`);
+                        }else if(data.name==='严修'){
+                            await session.sendAsync(`${ch} 😄天下倒数第一严修弟弟好！`);
+                        }else if(data.name==='锦里'){
+                            await session.sendAsync(`${ch} 😄最弱宗师小锦里好！`);
+                        }else if(data.name==='濔不够资格'){
+                            await session.sendAsync(`${ch} 😄月夜之狼~资格姐姐好！`);
+                        }else if(data.name==='左柚丶'){
+                            await session.sendAsync(`${ch} 😄人贱人爱的辣鸡柚~你好！`);
+                        }else if(data.name==='西门木清'){
+                            await session.sendAsync(`${ch} 😄西门少侠~你好！`);
                         }else if(data.name==='讓叁拳'){
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.lv===5){

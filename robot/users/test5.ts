@@ -5,7 +5,7 @@ export var test5: UserConfig = {
     name: "咬人的豆包",
     server: 2,
     account: {
-        code: "apollozz",
+        code: "apollozzz",
         pwd: "1982525"
     },
     tasks: [

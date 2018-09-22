@@ -19,6 +19,7 @@ export class SmTask extends Task {
             firstChiefDate.getMonth(),
             firstChiefDate.getDate())
             .getTime();
+            this.priority = 100;
     }
 
     firstChiefTime: number;
@@ -29,7 +30,11 @@ export class SmTask extends Task {
         var self = this;
         async function callback() {
             await session.sendAsync("tasks;stopstate");
-            await session.sendAsync(self.taskPath);
+            var paths: string[] = self.taskPath.split(";");
+            for (let i = 0; i < paths.length; i++) {
+                await session.sendAsync(paths[i]);
+            }
+            //await session.sendAsync(self.taskPath);
             await Promise.delay(5050);
             await session.sendAsync("tasks");
             const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
@@ -37,18 +42,22 @@ export class SmTask extends Task {
             if (master) {
                 console.log(new Date() + "任务开始..")
                 var cmds: string[] = [];
-                for (let i = 0; i < 5; i++) {
+                for (let i = 0; i < 20; i++) {
                     cmds.push(`task sm ${master.id}`);
                     cmds.push(`task sm ${master.id} give ${self.tokenId}`);
                 }
 
-                for (let i = 0; i < 4; i++) {
-                    await session.sendAsync(cmds);
-                }
+                // for (let i = 0; i < 4; i++) {
+                //     await session.sendAsync(cmds);
+                // }
                 await Promise.delay(1000);
-                for (let i = 0; i < 4; i++) {
-                    await session.sendAsync(cmds);
+                for (let i = 0; i < 20; i++) {
+                    cmds.push(`task sm ${master.id}`);
+                    cmds.push(`task sm ${master.id} give ${self.tokenId}`);
                 }
+                // for (let i = 0; i < 4; i++) {
+                //     await session.sendAsync(cmds);
+                // }
             }
             await session.sendAsync("tasks");
             console.log(new Date() + "任务完成..")
@@ -58,13 +67,14 @@ export class SmTask extends Task {
         }
 
 
-        cron.scheduleJob("55 0 5 * * *", async fireDate => {
+        cron.scheduleJob("55 0 14 * * *", async fireDate => {
+            console.log(`check`);
             var isChiefDate = this.isChiefDate(fireDate);
             if (isChiefDate) {
                 await callback()
             }
         });
-        cron.scheduleJob("5 0 20 * * *", async fireDate => {
+        cron.scheduleJob("5 0 05 * * *", async fireDate => {
             var isChiefDate = this.isChiefDate(fireDate);
             if (!isChiefDate) {
                 await callback()
@@ -75,6 +85,7 @@ export class SmTask extends Task {
     private isChiefDate(fireDate: Date) {
         const today = new Date(fireDate.getFullYear(), fireDate.getMonth(), fireDate.getDate()).getTime();
         var days = (today - this.firstChiefTime) / ONE_DAY_MS;
+        console.log(`days:${days}`);
         var offset = (days & 1) == 0;
         console.log(`${fireDate} ${offset ? 'is' : 'is not'} chief date`);
         return offset;
