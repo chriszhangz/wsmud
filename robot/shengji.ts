@@ -14,20 +14,20 @@ async function start() {
     async function callback() {
         //const config = getConfig();
         //let cmds: string[] = ['jh fam 0 start','go south','go south','go west'];
-        //let cmds: string[] = ['jh fam 3 start','go westup','go north','go north'];
+        let cmds: string[] = ['jh fam 3 start','go westup','go north','go north'];
         //let cmds: string[] = ['jh fam 0 start','go south','go south','go east','go east','go east','go north'];
-        let cmds: string[] = ['jh fam 0 start'];
+        //let cmds: string[] = ['jh fam 0 start'];
         //let cmds: string[] = ['jh fam 3 start'];
-        let master:string = '金古易';
+        let master:string = '岳不群';
         //let wugong:string = 'dodge';
         //let wugong:string = 'parry';
         //let wugong:string = 'force';
         //let wugong:string = 'unarmed';
-        let wugong:string = 'huashanxinfa';
+        //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'feiyanhuixiang';
         //let wugong:string = 'huashanjianfa';
-        //let wugong:string = 'zixiashengong';
+        let wugong:string = 'zixiashengong';
         let config: UserConfig = {
             key: "test4",
             name: "卫俣列",
@@ -44,69 +44,101 @@ async function start() {
         const server = await selectServer(config);
         const session = new Session(server);
         //运行
-        //await new TaskSchedule(config.tasks, session, config).Run();
+        await new TaskSchedule(config.tasks, session, config).Run();
                                          
         //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                           
 
-        // config = {key: "test4",name: "彭飒俯",server: 2,account: {code: "apollozz3",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
-        
-        // config = {key: "test4",name: "葛僧",server: 2,account: {code: "apollozz3",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // //await new TaskSchedule(config.tasks, session, config).Run();          
-        
-        // config = {key: "test4",name: "苏矢亮",server: 2,account: {code: "apollozz4",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
-        
-        // config = {key: "test4",name: "秦储朗",server: 2,account: {code: "apollozz4",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
+        config = {key: "test4",name: "彭飒俯",server: 2,account: {code: "apollozz3",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
         //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
+        await new TaskSchedule(config.tasks, session, config).Run();          
         
-        // config = {key: "test4",name: "蒋川风",server: 2,account: {code: "apollozz4",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
+        config = {key: "test4",name: "葛僧",server: 2,account: {code: "apollozz3",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        //await new TaskSchedule(config.tasks, session, config).Run();          
         
-        // config = {key: "test4",name: "赫连侃璟",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+        config = {key: "test4",name: "苏矢亮",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "秦储朗",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "蒋川风",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+        
+        config = {key: "test4",name: "赫连侃璟",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();          
+
+        config = {key: "test4",name: "巫马碧",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();   
+
+        config = {key: "test4",name: "窦封",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4",name: "宗政鲛众",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+            tasks: [
+                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();  
+
+        // config = {key: "test4",name: "戚弩",server: 2,account: {code: "apollozz6",pwd: "1982525"},
         //     tasks: [
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
+        // await new TaskSchedule(config.tasks, session, config).Run();  
 
-        // config = {key: "test4",name: "巫马碧",server: 2,account: {code: "apollozz4",pwd: "1982525"},
+        // config = {key: "test4",name: "吕榜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
         //     tasks: [
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();   
+        // await new TaskSchedule(config.tasks, session, config).Run();  
 
-        // config = {key: "test4",name: "窦封",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+        // config = {key: "test4",name: "尤琮铿",server: 2,account: {code: "apollozz6",pwd: "1982525"},
         //     tasks: [
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
@@ -114,7 +146,15 @@ async function start() {
         // //console.log("begin ......................................" + config.name);
         // await new TaskSchedule(config.tasks, session, config).Run();  
         
-        // config = {key: "test4",name: "宗政鲛众",server: 2,account: {code: "apollozz5",pwd: "1982525"},
+        // config = {key: "test4",name: "邹子仝",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        // config = {key: "test4",name: "韩宪炜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
         //     tasks: [
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
@@ -122,93 +162,53 @@ async function start() {
         // //console.log("begin ......................................" + config.name);
         // await new TaskSchedule(config.tasks, session, config).Run();  
 
-        config = {key: "test4",name: "戚弩",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
+        // config = {key: "test4",name: "韩宪炜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();    
 
-        config = {key: "test4",name: "吕榜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
+        // config = {key: "test4",name: "金浩振一",server: 2,account: {code: "apollozz7",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();    
 
-        config = {key: "test4",name: "尤琮铿",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
-        
-        config = {key: "test4",name: "邹子仝",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
-        
-        config = {key: "test4",name: "韩宪炜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
+        // config = {key: "test4",name: "金浩振二",server: 2,account: {code: "apollozz7",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();      
 
-        config = {key: "test4",name: "韩宪炜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();    
+        // config = {key: "test4",name: "金浩振三",server: 2,account: {code: "apollozz7",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();      
 
-        config = {key: "test4",name: "金浩振一",server: 2,account: {code: "apollozz7",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();    
+        // config = {key: "test4",name: "金浩振四",server: 2,account: {code: "apollozz7",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();         
 
-        config = {key: "test4",name: "金浩振二",server: 2,account: {code: "apollozz7",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();      
-
-        config = {key: "test4",name: "金浩振三",server: 2,account: {code: "apollozz7",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();      
-
-        config = {key: "test4",name: "金浩振四",server: 2,account: {code: "apollozz7",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();         
-
-        config = {key: "test4",name: "金浩振五",server: 2,account: {code: "apollozz7",pwd: "1982525"},
-            tasks: [
-                new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-            ]
-        }
-        //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();      
+        // config = {key: "test4",name: "金浩振五",server: 2,account: {code: "apollozz7",pwd: "1982525"},
+        //     tasks: [
+        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
+        //     ]
+        // }
+        // //console.log("begin ......................................" + config.name);
+        // await new TaskSchedule(config.tasks, session, config).Run();      
 
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
