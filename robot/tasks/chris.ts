@@ -184,6 +184,10 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄神经病。。。你好！`);
                         }else if(data.name==='骨傲天无敌'){
                             await session.sendAsync(`${ch} 😄欧皇小骨头~你好！`);
+                        }else if(data.name==='桃栀'){
+                            await session.sendAsync(`${ch} 😄二代目桃子老大好！`);
+                        }else if(data.name==='酩酊酌雪'){
+                            await session.sendAsync(`${ch} 😄雪姐姐~你好！`);
                         }else if(data.name==='讓叁拳'){
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.lv===5){
@@ -196,7 +200,7 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 您好, ${userName}！`);
                         }
                         lastchat = new Date();
-                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
+                    }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('会')>=0||content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
                         await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体位置以及襄阳相关时间。如有需要请联系我的主人谢谢。`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {

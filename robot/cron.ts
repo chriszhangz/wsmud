@@ -164,7 +164,7 @@ async function start() {
                 
         config = {key: "test4",name: "卫俣列",server: 2,account: {code: "apollozz3",pwd: "1982525"},
             tasks: [
-                new tasks.ShimenTask("jh fam 3 start", "高根明", "b1xr2928719", new Date(2018, 4, 21))
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "zrxu2e16b52", new Date(2018, 4, 21))
             ]
         }
         //console.log("begin ......................................" + config.name);
