@@ -21,6 +21,7 @@
     "test4": "node ./robot/index.js -u=test4",
     "test5": "node ./robot/index.js -u=test5",
     "cron": "node ./robot/cron.js",
+    "cron2": "node ./robot/cron2.js",
     "chris": "node ./robot/index.js -u=chris"
   },
   "keywords": [
