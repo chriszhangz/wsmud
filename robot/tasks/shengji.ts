@@ -50,7 +50,9 @@ export class ShengJiTask extends Task {
             //     }
             // }
             if (master) {   
+                await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
+                //await Promise.delay(500);
                 //await session.sendAsync(`bai ${master.id}`);
                 await Promise.delay(500);
                 //console.log(new Date() + "excute任务..")
@@ -66,12 +68,12 @@ export class ShengJiTask extends Task {
                 return;
             }
             await session.sendAsync(`${pty} 开始打坐..`);
-            await session.sendAsync(`enable force huashanxinfa`);
+            //await session.sendAsync(`enable force huashanxinfa`);
             // await session.sendAsync(`enable sword huashanjianfa`);
             // await session.sendAsync(`enable unarmed poyuquan`);
             // await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
-            // await session.sendAsync(`enable force zixiashengong`);
+            await session.sendAsync(`enable force zixiashengong`);
             await session.sendAsync(`dazuo`);
             self.priority=-1;
             return;
