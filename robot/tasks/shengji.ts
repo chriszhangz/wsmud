@@ -40,15 +40,15 @@ export class ShengJiTask extends Task {
             // await session.sendAsync("go west");
             // await Promise.delay(1050);
             const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-            //let waitTimes=0
-            // while(master==null){
+            let waitTimes=0
+            while(master==null){
                 
-            //     await Promise.delay(1000);
-            //     if(waitTimes>5){      
-            //         console.log('Can\'t find master...');
-            //         break;
-            //     }
-            // }
+                await Promise.delay(1000);
+                if(waitTimes>5){      
+                    console.log('Can\'t find master...');
+                    break;
+                }
+            }
             if (master) {   
                 await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
@@ -73,7 +73,7 @@ export class ShengJiTask extends Task {
             // await session.sendAsync(`enable unarmed poyuquan`);
             // await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
-            await session.sendAsync(`enable force zixiashengong`);
+            //await session.sendAsync(`enable force zixiashengong`);
             await session.sendAsync(`dazuo`);
             self.priority=-1;
             return;
