@@ -28,6 +28,7 @@ async function start() {
         //let wugong:string = 'parry';
         //let wugong:string = 'force';
         //let wugong:string = 'unarmed';
+        //let wugong:string = 'sword';
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
@@ -130,50 +131,6 @@ async function start() {
         }
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run();          
-        
-        // config = {key: "test4",name: "赵鲛帝",server: 2,account: {code: "apollozz1",pwd: "1982525"},
-        //     tasks: [
-        //         new tasks.ShimenTask("jh fam 3 start", "高根明", "24th2b76b29", new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();          
-
-        // config = {key: "test4",name: "彭轩宽",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();    
-        // config = {key: "test4",name: "魏磊征",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();    
-        // config = {key: "test4",name: "何魁晸",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();    
-        // config = {key: "test4",name: "吕曾守",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();    
-        // config = {key: "test4",name: "轩辕闻",server: 2,account: {code: "huashanwushi",pwd: "jiqiren"},
-        //     tasks: [
-        //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
-        //     ]
-        // }
-        // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();                                    
         //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                           
@@ -207,7 +164,8 @@ async function start() {
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
         // }
-        // //console.log("begin ......................................" + config.name);
+
+        // console.log("begin ......................................" + config.name);
         // await new TaskSchedule(config.tasks, session, config).Run();          
         
         // config = {key: "test4",name: "蒋川风",server: 2,account: {code: "apollozz4",pwd: "1982525"},
