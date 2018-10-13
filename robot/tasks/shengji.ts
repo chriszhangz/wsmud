@@ -39,25 +39,30 @@ export class ShengJiTask extends Task {
             // await session.sendAsync("go south");
             // await session.sendAsync("go west");
             // await Promise.delay(1050);
-            const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-            //let waitTimes=0
-            // while(master==null){
+            let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            let waitTimes=0
+            while(master==null){
                 
-            //     await Promise.delay(1000);
-            //     if(waitTimes>5){      
-            //         console.log('Can\'t find master...');
-            //         break;
-            //     }
-            // }
+                await Promise.delay(1000);
+                if(waitTimes>5){      
+                    console.log('Can\'t find master...');
+                    break;
+                }
+                master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+                waitTimes++;
+            }
             if (master) {   
-                await session.sendAsync(`enable force zixiashengong`);
+                //await session.sendAsync(`setting auto_work 1`);
+                //await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
                 //await Promise.delay(500);
                 //await session.sendAsync(`bai ${master.id}`);
                 await Promise.delay(500);
+                //await session.sendAsync(`zhounian ${master.id}`);
                 //console.log(new Date() + "excute任务..")
                 //await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
                 await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
+                //await session.sendAsync(`lianxi ${self.tokenId}`);
                 
                 //await session.sendAsync(`enable force huashanxinfa`);
                 //await Promise.delay(500);
@@ -67,13 +72,14 @@ export class ShengJiTask extends Task {
                 self.priority=-1;
                 return;
             }
-            await session.sendAsync(`${pty} 开始打坐..`);
+            //await session.sendAsync(`lianxi ${self.tokenId}`);
+            //await session.sendAsync(`${pty} 开始打坐..`);
             //await session.sendAsync(`enable force huashanxinfa`);
             // await session.sendAsync(`enable sword huashanjianfa`);
             // await session.sendAsync(`enable unarmed poyuquan`);
             // await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
-            await session.sendAsync(`enable force zixiashengong`);
+            //await session.sendAsync(`enable force zixiashengong`);
             await session.sendAsync(`dazuo`);
             self.priority=-1;
             return;
