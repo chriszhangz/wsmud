@@ -19,9 +19,11 @@ async function start() {
         //let cmds: string[] = ['jh fam 3 start','go westup','go south','go southup','go southup','break bi','go enter','go westup','go westup'];  //风清扬
         //let cmds: string[] = ['jh fam 0 start','go west','go west','go north','go enter','go west'];       //练功房
         //let cmds: string[] = ['jh fam 0 start','go south','go south','go east','go east','go east','go north'];
-        //let cmds: string[] = ['jh fam 0 start'];
+        //let cmds: string[] = ['jh fam 0 start','climb tree'];
         //let cmds: string[] = ['jh fam 3 start'];
+        //let master:string = '金古易';
         let master:string = '岳不群';
+        //let wugong:string = 'sword';
         //let wugong:string = 'dodge';
         //let wugong:string = 'parry';
         //let wugong:string = 'force';
@@ -30,9 +32,9 @@ async function start() {
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
-        //let wugong:string = 'feiyanhuixiang';
-        //let wugong:string = 'huashanjianfa';
-        let wugong:string = 'zixiashengong';
+        ////let wugong:string = 'feiyanhuixiang';
+        let wugong:string = 'huashanjianfa';
+        //let wugong:string = 'zixiashengong';
         let config: UserConfig = {
             key: "test4",
             name: "戚镰剑",
@@ -49,6 +51,7 @@ async function start() {
         const server = await selectServer(config);
         const session = new Session(server);
         //运行
+        //await new TaskSchedule(config.tasks, session, config).Run();
         await new TaskSchedule(config.tasks, session, config).Run();
         config = {
             key: "test4",
@@ -127,7 +130,7 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();                                  
+        await new TaskSchedule(config.tasks, session, config).Run();          
         //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
                           
@@ -161,6 +164,7 @@ async function start() {
         //         new tasks.ShengJiTask(cmds, master, wugong, new Date(2018, 4, 21))
         //     ]
         // }
+
         // console.log("begin ......................................" + config.name);
         // await new TaskSchedule(config.tasks, session, config).Run();          
         
