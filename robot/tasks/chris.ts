@@ -152,7 +152,7 @@ export class ChrisTask extends Task {
                     if (content=='白如盈'||(content.indexOf('白如盈') >=0 && content.indexOf('你好')>=0)) {
                         if(data.name==='燧人氏'){
                             await session.sendAsync(`${ch} 😍燧大侠~ 您好^^！`);
-                        }else if(data.name==='欧洲君'){
+                        }else if(data.name==='半俗'){
                             await session.sendAsync(`${ch} 😊俗~ 紫药王分解了没^^？`);
                         }else if(data.name==='法王孙笑川'){
                             await session.sendAsync(`${ch} ‍🧙‍♂️新人导师法王孙笑川~ 您好^^！`);
