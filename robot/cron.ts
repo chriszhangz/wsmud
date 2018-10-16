@@ -151,7 +151,23 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();                                            
+        await new TaskSchedule(config.tasks, session, config).Run();         
+        
+        config = {key: "test4",name: "金叔一",server: 2,account: {code: "huashanzongshi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "2zo72f23f7c", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();         
+        
+        config = {key: "test4",name: "金叔二",server: 2,account: {code: "huashanzongshi",pwd: "jiqiren"},
+            tasks: [
+                new tasks.ShimenTask("jh fam 3 start", "高根明", "8cvn2f2418f", new Date(2018, 4, 21))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        await new TaskSchedule(config.tasks, session, config).Run();                
         //BOSS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         config = {key: "test4",name: "施珺",server: 2,account: {code: "apollozzzz",pwd: "1982525"},
