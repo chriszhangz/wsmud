@@ -27,14 +27,14 @@ async function start() {
         //let wugong:string = 'dodge';
         //let wugong:string = 'parry';
         //let wugong:string = 'force';
-        let wugong:string = 'unarmed';
+        //let wugong:string = 'unarmed';
         //let wugong:string = 'sword';
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
         ////let wugong:string = 'feiyanhuixiang';
         //let wugong:string = 'huashanjianfa';
-        //let wugong:string = 'zixiashengong';
+        let wugong:string = 'zixiashengong';
         let config: UserConfig = {
             key: "test4",
             name: "戚镰剑",
