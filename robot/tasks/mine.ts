@@ -38,11 +38,10 @@ export class MineTask extends Task {
     {content:"jh fam 3 start",type:2},{content:"go westup",type:1},{content:"go north",type:1},{content:"go north",type:1},{content:"go north",type:1},
     {content:"go south",type:0},{content:"go east",type:1},{content:"go west",type:0},{content:"go south",type:0},{content:"go east",type:1},
     {content:"go west",type:0},{content:"go south",type:0},{content:"go west",type:1},{content:"go east",type:0},{content:"go south",type:1},
-    {content:"go southup",type:1},{content:"go southup",type:1},{content:"break bi",type:0},{content:"go enter",type:1},//break bi
-    {content:"go westup",type:1},{content:"go westup",type:1},{content:"go eastdown",type:0},{content:"go eastdown",type:0},{content:"go out",type:0},
-    {content:"go northdown",type:0},{content:"go northdown",type:0},{content:"go north",type:0},{content:"go eastdown",type:1},{content:"go eastup",type:1},
+    {content:"go southup",type:1},{content:"go southup",type:1},{content:"break bi",type:2},{content:"go enter",type:1},//break bi
+    {content:"go westup",type:1},{content:"go westup",type:1},{content:"jh fam 3 start",type:2},{content:"go eastup",type:1},
     {content:"go southup",type:1},{content:"jumpdown",type:1},{content:"go southup",type:1},{content:"go south",type:1},{content:"go east",type:1}, // jumpdown
-    {content:"jh fam 0 start",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"wa",type:0}
+    {content:"jh fam 0 start",type:2},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"go west",type:0},{content:"wa",type:0}
 ];
     async start(session: Session, config: UserConfig) {
         let cmdss = this.cmds;
