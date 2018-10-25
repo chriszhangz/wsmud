@@ -169,7 +169,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='飞沙石'){
                             await session.sendAsync(`${ch} 😄女...大佬莎莎姐好！`);
                         }else if(data.name==='严修'){
-                            await session.sendAsync(`${ch} 😄天下倒数第一严修弟弟好！`);
+                            await session.sendAsync(`${ch} 😄天下倒数第一严修姐姐好！`);
                         }else if(data.name==='锦里'){
                             await session.sendAsync(`${ch} 😄最弱宗师小锦里好！`);
                         }else if(data.name==='濔不够资格'){
@@ -192,6 +192,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.name==='深井冰'){
                             await session.sendAsync(`${ch} 😄神经病~你好！`);
+                        }else if(data.name==='夜臣'){
+                            await session.sendAsync(`${ch} 😄萌新杀手夜臣~你好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
@@ -203,7 +205,7 @@ export class ChrisTask extends Task {
                         }
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('会')>=0||content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
-                        await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体位置以及襄阳相关时间。如有需要请联系我的主人谢谢。`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体位置以及襄阳相关时间。如需要特殊回复请联系辣鸡俗😄`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         await session.sendAsync(`${ch} 😊您好${userName}，我的主人是咬人的豆包。`);
