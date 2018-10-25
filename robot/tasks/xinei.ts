@@ -4,7 +4,13 @@ import { UserConfig } from '../interface';
 import { Task } from "../task";
 
 const pty = "pty";
-export class ShengJiTask extends Task {
+const waitJob = /你想趁人之危吗/;
+const endJob = /承让/;
+const endJob2 = /阁下武艺不凡/;
+const endJob3 = /知道我的厉害了吧/;
+const endJob4 = /佩服！/;
+let masterid="";
+export class XineiTask extends Task {
 
     constructor(
         private taskPath: string[],
@@ -41,27 +47,29 @@ export class ShengJiTask extends Task {
             // await Promise.delay(1050);
             let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
             let waitTimes=0
-            // while(master==null){
+            while(true){
                 
-            //     await Promise.delay(1000);
-            //     if(waitTimes>5){      
-            //         console.log('Can\'t find master...');
-            //         break;
-            //     }
-            //     master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-            //     waitTimes++;
-            // }
+                await Promise.delay(1000);
+                if(waitTimes>5){      
+                    console.log('Can\'t find master...');
+                    break;
+                }
+                master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+                waitTimes++;
+            }
             if (master) {   
                 //await session.sendAsync(`setting auto_work 1`);
                 //await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
                 //await Promise.delay(500);
                 //await session.sendAsync(`bai ${master.id}`);
-                await Promise.delay(500);
+                
+                await Promise.delay(4000);
                 //await session.sendAsync(`zhounian ${master.id}`);
                 //console.log(new Date() + "excute任务..")
                 //await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
-                await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
+                await session.sendAsync(`fight ${master.id}`);
+                masterid=master.id;
                 //await session.sendAsync(`lianxi ${self.tokenId}`);
                 
                 //await session.sendAsync(`enable force huashanxinfa`);
@@ -69,10 +77,10 @@ export class ShengJiTask extends Task {
                 //await session.sendAsync(`levelup ${master.id}`);
                 await Promise.delay(1000);
                     
-                self.priority=-1;
-                return;
+                // self.priority=-1;
+                // return;
             }
-            await session.sendAsync(`lianxi ${self.tokenId}`);
+            //await session.sendAsync(`lianxi ${self.tokenId}`);
             //await session.sendAsync(`${pty} 开始打坐..`);
             //await session.sendAsync(`enable force huashanxinfa`);
             // await session.sendAsync(`enable sword huashanjianfa`);
@@ -80,29 +88,27 @@ export class ShengJiTask extends Task {
             // await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
             //await session.sendAsync(`enable force zixiashengong`);
-            //await session.sendAsync(`dazuo`);
-            self.priority=-1;
-            return;
+            // await session.sendAsync(`dazuo`);
+            // self.priority=-1;
+            // return;
    
         }
 
-        // async function processMessage(msg: string) {
-        //     //console.log(msg);
-        //     var matches;
-        //     if ((matches = endJob.exec(msg)) != null) {
-        //         //self.priority = -1;    
-        //         shimen=1;
-        //         //console.log(new Date() + "师门完成..")
-        //         //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-        //         return;
-        //     }
-        //     if(msgs.length<10){
-        //         msgs.push(msg);
-        //     }else{
-        //         msgs.shift();
-        //         msgs.push(msg);
-        //     }
-        // };
+        async function processMessage(msg: string) {
+            var matches;
+            console.log(msg);
+            if ((matches = endJob.exec(msg)) != null||(matches = endJob2.exec(msg)) != null||(matches = endJob3.exec(msg)) != null||(matches = endJob4.exec(msg)) != null) {
+                await Promise.delay(5000);
+                await session.sendAsync(`fight ${masterid}`);
+                //console.log(new Date() + "师门完成..")
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                //return;
+            }
+            if ((matches = waitJob.exec(msg)) != null){
+                await Promise.delay(1000);
+                await session.sendAsync(`fight ${masterid}`);
+            }
+        };
         
         // async function processData(data: Data) {
         //     if (data.type==='dialog'&&data.dialog === "pack") {
@@ -124,16 +130,16 @@ export class ShengJiTask extends Task {
         //         await callback()
         //     }
         // });
-        //session.on('message', processMessage);
+        session.on('message', processMessage);
         //session.on('data', processData);
         //session.on('msg', processMsg);
         //await Promise.delay(1050);
         await callback();
-        this.priority = -1;        
+        //this.priority = -1;        
 
         while (true) {
             if (this.isCancellationRequested) {
-                //session.removeListener('message', processMessage);
+                session.removeListener('message', processMessage);
                 //session.removeListener('data', processData);
                 //session.removeListener('msg', processMsg);
                 break;

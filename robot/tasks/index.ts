@@ -11,6 +11,7 @@ import { TestTask } from "./test";
 import { XiyanTask } from "./xiyan";
 import { ShengJiTask } from "./shengji";
 import { ShouxiTask } from "./shouxi";
-export { SmTask,ShimenTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask,XiyanTask,ShengJiTask,ShouxiTask }
+import { XineiTask } from "./xinei";
+export { SmTask,ShimenTask, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask,XiyanTask,ShengJiTask,ShouxiTask,XineiTask }
 
 
