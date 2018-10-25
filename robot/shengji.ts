@@ -30,7 +30,7 @@ async function start() {
         //let wugong:string = 'unarmed';
         //let wugong:string = 'sword';
         //let wugong:string = 'huashanxinfa';
-        //let wugong:string = 'poyuquan';
+        let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
         //let wugong:string = 'feiyanhuixiang';
         //let wugong:string = 'huashanjianfa';

@@ -29,11 +29,11 @@ export class ShengJiTask extends Task {
         var self = this;
         async function callback() {
             await session.sendAsync("stopstate");
-            for (let i = 0; i < self.taskPath.length; i++) {
-                //console.log('Execute:'+cmdss[i].content);
-                await session.sendAsync(self.taskPath[i]);
-                await Promise.delay(500);
-            }
+            // for (let i = 0; i < self.taskPath.length; i++) {
+            //     //console.log('Execute:'+cmdss[i].content);
+            //     await session.sendAsync(self.taskPath[i]);
+            //     await Promise.delay(500);
+            // }
             // await session.sendAsync("jh fam 0 start");
             // await session.sendAsync("go south");
             // await session.sendAsync("go south");
