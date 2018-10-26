@@ -47,7 +47,7 @@ export class XineiTask extends Task {
             // await Promise.delay(1050);
             let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
             let waitTimes=0
-            while(true){
+            while(master==null){
                 
                 await Promise.delay(1000);
                 if(waitTimes>5){      

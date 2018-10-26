@@ -29,49 +29,49 @@ export class ShengJiTask extends Task {
         var self = this;
         async function callback() {
             await session.sendAsync("stopstate");
-            // for (let i = 0; i < self.taskPath.length; i++) {
-            //     //console.log('Execute:'+cmdss[i].content);
-            //     await session.sendAsync(self.taskPath[i]);
-            //     await Promise.delay(500);
-            // }
+            for (let i = 0; i < self.taskPath.length; i++) {
+                //console.log('Execute:'+cmdss[i].content);
+                await session.sendAsync(self.taskPath[i]);
+                await Promise.delay(500);
+            }
             // await session.sendAsync("jh fam 0 start");
             // await session.sendAsync("go south");
             // await session.sendAsync("go south");
             // await session.sendAsync("go west");
             // await Promise.delay(1050);
-            let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-            let waitTimes=0
-            // while(master==null){
+            // let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            // let waitTimes=0
+            // // while(master==null){
                 
+            // //     await Promise.delay(1000);
+            // //     if(waitTimes>5){      
+            // //         console.log('Can\'t find master...');
+            // //         break;
+            // //     }
+            // //     master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            // //     waitTimes++;
+            // // }
+            // if (master) {   
+            //     //await session.sendAsync(`setting auto_work 1`);
+            //     //await session.sendAsync(`enable force zixiashengong`);
+            //     //console.log(new Date() + "任务开始..")
+            //     //await Promise.delay(500);
+            //     //await session.sendAsync(`bai ${master.id}`);
+            //     await Promise.delay(1500);
+            //     //await session.sendAsync(`zhounian ${master.id}`);
+            //     //console.log(new Date() + "excute任务..")
+            //     //await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
+            //     await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
+            //     //await session.sendAsync(`lianxi ${self.tokenId}`);
+                
+            //     //await session.sendAsync(`enable force huashanxinfa`);
+            //     //await Promise.delay(500);
+            //     //await session.sendAsync(`levelup ${master.id}`);
             //     await Promise.delay(1000);
-            //     if(waitTimes>5){      
-            //         console.log('Can\'t find master...');
-            //         break;
-            //     }
-            //     master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-            //     waitTimes++;
-            // }
-            if (master) {   
-                //await session.sendAsync(`setting auto_work 1`);
-                //await session.sendAsync(`enable force zixiashengong`);
-                //console.log(new Date() + "任务开始..")
-                //await Promise.delay(500);
-                //await session.sendAsync(`bai ${master.id}`);
-                await Promise.delay(500);
-                //await session.sendAsync(`zhounian ${master.id}`);
-                //console.log(new Date() + "excute任务..")
-                //await session.sendAsync(`${pty} 开始学习 ${self.tokenId}..`);
-                await session.sendAsync(`xue ${self.tokenId} from ${master.id}`);
-                //await session.sendAsync(`lianxi ${self.tokenId}`);
-                
-                //await session.sendAsync(`enable force huashanxinfa`);
-                //await Promise.delay(500);
-                //await session.sendAsync(`levelup ${master.id}`);
-                await Promise.delay(1000);
                     
-                self.priority=-1;
-                return;
-            }
+            //     self.priority=-1;
+            //     return;
+            // }
             await session.sendAsync(`lianxi ${self.tokenId}`);
             //await session.sendAsync(`${pty} 开始打坐..`);
             //await session.sendAsync(`enable force huashanxinfa`);
