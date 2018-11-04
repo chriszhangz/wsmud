@@ -194,6 +194,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.name==='深井冰'){
                             await session.sendAsync(`${ch} 😄神经病~你好！`);
+                        }else if(data.name==='无名剑客'){
+                            await session.sendAsync(`${ch} 😄中二剑姬~老韩你好！`);
                         }else if(data.name==='夜臣'){
                             await session.sendAsync(`${ch} 😄萌新杀手夜臣~你好！`);
                         }else if(data.name==='放鹤'){
