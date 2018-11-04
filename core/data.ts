@@ -4,7 +4,7 @@ export type Data = Msg | Roles | Items | Dialog | Room | Exits;
 
 export interface Msg {
     type: "msg",
-    ch: "chat" | "es" | "tm" | "sys" | "rumor",
+    ch: "chat" | "es" | "tm" | "sys" | "rumor" | "pty",
     uid: string,
     lv: number,
     content: string,
@@ -51,7 +51,7 @@ export interface Exits {
     items: any
 }
 
-export type Dialog = TaskDialog | PackDialog;
+export type Dialog = TaskDialog | PackDialog | ScoreDialog;
 
 export interface TaskDialog {
     type: "dialog",
@@ -64,6 +64,29 @@ export interface PackDialog {
     dialog: "pack",
     name: string,
     id: string
+}
+
+export interface ScoreDialog {
+    type: "dialog",
+    dialog: "score",
+    name: string,
+    id: string,
+    age: string,
+    exp: number,
+    pot: number,
+    hp: number,
+    max_hp: number,
+    mp: number,
+    max_mp: number,
+    limit_mp: number,
+    gj:number,
+    fy:number,
+    mz:number,
+    ds:number,
+    zj:number,
+    bj:string,
+    master:string,
+    family:string
 }
 
 export interface Task {

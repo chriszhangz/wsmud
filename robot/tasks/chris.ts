@@ -151,11 +151,13 @@ export class ChrisTask extends Task {
                     }
                     if (content=='白如盈'||(content.indexOf('白如盈') >=0 && content.indexOf('你好')>=0)) {
                         if(data.name==='燧人氏'){
-                            await session.sendAsync(`${ch} 😍燧大侠~ 您好^^！`);
-                        }else if(data.name==='半俗'){
-                            await session.sendAsync(`${ch} 😊俗~ 紫药王分解了没^^？`);
+                            await session.sendAsync(`${ch} 😍恭迎燧帝 ^^！`);
+                        }else if(data.name==='半俗'||data.name==='江暮雨'){
+                            await session.sendAsync(`${ch} 😊辣鸡俗~ 紫药王分解了没^^？`);
                         }else if(data.name==='法王孙笑川'){
                             await session.sendAsync(`${ch} ‍🧙‍♂️新人导师法王孙笑川~ 您好^^！`);
+                        }else if(data.name==='森鹿予夏'||data.name==='冷鸢'){
+                            await session.sendAsync(`${ch} ‍😄Cold Bird~ 小女子这厢有礼了^^！`);
                         }else if(data.name==='诸葛擎'){
                             await session.sendAsync(`${ch} ‍‍‍‍‍🧙‍♂️萌新导师诸葛擎~ 您好^^！`);
                         }else if(data.name==='东方友利'){
@@ -194,6 +196,10 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄神经病~你好！`);
                         }else if(data.name==='夜臣'){
                             await session.sendAsync(`${ch} 😄萌新杀手夜臣~你好！`);
+                        }else if(data.name==='放鹤'){
+                            await session.sendAsync(`${ch} 😄作死小能手放鹤~追到狼姐了没？加油~`);
+                        }else if(data.name==='卧灬龙'){
+                            await session.sendAsync(`${ch} 😄柚子的小媳妇儿好~`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){

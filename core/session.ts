@@ -50,6 +50,8 @@ export class Session extends EventEmitter {
                     this.world.tasks = data.items;
                 }else if(data.dialog === "pack"){
                     this.world.pack = data;
+                }else if(data.dialog === "score"){
+                    this.world.score = data;
                 }
                 break;
             default:

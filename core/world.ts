@@ -1,5 +1,5 @@
 import { User } from "./user";
-import { Role, Item, Room, Exits, Task, PackDialog } from "./data";
+import { Role, Item, Room, Exits, Task, PackDialog, ScoreDialog } from "./data";
 
 export class World {
     room: Room;
@@ -8,5 +8,6 @@ export class World {
     items: Item[];
     tasks: Task[];
     pack: PackDialog;
+    score: ScoreDialog;
     me: User;
 }
