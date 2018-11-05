@@ -63,7 +63,8 @@ export interface PackDialog {
     type: "dialog",
     dialog: "pack",
     name: string,
-    id: string
+    id: string,
+    items: Item[]
 }
 
 export interface ScoreDialog {

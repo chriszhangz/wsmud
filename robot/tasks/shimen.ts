@@ -8,6 +8,7 @@ const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
 let shimen = 0;
+let idOfBaoZi = '';
 let msgs = [""];
 const pty = "pty";
 export class ShimenTask extends Task {
@@ -42,7 +43,13 @@ export class ShimenTask extends Task {
 
             if (master) {                
                 shimen=0;
-                //console.log(new Date() + "任务开始..")
+                idOfBaoZi = '';
+                //console.log("查找找包子ID..")
+                while(idOfBaoZi==''){
+                    await session.sendAsync(`pack`);
+                    await Promise.delay(1000);
+                }                
+                //console.log("找到包子ID："+idOfBaoZi);
                 await session.sendAsync(`${pty} 开始师门任务..`);
                 while (shimen==0) {
                     //console.log(new Date() + "excute任务..")
@@ -56,7 +63,7 @@ export class ShimenTask extends Task {
                         if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
                             //console.log(new Date() + "发现任务..")
                             msgs=[""];
-                            await session.sendAsync(`task sm ${master.id} give ${self.tokenId}`);
+                            await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
                             //await Promise.delay(1000);
                             found=1;
                             break;
@@ -138,6 +145,15 @@ export class ShimenTask extends Task {
                 if(data.name&&data.name.indexOf('养精丹')>=0){
                 //console.log(new Date() + "************************************使用养精丹 ..");
                 await session.sendAsync(`use ${data.id}`);
+                }else if(data.items){
+                    for(const item in data.items){
+                        if(data.items[item].name.includes('包子'))
+                        {
+                        //console.log(roomName+':'+items[item].name);
+                        idOfBaoZi=data.items[item].id;
+                        break;
+                        }
+                    }
                 }
             }
         };

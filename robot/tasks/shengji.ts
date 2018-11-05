@@ -67,19 +67,19 @@ export class ShengJiTask extends Task {
                 //await session.sendAsync(`enable force huashanxinfa`);
                 //await Promise.delay(500);
                 //await session.sendAsync(`levelup ${master.id}`);
-                await Promise.delay(1000);
+                //await Promise.delay(1000);
                     
                 self.priority=-1;
                 return;
             }
             //await session.sendAsync(`lianxi ${self.tokenId}`);
             //await session.sendAsync(`${pty} 开始打坐..`);
-            //await session.sendAsync(`enable force huashanxinfa`);
+            await session.sendAsync(`enable force huashanxinfa`);
             // await session.sendAsync(`enable sword huashanjianfa`);
             // await session.sendAsync(`enable unarmed poyuquan`);
             // await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
-            await session.sendAsync(`enable force zixiashengong`);
+            //await session.sendAsync(`enable force zixiashengong`);
             await session.sendAsync(`dazuo`);
             self.priority=-1;
             return;
