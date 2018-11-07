@@ -55,8 +55,8 @@ export class ShengJiTask extends Task {
                 //await session.sendAsync(`setting auto_work 1`);
                 //await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
-                //await Promise.delay(500);
-                //await session.sendAsync(`bai ${master.id}`);
+                await Promise.delay(500);
+                await session.sendAsync(`bai ${master.id}`);
                 await Promise.delay(1500);
                 //await session.sendAsync(`zhounian ${master.id}`);
                 //console.log(new Date() + "excute任务..")
@@ -74,12 +74,14 @@ export class ShengJiTask extends Task {
             }
             //await session.sendAsync(`lianxi ${self.tokenId}`);
             //await session.sendAsync(`${pty} 开始打坐..`);
-            await session.sendAsync(`enable force huashanxinfa`);
+            //await session.sendAsync(`enable force huashanxinfa`);
             // await session.sendAsync(`enable sword huashanjianfa`);
-            // await session.sendAsync(`enable unarmed poyuquan`);
-            // await session.sendAsync(`enable parry poyuquan`);
+             await session.sendAsync(`enable unarmed poyuquan`);
+             await session.sendAsync(`enable parry poyuquan`);
             // await session.sendAsync(`enable dodge feiyanhuixiang`);
-            //await session.sendAsync(`enable force zixiashengong`);
+            // await session.sendAsync(`enable sword kuangfengkuaijian`);
+            // await session.sendAsync(`enable dodge kuangfengkuaijian`);
+            await session.sendAsync(`enable force zixiashengong`);
             await session.sendAsync(`dazuo`);
             self.priority=-1;
             return;

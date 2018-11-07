@@ -407,11 +407,11 @@ async function start() {
         
         config = {key: "test4", name: "太叔一", server: 2, account: { code: "apollozz8", pwd: "1982525" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        //await new TaskSchedule(config.tasks, session, config).Run();
+        await new TaskSchedule(config.tasks, session, config).Run();
         
         config = {key: "test4", name: "太叔二", server: 2, account: { code: "apollozz8", pwd: "1982525" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        //await new TaskSchedule(config.tasks, session, config).Run();
+        await new TaskSchedule(config.tasks, session, config).Run();
         
         config = {key: "test4", name: "太叔三", server: 2, account: { code: "apollozz8", pwd: "1982525" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
