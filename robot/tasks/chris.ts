@@ -131,7 +131,7 @@ export class ChrisTask extends Task {
                     //console.log(`襄阳保卫战over`);
                     newXYs = false;
                     newXYe = true;
-                    lastXYe = new Date().getTime()+3600000*2;
+                    lastXYe = new Date().getTime()+3600000;
                  }
                }else if(data.ch === 'tm'){
                     //console.log(data.name+":"+data.content);
@@ -185,7 +185,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='深井镔'){
                             await session.sendAsync(`${ch} 😄神经病。。。你好！`);
                         }else if(data.name==='骨傲天无敌'){
-                            await session.sendAsync(`${ch} 😄欧皇小骨头~你好！`);
+                            await session.sendAsync(`${ch} 😄恭迎过本过塔狂魔~骨帝~~~`);
                         }else if(data.name==='桃栀'){
                             await session.sendAsync(`${ch} 😄二代目桃子老大好！`);
                         }else if(data.name==='酩酊酌雪'){
