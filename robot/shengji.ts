@@ -23,7 +23,7 @@ async function start() {
         //let cmds: string[] = ['jh fam 3 start'];
         //let master:string = '金古易';
         let master:string = '风清扬';
-        let wugong:string = 'sword';
+        //let wugong:string = 'sword';
         //let wugong:string = 'dodge';
         //let wugong:string = 'parry';
         //let wugong:string = 'force';
@@ -32,7 +32,7 @@ async function start() {
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
-        //let wugong:string = 'feiyanhuixiang';
+        let wugong:string = 'feiyanhuixiang';
         //let wugong:string = 'huashanjianfa';
         //let wugong:string = 'zixiashengong';
         let config: UserConfig = {
