@@ -4,6 +4,7 @@ import { Msg } from '../../core/data';
 import { Promise } from 'bluebird';
 import { UserConfig } from '../interface';
 import { Task } from "../task";
+import * as fs from "fs";
 
 const addJob = /你催动内力专心致志地控制着火候，丹炉里的材料慢慢炼/;
 const addJob2 = /丹炉里火力渐盛，是时候开始炼制了/;
@@ -26,7 +27,7 @@ interface yao {
 };
 let shimen = 0;
 let times = 0;
-let FailedTimes = 110;
+let FailedTimes = 0;
 let msgs = [""];
 //const pty = "pty";
 export class AiTask extends Task {
@@ -49,7 +50,7 @@ export class AiTask extends Task {
     private yaoyinbai:yao [] = [{name:"鲤鱼",id:"s51j26ac608"},{name:"草鱼",id:"vuj126ac5b5"},{name:"鲢鱼",id:"a7e527e3582"}];
     private yaoyinlv:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"}];
     private yaoyinlan:yao [] = [{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
-    private peifang:yao [] = [{name:"蓝色药材",id:""},{name:"蓝色药引",id:""},{name:"绿色药材",id:""},{name:"蓝色药材",id:""},{name:"绿色药材",id:""},{name:"蓝色药材",id:""}];
+    private peifang:yao [] = [{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
     async  start(session: Session, config: UserConfig) {
         // var self = this;
         let yaocai = this.yaocai;
@@ -113,15 +114,17 @@ export class AiTask extends Task {
                 if(peifang[times]==null||peifang[times].name==null||peifang[times].name==''){
                     peifang[times].name=yanse+"药材";
                 }
-                if(yanse=="白色"){
-                    await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
-                }else if(yanse=="绿色"){
-                    await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
-                }else if(yanse=="蓝色"){
-                    await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
-                }else{
-                    await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
-                }
+                // if(yanse=="白色"){
+                //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                // }else if(yanse=="绿色"){
+                //     await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
+                // }else if(yanse=="蓝色"){
+                //     await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
+                // }else{
+                //     //await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
+                //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                // }
+                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                 times++;
                 return;
             }else if ((matches = tip2.exec(msg)) != null) {
@@ -129,61 +132,70 @@ export class AiTask extends Task {
                 if(peifang[times]==null||peifang[times].name==null||peifang[times].name==''){
                     peifang[times].name=yanse+"药引";
                 }
-                if(yanse=="白色"){
-                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
-                }else if(yanse=="绿色"){
-                    await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
-                }else if(yanse=="蓝色"){
-                    await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
-                }else{
-                    await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
-                }
+                // if(yanse=="白色"){
+                //     await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                // }else if(yanse=="绿色"){
+                //     await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
+                // }else if(yanse=="蓝色"){
+                //     await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
+                // }else{
+                //     //await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
+                //     await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                // }
+                await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
                 times++;
                 return;
             }else if ((matches = tip3.exec(msg)) != null) {
-                if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
-                }else{
-                    await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
-                }
+                // if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
+                // }else{
+                //     //await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
+                //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                // }
+                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                 times++;
                 return;
             }else if ((matches = tip4.exec(msg)) != null) {
-                if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
-                    }else{
-                        await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
-                    }
+                // if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色')>=0) {
+                //         await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                //     } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色')>=0) {
+                //         await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
+                //     } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色')>=0) {
+                //         await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
+                //     }else{
+                //         //await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
+                //         await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                //     }
+                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
                     times++;
                 return;
             }else if ((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null) {
-                if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药材')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药材')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药材')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
-                }else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药引')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药引')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
-                } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药引')>=0) {
-                    await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
-                }else{
-                    await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
-                }
+                // if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药材')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药材')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药材')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
+                // }else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药引')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药引')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
+                // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药引')>=0) {
+                //     await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
+                // }else{
+                //     await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
+                // }
+                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                 times++;
                 return;
             }else if ((matches = goodJob.exec(msg)) != null) {
-                console.log("++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name);
+                var pf = "++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name;
+                console.log("++++Peifang="+pf);
+                fs.writeFile("peifang.txt",pf,function(){});
                 peifang=[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
                 FailedTimes=0;
                 await session.sendAsync("lianyao2 start 2");
@@ -200,21 +212,22 @@ export class AiTask extends Task {
                 if(times==6){
                     await session.sendAsync("lianyao2 stop");
                 }else{
-                    if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药材')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药材')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药材')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
-                    }else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药引')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药引')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
-                    } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药引')>=0) {
-                        await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
-                    }else{
-                        await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
-                    }
+                    // if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药材')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                    // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药材')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaocailv[Math.floor(Math.random()*3)].id);
+                    // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药材')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaocailan[Math.floor(Math.random()*3)].id);
+                    // }else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药引')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                    // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('绿色药引')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaoyinlv[Math.floor(Math.random()*3)].id);
+                    // } else if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('蓝色药引')>=0) {
+                    //     await session.sendAsync("lianyao2 add "+yaoyinlan[Math.floor(Math.random()*3)].id);
+                    // }else{
+                    //     await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
+                    // }
+                    await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                     times++;
                 }
                 return;
