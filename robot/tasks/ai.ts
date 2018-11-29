@@ -28,6 +28,7 @@ interface yao {
 let shimen = 0;
 let times = 0;
 let FailedTimes = 0;
+let fangyao = 0;
 let msgs = [""];
 //const pty = "pty";
 export class AiTask extends Task {
@@ -102,7 +103,14 @@ export class AiTask extends Task {
             if (((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null||(matches = getJob.exec(msg)) != null)&&peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('药材')==-1&&peifang[times].name.indexOf('药引')==-1) {
                 //await session.sendAsync("lianyao2 add "+peifang[times].id);
                 if(checkPeifang(peifang)){
-                    await session.sendAsync("lianyao2 add "+peifang[times].id);
+                    if(fangyao==1){
+                        await session.sendAsync("lianyao2 add "+peifang[times].id);
+                    }else if(times==0){
+                        await session.sendAsync("lianyao2 add "+peifang[times].id);
+                        fangyao=1;
+                    }else{
+                        await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
+                    }
                 }else{
                     await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
                 }
@@ -209,10 +217,12 @@ export class AiTask extends Task {
                 fs.appendFile("peifang.txt",pf+"\r\n",function(){});
                 peifang=[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
                 FailedTimes=0;
+                fangyao=0;
                 await session.sendAsync("lianyao2 start 4");
                 return;
             }else if ((matches = startJob.exec(msg)) != null||(matches = startJob2.exec(msg)) != null) {
                 FailedTimes++;
+                fangyao=0;
                 console.log("++Failed TImes:"+FailedTimes);
                 await session.sendAsync("lianyao2 start 4");
                 return;
