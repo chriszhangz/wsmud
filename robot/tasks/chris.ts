@@ -202,6 +202,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄作死小能手放鹤~追到狼姐了没？加油~`);
                         }else if(data.name==='卧灬龙'){
                             await session.sendAsync(`${ch} 😄柚子的小媳妇儿好~`);
+                        }else if(data.name==='李静虚'){
+                            await session.sendAsync(`${ch} 😄老静虚好~身子骨还好么？`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
