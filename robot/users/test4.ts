@@ -8,7 +8,7 @@ export var test4: UserConfig = {
         // code: "avrin09",
         // pwd: "avrin0905"
         code: "llfxgx",
-        pwd: "4979704741"
+        pwd: "497970474"
     },
     tasks: [
         new tasks.AiTask()
