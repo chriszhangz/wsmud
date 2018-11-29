@@ -92,14 +92,14 @@ export class AiTask extends Task {
 
         async function processMessage(msg: string) {
             console.log(msg);
-            
+            //fs.appendFile("peifang.txt",msg+"\r\n",function(){});
             var matches;
             if ((matches = addJob2.exec(msg)) != null) {
                 console.log("++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name);
                 times=0;
             }
             //console.log("times="+times);
-            if (((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null)&&peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('药材')==-1&&peifang[times].name.indexOf('药引')==-1) {
+            if (((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null||(matches = getJob.exec(msg)) != null)&&peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('药材')==-1&&peifang[times].name.indexOf('药引')==-1) {
                 await session.sendAsync("lianyao2 add "+peifang[times].id);
                 times++;
                 return;
@@ -195,7 +195,7 @@ export class AiTask extends Task {
             }else if ((matches = goodJob.exec(msg)) != null) {
                 var pf = "++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name;
                 console.log("++++Peifang="+pf);
-                fs.writeFile("peifang.txt",pf,function(){});
+                fs.appendFile("peifang.txt",pf+"\r\n",function(){});
                 peifang=[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
                 FailedTimes=0;
                 await session.sendAsync("lianyao2 start 2");
