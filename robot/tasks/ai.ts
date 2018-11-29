@@ -40,17 +40,17 @@ export class AiTask extends Task {
     firstChiefTime: number;
 
     basePriority: number;
-    private yaocai:yao [] = [{name:"芦荟",id:"lbxl27e355e"},{name:"当归",id:"26vb27e34c1"},{name:"山楂叶",id:"pxbu26cf5ae"},{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"},{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
+    private yaocai:yao [] = [{name:"凌霄花",id:"k4v732a0bcc"},{name:"人参",id:"xoh532a0bcf"},{name:"何首乌",id:"lbsc32a0bd3"},{name:"冬虫夏草",id:"4f9z320a5f9"},{name:"络石藤",id:"pawb1e8894f"},{name:"九香虫",id:"42xx27e4e34"}];
     private yaocai2:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"},{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
     private yaocaibai:yao [] = [{name:"芦荟",id:"lbxl27e355e"},{name:"当归",id:"26vb27e34c1"},{name:"山楂叶",id:"pxbu26cf5ae"}];
     private yaocailv:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"}];
     private yaocailan:yao [] = [{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
-    private yaoyin:yao [] = [{name:"鲤鱼",id:"s51j26ac608"},{name:"草鱼",id:"vuj126ac5b5"},{name:"鲢鱼",id:"a7e527e3582"},{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"},{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
+    private yaoyin:yao [] = [{name:"罗汉鱼",id:"2or132a0bf6"},{name:"银龙鱼",id:"pbr932a0bfa"},{name:"黑龙鱼",id:"w6kl320eb00"},{name:"反天刀",id:"hdqd329c432"},{name:"虹鳟",id:"nun6329c42f"},{name:"孔雀鱼",id:"bd7t329c435"}];
     private yaoyin2:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"},{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
     private yaoyinbai:yao [] = [{name:"鲤鱼",id:"s51j26ac608"},{name:"草鱼",id:"vuj126ac5b5"},{name:"鲢鱼",id:"a7e527e3582"}];
     private yaoyinlv:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"}];
     private yaoyinlan:yao [] = [{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
-    private peifang:yao [] = [{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
+    private peifang:yao [] = [{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
     async  start(session: Session, config: UserConfig) {
         // var self = this;
         let yaocai = this.yaocai;
@@ -86,7 +86,7 @@ export class AiTask extends Task {
             //     await Promise.delay(8050);
             //     await session.sendAsync("lianyao2 stop");
             // }
-            await session.sendAsync("lianyao2 start 2");
+            await session.sendAsync("lianyao2 start 4");
    
         }
 
@@ -95,18 +95,24 @@ export class AiTask extends Task {
             //fs.appendFile("peifang.txt",msg+"\r\n",function(){});
             var matches;
             if ((matches = addJob2.exec(msg)) != null) {
-                console.log("++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name);
+                console.log("++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name+"|"+peifang[6].name+"|"+peifang[7].name);
                 times=0;
             }
             //console.log("times="+times);
             if (((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null||(matches = getJob.exec(msg)) != null)&&peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('药材')==-1&&peifang[times].name.indexOf('药引')==-1) {
-                await session.sendAsync("lianyao2 add "+peifang[times].id);
+                //await session.sendAsync("lianyao2 add "+peifang[times].id);
+                if(checkPeifang(peifang)){
+                    await session.sendAsync("lianyao2 add "+peifang[times].id);
+                }else{
+                    await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
+                }
                 times++;
                 return;
             }else if ((matches = tip5.exec(msg)) != null) {
                 peifang[times].name=searchYao(matches[1]).name;
                 peifang[times].id=searchYao(matches[1]).id;
-                await session.sendAsync("lianyao2 add "+peifang[times].id);
+                //await session.sendAsync("lianyao2 add "+peifang[times].id);
+                await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
                 times++;
                 return;
             }else if ((matches = tip1.exec(msg)) != null) {
@@ -124,7 +130,8 @@ export class AiTask extends Task {
                 //     //await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
                 //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                 // }
-                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                //await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
                 times++;
                 return;
             }else if ((matches = tip2.exec(msg)) != null) {
@@ -142,7 +149,8 @@ export class AiTask extends Task {
                 //     //await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
                 //     await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
                 // }
-                await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                //await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*2)].id);
                 times++;
                 return;
             }else if ((matches = tip3.exec(msg)) != null) {
@@ -156,7 +164,8 @@ export class AiTask extends Task {
                 //     //await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
                 //     await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
                 // }
-                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                //await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                await session.sendAsync("lianyao2 add "+yaocaibai[1].id);
                 times++;
                 return;
             }else if ((matches = tip4.exec(msg)) != null) {
@@ -170,7 +179,8 @@ export class AiTask extends Task {
                 //         //await session.sendAsync("lianyao2 add "+yaoyin2[Math.floor(Math.random()*6)].id);
                 //         await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
                 //     }
-                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                    //await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*3)].id);
+                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*2)].id);
                     times++;
                 return;
             }else if ((matches = addJob.exec(msg)) != null||(matches = addJob2.exec(msg)) != null) {
@@ -189,27 +199,28 @@ export class AiTask extends Task {
                 // }else{
                 //     await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
                 // }
-                await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                //await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*2)].id);
                 times++;
                 return;
             }else if ((matches = goodJob.exec(msg)) != null) {
-                var pf = "++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name;
+                var pf = "++++Peifang="+peifang[0].name+"|"+peifang[1].name+"|"+peifang[2].name+"|"+peifang[3].name+"|"+peifang[4].name+"|"+peifang[5].name+"|"+peifang[6].name+"|"+peifang[7].name;
                 console.log("++++Peifang="+pf);
                 fs.appendFile("peifang.txt",pf+"\r\n",function(){});
-                peifang=[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
+                peifang=[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
                 FailedTimes=0;
-                await session.sendAsync("lianyao2 start 2");
+                await session.sendAsync("lianyao2 start 4");
                 return;
             }else if ((matches = startJob.exec(msg)) != null||(matches = startJob2.exec(msg)) != null) {
                 FailedTimes++;
                 console.log("++Failed TImes:"+FailedTimes);
-                await session.sendAsync("lianyao2 start 2");
+                await session.sendAsync("lianyao2 start 4");
                 return;
             }else if ((matches = getJob2.exec(msg)) != null) {
                 await session.sendAsync("lianyao2 stop");
                 return;
             }else if ((matches = getJob.exec(msg)) != null) {
-                if(times==6){
+                if(times==8){
                     await session.sendAsync("lianyao2 stop");
                 }else{
                     // if (peifang[times]!=null&&peifang[times].name!=null&&peifang[times].name!=''&&peifang[times].name.indexOf('白色药材')>=0) {
@@ -227,13 +238,22 @@ export class AiTask extends Task {
                     // }else{
                     //     await session.sendAsync("lianyao2 add "+yaocai2[Math.floor(Math.random()*6)].id);
                     // }
-                    await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                    //await session.sendAsync("lianyao2 add "+yaocaibai[Math.floor(Math.random()*3)].id);
+                    await session.sendAsync("lianyao2 add "+yaoyinbai[Math.floor(Math.random()*2)].id);
                     times++;
                 }
                 return;
             }
             
         };
+        function checkPeifang(pfang:yao []):boolean {
+            for (const key in pfang) {
+                if (pfang[key].name==''||pfang[key].name.indexOf('药材')>=0||pfang[key].name.indexOf('药引')>=0) {
+                    return false;
+                }
+            }
+            return true;
+        }
         function searchYao(name:string):yao {
             for (const key in yaocai) {
                 if (name.indexOf(yaocai[key].name)>=0) {
