@@ -189,7 +189,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='桃栀'){
                             await session.sendAsync(`${ch} 😄二代目桃子老大好！`);
                         }else if(data.name==='酩酊酌雪'){
-                            await session.sendAsync(`${ch} 😄雪姐姐~你好！`);
+                            await session.sendAsync(`${ch} 😄奶雪姐姐~你好！`);
                         }else if(data.name==='讓叁拳'){
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.name==='深井冰'){
@@ -205,7 +205,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='李静虚'){
                             await session.sendAsync(`${ch} 😄老静虚好~身子骨还好么？`);
                         }else if(data.name==='林仙儿'){
-                            await session.sendAsync(`${ch} 😄仙儿姐姐好~~`);
+                            await session.sendAsync(`${ch} 😄仙儿小姐姐好~~`);
                         }else if(data.name==='天上地'){
                             await session.sendAsync(`${ch} 😄丐帮少侠天上地~你好！`);
                         }else if(data.name==='赎罪'){
