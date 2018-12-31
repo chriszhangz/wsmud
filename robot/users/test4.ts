@@ -2,13 +2,15 @@ import { UserConfig } from "../interface";
 import * as tasks from "../tasks";
 export var test4: UserConfig = {
     key: "test4",
-    name: "洛玖尧",
+    name: "咬人的馒头",
     server: 2,
     account: {
         // code: "avrin09",
         // pwd: "avrin0905"
-        code: "llfxgx",
-        pwd: "497970474"
+        //code: "llfxgx",
+        //pwd: "497970474"
+        code: "apollozz",
+        pwd: "1982525"
     },
     tasks: [
         new tasks.AiTask()

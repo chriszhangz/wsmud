@@ -146,6 +146,10 @@ export class ChrisTask extends Task {
                     //     await session.sendAsync(`${ch} 目前的挖矿指南是+${current}已持续${GetZNTimes()}`);
                     //     lastchat = new Date();
                     // }
+                    if(data.name==='金古易'&& content.indexOf('恭')>=0){
+                        await session.sendAsync(`${ch} *恭喜`);
+                        lastchat = new Date();
+                    }
                     if (content.indexOf('白如盈') >=0 &&( content.indexOf('口')>=0||content.indexOf('摸')>=0||content.indexOf('床')>=0||content.indexOf('到我')>=0)) {
                         return;
                     }
@@ -159,7 +163,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='森鹿予夏'||data.name==='冷鸢'){
                             await session.sendAsync(`${ch} ‍😄Cold Bird~ 小女子这厢有礼了^^！`);
                         }else if(data.name==='诸葛擎'){
-                            await session.sendAsync(`${ch} ‍‍‍‍‍🧙‍♂️~ 您好^^！`);
+                            await session.sendAsync(`${ch} ‍‍‍‍你好~诸葛家最*的^^！`);
                         }else if(data.name==='东方友利'){
                             await session.sendAsync(`${ch} ‍‍‍‍‍🤭东方前辈，盈盈要领教下阁下的白云踏歌^^！`);
                         }else if(data.name==='华斋贤'){
@@ -170,6 +174,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄百夫皮皮,你今天好像又变帅了一点^^！`);
                         }else if(data.name==='飞沙石'){
                             await session.sendAsync(`${ch} 😄女...大佬莎莎姐好！`);
+                        }else if(data.name==='南宫栞'){
+                            await session.sendAsync(`${ch} 😄二区第一喷 南宫栞你好！`);
                         }else if(data.name==='严修'){
                             await session.sendAsync(`${ch} 😄天下倒数第一严修姐姐好！`);
                         }else if(data.name==='锦里'){
@@ -191,7 +197,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='桃栀'){
                             await session.sendAsync(`${ch} 😄二代目桃子老大好！`);
                         }else if(data.name==='酩酊酌雪'){
-                            await session.sendAsync(`${ch} 😄奶雪姐姐~你好！`);
+                            await session.sendAsync(`${ch} 😄奶雪帝姐姐~你好！`);
                         }else if(data.name==='讓叁拳'){
                             await session.sendAsync(`${ch} 😄印度神油总代理-阿三好！`);
                         }else if(data.name==='深井冰'){
