@@ -25,7 +25,7 @@ interface yao {
     name: string;
     id: string;
 };
-let shimen = 0;
+//let shimen = 0;
 let times = 0;
 let FailedTimes = 0;
 let fangyao = 0;
