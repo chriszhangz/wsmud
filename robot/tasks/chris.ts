@@ -125,6 +125,9 @@ export class ChrisTask extends Task {
                     newXYs = true;
                     newXYe = false;
                     lastXYs = new Date();
+                 }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('有人得到了')>=0){
+                    //console.log(`襄阳保卫战现在开启`);
+                    await session.sendAsync(`${ch} *恭喜`);
                  }
                 }else if(data.ch === 'sys'){
                  if(data.content.indexOf('襄阳城大获全胜') >= 0 || data.content.indexOf('襄阳城失守')>=0){
@@ -218,6 +221,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄丐帮少侠天上地~你好！`);
                         }else if(data.name==='赎罪'){
                             await session.sendAsync(`${ch} 😄扬州赌神赎罪小姐姐~你好！`);
+                        }else if(data.name==='白时默'){
+                            await session.sendAsync(`${ch} 😄保底黑石墨~你好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
