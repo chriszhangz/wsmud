@@ -33,8 +33,8 @@ export class TaskSchedule {
                 await this.currentTask.start(this.session, this.config);
             } catch (error) {
                 if (error instanceof ConnectionError) {
-                    console.log(`wait 5 mis to reconnect`);
-                    await Promise.delay(300000);
+                    console.log(`wait 10 sec to reconnect`);
+                    await Promise.delay(10000);
                     console.log(`reconnect..`);
                     this.connectTask.priority = 1000;
                 } else {
