@@ -234,7 +234,7 @@ export class ChrisTask extends Task {
                         }
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('什么')>=0&&( content.indexOf('会')>=0||content.indexOf('用')>=0||content.indexOf('能')>=0||content.indexOf('升级')>=0)) {
-                        await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体位置以及襄阳相关时间。😄`);
+                        await session.sendAsync(`${ch} 您好${userName}，我已升级3.0版，能报boss时间以及具体方位以及襄阳相关时间。😄`);
                         lastchat = new Date();
                     }else if (content.indexOf('白如盈') >=0&& content.indexOf('主人')>=0&& content.indexOf('谁')>=0) {
                         await session.sendAsync(`${ch} 😊您好${userName}，我的主人是咬人的豆包。`);
