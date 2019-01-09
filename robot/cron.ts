@@ -487,7 +487,11 @@ async function start() {
         
         config = {key: "test4", name: "让五套", server: 2, account: { code: "01234560", pwd: "654321"},
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();      
+        await new TaskSchedule(config.tasks, session, config).Run();     
+        
+        config = {key: "test4", name: "沐倾", server: 2, account: { code: "xiaozhi986", pwd: "860820"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();            
         
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
@@ -495,7 +499,7 @@ async function start() {
     //var rule = new schedule.RecurrenceRule();
     //await callback();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 39 13 * * *', async function() {
+    new CronJob('00 15 13 * * *', async function() {
         await callback();
       }, null, true, 'America/Los_Angeles');
 

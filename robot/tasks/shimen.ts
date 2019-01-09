@@ -77,11 +77,13 @@ export class ShimenTask extends Task {
                 }
                 await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
                 //console.log(new Date() + "开始副本..")
+                if(config.name!="宗政鲛众"&&config.name!="赫连侃璟"&&config.name!="沐倾"){
                 for(var i=0;i<20;i++){
                     await session.sendAsync("jh fb 0 start1");
                     await session.sendAsync("cr yz/lw/shangu");
                     await session.sendAsync("cr over");
                     await Promise.delay(1000);
+                }
                 }
                 await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
                 //console.log("完成副本..");
@@ -107,12 +109,7 @@ export class ShimenTask extends Task {
                     await session.sendAsync(`ask3 ${zhifu.id}`);
                     await Promise.delay(10000);
                     //console.log("完成追捕..");
-                    await session.sendAsync("jh fam 0 start");
-                    await session.sendAsync("go west");
-                    await session.sendAsync("go west");
-                    await session.sendAsync("go west");
-                    await session.sendAsync("go west");
-                    await session.sendAsync("wa");
+                    await session.sendAsync("wakuang");
                 }
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
                 //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
