@@ -178,7 +178,7 @@ export class ChrisTask extends Task {
                         }else if(data.name==='飞沙石'){
                             await session.sendAsync(`${ch} 😄女...大佬莎莎姐好！`);
                         }else if(data.name==='南宫栞'){
-                            await session.sendAsync(`${ch} 😄二区第一喷 南宫栞你好！`);
+                            await session.sendAsync(`${ch} 😄二区第一喷 武帝南宫栞你好！`);
                         }else if(data.name==='严修'){
                             await session.sendAsync(`${ch} 😄天下倒数第一严修姐姐好！`);
                         }else if(data.name==='锦里'){
