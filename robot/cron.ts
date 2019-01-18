@@ -405,93 +405,93 @@ async function start() {
         //console.log("begin ......................................" + config.name);
         await new TaskSchedule(config.tasks, session, config).Run(); 
         
-        config = {key: "test4", name: "太叔一", server: 2, account: { code: "apollozz8", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔一", server: 2, account: { code: "apollozz8", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔二", server: 2, account: { code: "apollozz8", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔二", server: 2, account: { code: "apollozz8", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔三", server: 2, account: { code: "apollozz8", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔三", server: 2, account: { code: "apollozz8", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔四", server: 2, account: { code: "apollozz8", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔四", server: 2, account: { code: "apollozz8", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔五", server: 2, account: { code: "apollozz8", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔五", server: 2, account: { code: "apollozz8", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔六", server: 2, account: { code: "apollozz9", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔六", server: 2, account: { code: "apollozz9", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔八", server: 2, account: { code: "apollozz9", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔八", server: 2, account: { code: "apollozz9", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔九", server: 2, account: { code: "apollozz9", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔九", server: 2, account: { code: "apollozz9", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔十", server: 2, account: { code: "apollozz9", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔十", server: 2, account: { code: "apollozz9", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "太叔十一", server: 2, account: { code: "apollozz9", pwd: "1982525" },
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "太叔十一", server: 2, account: { code: "apollozz9", pwd: "1982525" },
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "讓六招", server: 2, account: { code: "0123456780", pwd: "87654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "讓六招", server: 2, account: { code: "0123456780", pwd: "87654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "讓七招", server: 2, account: { code: "0123456780", pwd: "87654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "讓七招", server: 2, account: { code: "0123456780", pwd: "87654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "讓八招", server: 2, account: { code: "0123456780", pwd: "87654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "讓八招", server: 2, account: { code: "0123456780", pwd: "87654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "讓九招", server: 2, account: { code: "0123456780", pwd: "87654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "讓九招", server: 2, account: { code: "0123456780", pwd: "87654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "讓十招", server: 2, account: { code: "0123456780", pwd: "87654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "讓十招", server: 2, account: { code: "0123456780", pwd: "87654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
 
-        config = {key: "test4", name: "洛玖尧", server: 2, account: { code: "llfxgx", pwd: "497970474"},
-            tasks: [new tasks.ShimenTask("jh fam 5 start", "苏星河", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "洛玖尧", server: 2, account: { code: "llfxgx", pwd: "497970474"},
+        //     tasks: [new tasks.ShimenTask("jh fam 5 start", "苏星河", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "让一套", server: 2, account: { code: "01234560", pwd: "654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();  
+        // config = {key: "test4", name: "让一套", server: 2, account: { code: "01234560", pwd: "654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();  
         
-        config = {key: "test4", name: "让二套", server: 2, account: { code: "01234560", pwd: "654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "让二套", server: 2, account: { code: "01234560", pwd: "654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "让三套", server: 2, account: { code: "01234560", pwd: "654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "让三套", server: 2, account: { code: "01234560", pwd: "654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "让四套", server: 2, account: { code: "01234560", pwd: "654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();
+        // config = {key: "test4", name: "让四套", server: 2, account: { code: "01234560", pwd: "654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();
         
-        config = {key: "test4", name: "让五套", server: 2, account: { code: "01234560", pwd: "654321"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();     
+        // config = {key: "test4", name: "让五套", server: 2, account: { code: "01234560", pwd: "654321"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();     
         
-        config = {key: "test4", name: "沐倾", server: 2, account: { code: "xiaozhi986", pwd: "860820"},
-            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();            
+        // config = {key: "test4", name: "沐倾", server: 2, account: { code: "xiaozhi986", pwd: "860820"},
+        //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        // await new TaskSchedule(config.tasks, session, config).Run();            
         
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }

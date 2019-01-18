@@ -114,6 +114,8 @@ export class ShimenTask extends Task {
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
                 //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
                 self.priority=-1;
+                session.removeListener('message', processMessage);
+                session.removeListener('data', processData);
                 return;
             }
    
