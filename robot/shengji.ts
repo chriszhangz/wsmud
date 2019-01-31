@@ -32,8 +32,8 @@ async function start() {
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
-        //let wugong:string = 'feiyanhuixiang';
-        let wugong:string = 'huashanjianfa';
+        let wugong:string = 'feiyanhuixiang';
+        //let wugong:string = 'huashanjianfa';
         //let wugong:string = 'zixiashengong';
         let config: UserConfig = {
             key: "test4",
@@ -148,7 +148,7 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();  
+        //await new TaskSchedule(config.tasks, session, config).Run();  
 
         config = {key: "test4",name: "尤琮铿",server: 2,account: {code: "apollozz6",pwd: "1982525"},
             tasks: [

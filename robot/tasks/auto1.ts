@@ -65,6 +65,7 @@ export class AutoTask extends Task {
                         var bossName = matches[1];
                         var bossPosition = matches[2];
                         let cont = ' ' + bossName + ':' + bossPosition;
+                        await Promise.delay(1050);
                         await session.sendAsync(`${pty} ${cont}`);
                     }
                 }

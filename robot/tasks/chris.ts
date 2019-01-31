@@ -5,6 +5,7 @@ import { Promise } from "bluebird";
 import { Task } from "../task";
 
 //const r = /<hig>你获得了(\d+)点/;
+const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 
 export class ChrisTask extends Task {
 
@@ -121,6 +122,13 @@ export class ChrisTask extends Task {
                     var hawaii = utc + (3600000 * offset);
                     var nd = new Date(hawaii);
                     lastHour = nd.getHours();
+                    var matches;
+                    if ((matches = yaoyan.exec(data.content)) != null) {
+                        var bossName = matches[1];
+                        var bossPosition = matches[2];
+                        let cont = ' ' + bossName + ':' + bossPosition;
+                        positions+=cont;
+                    }
                  }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('近日将会进攻襄阳')>=0){
                     //console.log(`襄阳保卫战现在开启`);
                     newXYs = true;
@@ -142,7 +150,7 @@ export class ChrisTask extends Task {
                     positions+=data.content;
                }else if(data.ch === 'pty'){
                 //console.log(data.name+":"+data.content);
-                if(data.content.indexOf('出现')>0&&(data.uid==='ucdv256631d')||data.uid==='r7c61934494'||data.uid==='ucdv256631d'){//ucdv256631d新月;r7c61934494洛玖尧;
+                if(data.content.indexOf('出现')>0&&(data.uid==='ucdv256631d')||data.uid==='v8qh28f7257'){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
                     positions+=data.content;
                 }
            //}else if (data.ch === ch) {
