@@ -26,7 +26,8 @@ export class ChrisTask extends Task {
         let lastchat = new Date();
         let positions = '';
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
-        const ch = "chat";
+        //const ch = "chat";
+        const ch = "pty";
         /**
          * 获取指南持续时间的中文描述
          */
@@ -75,31 +76,31 @@ export class ChrisTask extends Task {
          * 处理普通文本消息，这个函数只处理经验获得消息
          * @param msg 普通文本消息
          */
-        async function processMessage(msg: string) {
-            // var matches;
-            // if ((matches = r.exec(msg)) != null) {
-            //     var point = parseInt(matches[1]) - (new Date().getHours() > 12 ? 15 : 40);
-            //     var extra = Math.floor(point / 10) * 10;
-            //     if (extra > 10000)
-            //         return; //跨服击杀
-            //     if ((current != extra) || newbook) {
-            //         newbook = false;
-            //         if (current == extra) {
-            //             await session.sendAsync(`${ch} +${current}  (已持续${GetZNTimes()})`);
-            //         }
-            //         else {
-            //             lastbook = new Date();
-            //             current = extra;
-            //             if (current == 0) {
-            //                 await session.sendAsync(`${ch} 挖矿指南结束！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！`);
-            //             }
-            //             else {
-            //                 await session.sendAsync(`${ch} +${current}`);
-            //             }
-            //         }
-            //     }
-            // }
-        };
+        // async function processMessage(msg: string) {
+        //     // var matches;
+        //     // if ((matches = r.exec(msg)) != null) {
+        //     //     var point = parseInt(matches[1]) - (new Date().getHours() > 12 ? 15 : 40);
+        //     //     var extra = Math.floor(point / 10) * 10;
+        //     //     if (extra > 10000)
+        //     //         return; //跨服击杀
+        //     //     if ((current != extra) || newbook) {
+        //     //         newbook = false;
+        //     //         if (current == extra) {
+        //     //             await session.sendAsync(`${ch} +${current}  (已持续${GetZNTimes()})`);
+        //     //         }
+        //     //         else {
+        //     //             lastbook = new Date();
+        //     //             current = extra;
+        //     //             if (current == 0) {
+        //     //                 await session.sendAsync(`${ch} 挖矿指南结束！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！`);
+        //     //             }
+        //     //             else {
+        //     //                 await session.sendAsync(`${ch} +${current}`);
+        //     //             }
+        //     //         }
+        //     //     }
+        //     // }
+        // };
         /**
          * 处理聊天消息
          * @param data 
@@ -139,7 +140,12 @@ export class ChrisTask extends Task {
                }else if(data.ch === 'tm'){
                     //console.log(data.name+":"+data.content);
                     positions+=data.content;
-               }else if (data.ch === ch) {
+               }else if(data.ch === 'pty'){
+                //console.log(data.name+":"+data.content);
+                if(data.content.indexOf('出现')>0&&(data.uid==='ucdv256631d')||data.uid==='r7c61934494'||data.uid==='ucdv256631d'){//ucdv256631d新月;r7c61934494洛玖尧;
+                    positions+=data.content;
+                }
+           //}else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
                 if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
                     //console.log(data.name+"::"+data.content);
@@ -223,6 +229,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄扬州赌神赎罪小姐姐~你好！`);
                         }else if(data.name==='白时默'){
                             await session.sendAsync(`${ch} 😄保底黑石墨~你好！`);
+                        }else if(data.name==='紫云轩光'){
+                            await session.sendAsync(`${ch} 😄赎罪小姐姐的老公~你好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
@@ -298,12 +306,14 @@ export class ChrisTask extends Task {
         }
 
 
-        session.on('message', processMessage);
+        //session.removeListener('message', processMessage);
+        session.removeListener('msg', processMsg);
+        //session.on('message', processMessage);
         session.on('msg', processMsg);
 
         while (true) {
             if (this.isCancellationRequested) {
-                session.removeListener('message', processMessage);
+                //session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
                 break;
             }

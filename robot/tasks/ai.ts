@@ -29,7 +29,7 @@ interface yao {
 let times = 0;
 let FailedTimes = 0;
 let fangyao = 0;
-let msgs = [""];
+//let msgs = [""];
 //const pty = "pty";
 export class AiTask extends Task {
 
@@ -42,15 +42,15 @@ export class AiTask extends Task {
 
     basePriority: number;
     private yaocai:yao [] = [{name:"熟地黄",id:"90lu26853f7"},{name:"茯苓",id:"rl4w2683bf8"},{name:"沉香",id:"5ize29b4dc6"},{name:"冬虫夏草",id:"jif929b55ca"},{name:"络石藤",id:"4fw227c0f7f"},{name:"九香虫",id:"wnv327c0768"}];
-    private yaocai2:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"},{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
+    //private yaocai2:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"},{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
     private yaocaibai:yao [] = [{name:"芦荟",id:"lbxl27e355e"},{name:"当归",id:"26vb27e34c1"},{name:"山楂叶",id:"pxbu26cf5ae"}];
-    private yaocailv:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"}];
-    private yaocailan:yao [] = [{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
+    //private yaocailv:yao [] = [{name:"柴胡",id:"geav27e362b"},{name:"金银花",id:"z1792c18812"},{name:"石楠叶",id:"umrm26cf3c6"}];
+    //private yaocailan:yao [] = [{name:"熟地黄",id:"gs7c26a0315"},{name:"茯苓",id:"phkl26cf4fa"},{name:"沉香",id:"oors26cf940"}];
     private yaoyin:yao [] = [{name:"太湖银鱼",id:"pc5f2d0c69d"},{name:"黄金鳉",id:"vxip2d06c16"},{name:"黄颡鱼",id:"zora2d054c2"},{name:"反天刀",id:"59jh2dec3e6"},{name:"虹鳟",id:"0olo2d0a23e"},{name:"孔雀鱼",id:"6ofz2ded83a"}];
-    private yaoyin2:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"},{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
+    //private yaoyin2:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"},{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
     private yaoyinbai:yao [] = [{name:"鲤鱼",id:"s51j26ac608"},{name:"草鱼",id:"vuj126ac5b5"},{name:"鲢鱼",id:"a7e527e3582"}];
-    private yaoyinlv:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"}];
-    private yaoyinlan:yao [] = [{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
+    //private yaoyinlv:yao [] = [{name:"鲮鱼",id:"p8oo26acc16"},{name:"鲂鱼",id:"33mg2722c52"},{name:"鳊鱼",id:"iocs26acae1"}];
+    //private yaoyinlan:yao [] = [{name:"太湖银鱼",id:"67to27e39aa"},{name:"黄金鳉",id:"et4j1fa02c6"},{name:"黄颡鱼",id:"x14s1fa0c29"}];
     private peifang:yao [] = [{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}];
     private yaofang:yao [][] = [[{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}],
     [{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""},{name:"",id:""}]];
@@ -58,15 +58,15 @@ export class AiTask extends Task {
         // var self = this;
         let yaocai = this.yaocai;
         let yaocaibai = this.yaocaibai;
-        let yaocailv = this.yaocailv;
-        let yaocailan = this.yaocailan;
+        //let yaocailv = this.yaocailv;
+        //let yaocailan = this.yaocailan;
         let yaoyin = this.yaoyin;
         let yaoyinbai = this.yaoyinbai;
-        let yaoyinlv = this.yaoyinlv;
-        let yaoyinlan = this.yaoyinlan;
+        //let yaoyinlv = this.yaoyinlv;
+        //let yaoyinlan = this.yaoyinlan;
         let peifang = this.peifang;
-        let yaocai2 = this.yaocai2;
-        let yaoyin2 = this.yaoyin2;
+        //let yaocai2 = this.yaocai2;
+        //let yaoyin2 = this.yaoyin2;
         let yaofang = this.yaofang;
         let index = 0;
         async function callback() {
