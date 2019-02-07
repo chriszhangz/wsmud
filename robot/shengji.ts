@@ -32,8 +32,8 @@ async function start() {
         //let wugong:string = 'huashanxinfa';
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
-        let wugong:string = 'feiyanhuixiang';
-        //let wugong:string = 'huashanjianfa';
+        //let wugong:string = 'feiyanhuixiang';
+        let wugong:string = 'huashanjianfa';
         //let wugong:string = 'zixiashengong';
         let config: UserConfig = {
             key: "test4",

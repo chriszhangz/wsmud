@@ -7,7 +7,7 @@ import { Task } from "../task";
 //const r = /<hig>你获得了(\d+)点/;
 const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 
-export class ChrisTask extends Task {
+export class ChrisTask2 extends Task {
 
     constructor() {
         super();
