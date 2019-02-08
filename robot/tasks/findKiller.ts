@@ -145,8 +145,9 @@ export class FindKillerTask extends Task {
         };
         async function processItem(msg: RoomItem) {
             console.log(msg);
-            if (msg.desc.replace("<red>&lt;断线中&gt;</red>","")!=checkName) {
+            if (msg.desc.replace("<red>&lt;断线中&gt;</red>","").replace("<hig>&lt;疗伤&gt;</hig>","").replace("<hig>&lt;打坐运功&gt;</hig>","")!=checkName.replace("<red>&lt;断线中&gt;</red>","").replace("<hig>&lt;疗伤&gt;</hig>","").replace("<hig>&lt;打坐运功&gt;</hig>","")) {
                     let result=checkName+"很可疑！组队名字："+msg.desc+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+                    await session.sendAsync(`${pty} ${result}`);
                     console.log(result);   
                     results.push(result)
                     // var s=         checkName+"很可疑！组队名字："+playerName;          
@@ -216,11 +217,15 @@ export class FindKillerTask extends Task {
             }
             if(results.length==0){
                 console.log("No killier was found...");
+                await session.sendAsync(`${pty} No killier was found...`);
             }
             for (var x in results)
             {
                 console.log(results[x]);
             }
+            await Promise.delay(5000);
+            results=[""];
+            await callback();
         }
         // var CronJob = require('cron').CronJob;
         // new CronJob('00 20 13 * * *', async function () {
