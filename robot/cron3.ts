@@ -497,7 +497,7 @@ async function start() {
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
         await new TaskSchedule(config.tasks, session, config).Run();     
         
-        config = {key: "test4", name: "让你二招", server: 2, account: { code: "0123450", pwd: "123456"},
+        config = {key: "test4", name: "让你两招", server: 2, account: { code: "0123450", pwd: "123456"},
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
         await new TaskSchedule(config.tasks, session, config).Run();    
         

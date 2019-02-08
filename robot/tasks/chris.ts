@@ -239,6 +239,8 @@ export class ChrisTask extends Task {
                             await session.sendAsync(`${ch} 😄保底黑石墨~莎莎和诸葛的人头呢？`);
                         }else if(data.name==='紫云轩光'){
                             await session.sendAsync(`${ch} 😄赎罪小姐姐的老公~你好！`);
+                        }else if(data.name==='故里'){
+                            await session.sendAsync(`${ch} 😄二区最菜萌新~武帝故里~你好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){

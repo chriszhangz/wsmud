@@ -1,6 +1,6 @@
 
 
-export type Data = Msg | Roles | Items | Dialog | Room | Exits;
+export type Data = Msg | Roles | Items | Dialog | Room | Exits | RoomItem;
 
 export interface Msg {
     type: "msg",
@@ -15,6 +15,12 @@ export interface Role {
     id: string,
     title: string,
     name: string
+}
+
+export interface RoomItem {
+    type: "item",
+    id: string,
+    desc: string
 }
 
 export interface Roles {

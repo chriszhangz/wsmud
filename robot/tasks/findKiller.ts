@@ -1,6 +1,6 @@
 import { Task } from "../task";
 import { Session } from "../../core";
-import { Msg, Items } from '../../core/data';
+import { Msg, Items, RoomItem } from '../../core/data';
 import { UserConfig } from "../interface";
 import { Promise } from "bluebird";
 
@@ -93,7 +93,9 @@ export class FindKillerTask extends Task {
         async function processItemMessage(items: Items) {
             console.log(items);
             if(needCheck==1){
-                console.log("Need Check...");
+                //console.log("Need Check...");
+                var room = session.world.room;
+                console.log("searching.."+room.name);
             for(const item in items.items){
                 //console.log(items.items[item]);
                 if(items.items[item].p==1&&items.items[item].name&&!items.items[item].name.includes("断线中")&&items.items[item].id!='v8qh28f7257'){
@@ -102,7 +104,7 @@ export class FindKillerTask extends Task {
                     let pid = items.items[item].id;
                     checkName = items.items[item].name;
                     checkId = pid;
-                    await session.sendAsync(`team add ${pid}`);
+                    await session.sendAsync(`select ${pid}`);
                     checking=1;
                     let w = 0;
                     while(checking==1&&w<10){
@@ -113,19 +115,38 @@ export class FindKillerTask extends Task {
             }            
             }
             needCheck=0;
-            await session.sendAsync(`team out v8qh28f7257`);
+            //await session.sendAsync(`team out v8qh28f7257`);
             console.log("finish!");
         };
 
         async function processMessage(msg: string) {
+            // console.log(msg);
+            // var matches;
+            // var room = session.world.room;
+            // console.log("searching.."+room.name);
+            // if ((matches = team.exec(msg)) != null||(matches = team2.exec(msg)) != null||(matches = team3.exec(msg)) != null) {
+            //     var playerName = matches[1];
+            //     if(!checkName.includes(playerName)){
+            //         let result=checkName+"很可疑！组队名字："+playerName+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            //         console.log(result);   
+            //         results.push(result)
+            //         // var s=         checkName+"很可疑！组队名字："+playerName;          
+            //         // await session.sendAsync(`${pty} ${s}`);
+            //     }else{
+            //         console.log(checkName+"通过检测"); 
+            //         // var s=         checkName+"通过检测";          
+            //         // await session.sendAsync(`${pty} ${s}`);
+            //     }
+            //     checking=0;
+            //     //console.log(new Date() + "师门完成..")
+            //     //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+            //     return;
+            // }
+        };
+        async function processItem(msg: RoomItem) {
             console.log(msg);
-            var matches;
-            var room = session.world.room;
-            console.log("searching.."+room.name);
-            if ((matches = team.exec(msg)) != null||(matches = team2.exec(msg)) != null||(matches = team3.exec(msg)) != null) {
-                var playerName = matches[1];
-                if(!checkName.includes(playerName)){
-                    let result=checkName+"很可疑！组队名字："+playerName+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            if (msg.desc.replace("<red>&lt;断线中&gt;</red>","")!=checkName) {
+                    let result=checkName+"很可疑！组队名字："+msg.desc+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
                     console.log(result);   
                     results.push(result)
                     // var s=         checkName+"很可疑！组队名字："+playerName;          
@@ -138,9 +159,7 @@ export class FindKillerTask extends Task {
                 checking=0;
                 //console.log(new Date() + "师门完成..")
                 //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-                return;
-            }
-        };
+        }
         async function processMsg(data: Msg) {
             //console.log("^^^^^:"+data.content);
             // if (data.ch === rumor) {
@@ -163,9 +182,11 @@ export class FindKillerTask extends Task {
         session.removeListener('message', processMessage);
         session.removeListener('msg', processMsg);
         session.removeListener('items', processItemMessage);
+        session.removeListener('item', processItem);
         session.on('message', processMessage);
         session.on('msg', processMsg);
         session.on('items', processItemMessage);
+        session.on('item', processItem);
         await callback();
 
         while (true) {
@@ -173,6 +194,7 @@ export class FindKillerTask extends Task {
                 session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
                 session.removeListener('items', processItemMessage);
+                session.removeListener('item', processItem);
                 break;
             }
             await Promise.delay(1000 * 60 * 1);
@@ -192,9 +214,12 @@ export class FindKillerTask extends Task {
                     await Promise.delay(1000);
                 }
             }
+            if(results.length==0){
+                console.log("No killier was found...");
+            }
             for (var x in results)
             {
-                console.log(x);
+                console.log(results[x]);
             }
         }
         // var CronJob = require('cron').CronJob;
