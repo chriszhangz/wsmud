@@ -210,8 +210,10 @@ export class FindKillerTask extends Task {
                 if(cmdss[i].type==1){
                     needCheck=1;
                 }
-                await Promise.delay(1000);
-                while(needCheck==1){
+                await Promise.delay(1000);                
+                let w = 0;
+                while(needCheck==1&&w<60){
+                    w++;
                     await Promise.delay(1000);
                 }
             }
@@ -224,7 +226,7 @@ export class FindKillerTask extends Task {
                 console.log(results[x]);
             }
             await Promise.delay(5000);
-            results=[""];
+            results=[];
             await callback();
         }
         // var CronJob = require('cron').CronJob;
