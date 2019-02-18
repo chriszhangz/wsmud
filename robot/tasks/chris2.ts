@@ -18,6 +18,7 @@ export class ChrisTask2 extends Task {
 
         let newbook = false; //是否有新的book
         //let current = 0; //当前数值
+        let numOfYaoyan = 0; //当前数值
         let newXYs = false;
         let newXYe = false;
         let lastXYs = new Date();
@@ -128,6 +129,11 @@ export class ChrisTask2 extends Task {
                         var bossPosition = matches[2];
                         let cont = ' ' + bossName + ':' + bossPosition;
                         positions+=cont;
+                        numOfYaoyan++;
+                    }
+                    if(numOfYaoyan===3){
+                        await session.sendAsync(`${GetChinaTime()}`+positions);
+                        numOfYaoyan=0;
                     }
                  }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('近日将会进攻襄阳')>=0){
                     //console.log(`襄阳保卫战现在开启`);
@@ -150,8 +156,16 @@ export class ChrisTask2 extends Task {
                     positions+=data.content;
                }else if(data.ch === 'pty'){
                 //console.log(data.name+":"+data.content);
-                if(data.content.indexOf('出现')>0&&(data.uid==='r7c61934494')||data.uid==='v8qh28f7257'){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
+                if(data.content.indexOf('-')>0&&(data.uid==='v8qh28f7257')){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
                     positions+=data.content;
+                    numOfYaoyan++;
+                }else if(data.content.indexOf('-')>0&&(data.uid==='r7c61934494')){
+                    positions+=data.content;
+                    numOfYaoyan++;
+                }
+                if(numOfYaoyan===3){
+                    await session.sendAsync(`${GetChinaTime()}`+positions);
+                    numOfYaoyan=0;
                 }
            //}else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);

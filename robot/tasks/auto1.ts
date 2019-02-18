@@ -1,6 +1,6 @@
 import { Task } from "../task";
 import { Session } from "../../core";
-import { Msg } from '../../core/data';
+import { Msg,Data } from '../../core/data';
 import { UserConfig } from "../interface";
 import { Promise } from "bluebird";
 
@@ -73,16 +73,41 @@ export class AutoTask extends Task {
             else if (data.ch === ch) {
             }
         }
-
+        async function processData(data: Data) {
+            if (data.type==='dialog'&&data.dialog === "pack") {
+                if(data.name&&data.name.indexOf('养精丹')>=0){
+                //console.log(new Date() + "************************************使用养精丹 ..");
+                await session.sendAsync(`use ${data.id}`);
+                }else if(data.items){
+                    for(const item in data.items){
+                        if(data.items[item].name.includes('包子'))
+                        {
+                        //console.log(roomName+':'+items[item].name);
+                        idOfBaoZi=data.items[item].id;
+                        break;
+                        }
+                    }
+                }
+            }
+        };
+        var CronJob = require('cron').CronJob;
+        new CronJob('00 10 13 * * *', async function () {
+            console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
+            await callback(self);
+        }, null, true, 'America/Los_Angeles');
+        
         session.removeListener('message', processMessage);
         session.removeListener('msg', processMsg);
+        session.removeListener('data', processData);
         session.on('message', processMessage);
         session.on('msg', processMsg);
+        session.on('data', processData);
 
         while (true) {
             if (this.isCancellationRequested) {
                 session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
+                session.on('data', processData);
                 break;
             }
             await Promise.delay(1000 * 60 * 1);
@@ -90,6 +115,7 @@ export class AutoTask extends Task {
         }
 
         async function callback(self) {
+            //console.log("start..")
             await session.sendAsync("stopstate");
             for (let i = 0; i < self.taskPath.length; i++) {
                 //console.log('Execute:'+cmdss[i].content);
@@ -144,7 +170,7 @@ export class AutoTask extends Task {
                         await Promise.delay(1000);
                     }
                 } else {
-                    await session.sendAsync("cr xuedao/shankou 0 10");
+                    await session.sendAsync("cr xuedao/shankou 0 20");
                 }
                 await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
                 //console.log("完成副本..");
@@ -213,10 +239,6 @@ export class AutoTask extends Task {
             }
         }
 
-        var CronJob = require('cron').CronJob;
-        new CronJob('00 20 13 * * *', async function () {
-            await callback(self);
-        }, null, true, 'America/Los_Angeles');
 
     }
 
