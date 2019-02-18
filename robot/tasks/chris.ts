@@ -137,6 +137,9 @@ export class ChrisTask extends Task {
                  }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('有人得到了')>=0){
                     //console.log(`襄阳保卫战现在开启`);
                     await session.sendAsync(`${ch} *恭喜`);
+                 }else if(data.content.indexOf('听说有人从武道塔跳下来摔死了')>=0 ){
+                    //console.log(`襄阳保卫战现在开启`);
+                    await session.sendAsync(`${ch} *鼓掌`);
                  }
                 }else if(data.ch === 'sys'){
                  if(data.content.indexOf('襄阳城大获全胜') >= 0 || data.content.indexOf('襄阳城失守')>=0){

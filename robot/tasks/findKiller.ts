@@ -101,10 +101,10 @@ export class FindKillerTask extends Task {
                 if(items.items[item].p==1&&items.items[item].name&&!items.items[item].name.includes("断线中")&&items.items[item].id!='v8qh28f7257'){
                     //console.log(items.items[item].id+":"+items.items[item].name);
                     await Promise.delay(500);
-                    let pid = items.items[item].id;
+                    var pid = items.items[item].id;
                     checkName = items.items[item].name;
                     checkId = pid;
-                    await session.sendAsync(`select ${pid}`);
+                    await session.sendAsync(`team add ${pid}`);
                     checking=1;
                     let w = 0;
                     while(checking==1&&w<10){
@@ -115,19 +115,56 @@ export class FindKillerTask extends Task {
             }            
             }
             needCheck=0;
-            //await session.sendAsync(`team out v8qh28f7257`);
+            await session.sendAsync(`team out v8qh28f7257`);
             console.log("finish!");
         };
 
         async function processMessage(msg: string) {
+            console.log(msg);
+            var matches;
+            var room = session.world.room;
+            console.log("searching.."+room.name);
+            if ((matches = team.exec(msg)) != null||(matches = team2.exec(msg)) != null||(matches = team3.exec(msg)) != null) {
+                var playerName = matches[1];
+                if(!checkName.includes(playerName)){
+                    let result=checkName+"很可疑！组队名字："+playerName+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+                    console.log(result);   
+                    results.push(result)
+                    // var s=         checkName+"很可疑！组队名字："+playerName;          
+                    await session.sendAsync(`${pty} ${result}`);
+                }else{
+                    console.log(checkName+"通过检测"); 
+                    // var s=         checkName+"通过检测";          
+                    // await session.sendAsync(`${pty} ${s}`);
+                }
+                checking=0;
+                //console.log(new Date() + "师门完成..")
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                return;
+            }
+        };
+        async function processItem(msg: RoomItem) {
             // console.log(msg);
-            // var matches;
-            // var room = session.world.room;
-            // console.log("searching.."+room.name);
-            // if ((matches = team.exec(msg)) != null||(matches = team2.exec(msg)) != null||(matches = team3.exec(msg)) != null) {
-            //     var playerName = matches[1];
-            //     if(!checkName.includes(playerName)){
-            //         let result=checkName+"很可疑！组队名字："+playerName+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            // var name = msg.desc;
+            // if(name.includes("<")){
+            //     if(name.indexOf("<")==0){
+            //         name = name.split("</")[0];
+            //     }
+            //     else{
+            //         name = name.split("<")[0];
+            //     }
+            // }
+            // if(checkName.includes("<")){
+            //     if(checkName.indexOf("<")==0){
+            //         checkName = checkName.split("</")[0];
+            //     }
+            //     else{
+            //         checkName = checkName.split("<")[0];
+            //     }
+            // }
+            // if (name!=checkName) {
+            //         let result=checkName+"很可疑！组队名字："+name+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
+            //         await session.sendAsync(`${pty} ${result}`);
             //         console.log(result);   
             //         results.push(result)
             //         // var s=         checkName+"很可疑！组队名字："+playerName;          
@@ -140,26 +177,6 @@ export class FindKillerTask extends Task {
             //     checking=0;
             //     //console.log(new Date() + "师门完成..")
             //     //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-            //     return;
-            // }
-        };
-        async function processItem(msg: RoomItem) {
-            console.log(msg);
-            if (msg.desc.replace("<red>&lt;断线中&gt;</red>","").replace("<hig>&lt;疗伤&gt;</hig>","").replace("<hig>&lt;打坐运功&gt;</hig>","")!=checkName.replace("<red>&lt;断线中&gt;</red>","").replace("<hig>&lt;疗伤&gt;</hig>","").replace("<hig>&lt;打坐运功&gt;</hig>","")) {
-                    let result=checkName+"很可疑！组队名字："+msg.desc+":"+checkId+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!";
-                    await session.sendAsync(`${pty} ${result}`);
-                    console.log(result);   
-                    results.push(result)
-                    // var s=         checkName+"很可疑！组队名字："+playerName;          
-                    // await session.sendAsync(`${pty} ${s}`);
-                }else{
-                    console.log(checkName+"通过检测"); 
-                    // var s=         checkName+"通过检测";          
-                    // await session.sendAsync(`${pty} ${s}`);
-                }
-                checking=0;
-                //console.log(new Date() + "师门完成..")
-                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
         }
         async function processMsg(data: Msg) {
             //console.log("^^^^^:"+data.content);
@@ -218,14 +235,14 @@ export class FindKillerTask extends Task {
                 }
             }
             if(results.length==0){
-                console.log("No killier was found...");
-                await session.sendAsync(`${pty} No killier was found...`);
+                console.log("No killer was found...");
+                await session.sendAsync(`${pty} No killer was found...`);
             }
             for (var x in results)
             {
                 console.log(results[x]);
             }
-            await Promise.delay(5000);
+            await Promise.delay(10000);
             results=[];
             await callback();
         }

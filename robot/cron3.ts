@@ -511,7 +511,27 @@ async function start() {
         
         config = {key: "test4", name: "让你五招", server: 2, account: { code: "0123450", pwd: "123456"},
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        await new TaskSchedule(config.tasks, session, config).Run();          
+        await new TaskSchedule(config.tasks, session, config).Run();       
+        
+        config = {key: "test4", name: "让你六招", server: 2, account: { code: "q123456789p", pwd: "987654321"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();        
+        
+        config = {key: "test4", name: "让你七招", server: 2, account: { code: "q123456789p", pwd: "987654321"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();        
+        
+        config = {key: "test4", name: "让你八招", server: 2, account: { code: "q123456789p", pwd: "987654321"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();        
+        
+        config = {key: "test4", name: "让你九招", server: 2, account: { code: "q123456789p", pwd: "987654321"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();        
+        
+        config = {key: "test4", name: "让你十招", server: 2, account: { code: "q123456789p", pwd: "987654321"},
+            tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();              
         
         console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
