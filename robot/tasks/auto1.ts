@@ -63,6 +63,9 @@ export class AutoTask extends Task {
                     var matches;
                     if ((matches = yaoyan.exec(data.content)) != null) {
                         var bossName = matches[1];
+                        if(bossName.includes("火龙王")){
+                            bossName='火龙王';
+                        }
                         var bossPosition = matches[2];
                         let cont = ' ' + bossName + ':' + bossPosition;
                         await Promise.delay(1050);
