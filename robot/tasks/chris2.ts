@@ -150,7 +150,7 @@ export class ChrisTask2 extends Task {
                     positions+=data.content;
                }else if(data.ch === 'pty'){
                 //console.log(data.name+":"+data.content);
-                if(data.content.indexOf('出现')>0&&(data.uid==='ucdv256631d')||data.uid==='v8qh28f7257'){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
+                if(data.content.indexOf('出现')>0&&(data.uid==='r7c61934494')||data.uid==='v8qh28f7257'){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
                     positions+=data.content;
                 }
            //}else if (data.ch === ch) {

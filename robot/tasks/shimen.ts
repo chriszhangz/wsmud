@@ -36,7 +36,13 @@ export class ShimenTask extends Task {
         var self = this;
         async function callback() {
             await session.sendAsync("stopstate");
-            await session.sendAsync(self.taskPath);
+            let taskPaths: string[] = self.taskPath.split(";");
+            for (let i = 0; i < taskPaths.length; i++) {
+                //console.log('Execute:'+cmdss[i].content);
+                await session.sendAsync(taskPaths[i]);
+                await Promise.delay(500);
+            }
+            //await session.sendAsync(self.taskPath);
             await Promise.delay(5050);
             await session.sendAsync("tasks");
             const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
@@ -77,7 +83,9 @@ export class ShimenTask extends Task {
                 }
                 await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
                 //console.log(new Date() + "开始副本..")
-                if(config.name!="赫连侃璟"){
+                if (config.name == "新月") {
+                    await session.sendAsync("cr xuedao/shankou 0 10");
+                }else if(config.name!="赫连侃璟"){
                 for(var i=0;i<20;i++){
                     await session.sendAsync("jh fb 0 start1");
                     await session.sendAsync("cr yz/lw/shangu");
@@ -90,7 +98,11 @@ export class ShimenTask extends Task {
                 //console.log(new Date() + "开始追捕..")
                 await session.sendAsync("taskover signin");
                 await Promise.delay(1000);
-                await session.sendAsync("shop 0 20");
+                if (config.name != "新月") {
+                    await session.sendAsync("shop 0 20");
+                }else{
+                    await session.sendAsync("shop 0 40");
+                }
                 await Promise.delay(1000);
                 await session.sendAsync("jh fam 0 start");
                 await Promise.delay(500);
@@ -102,6 +114,8 @@ export class ShimenTask extends Task {
                 await Promise.delay(2000);
                 const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
                 if (zhifu) {
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(500);
                     await session.sendAsync(`ask1 ${zhifu.id}`);
                     await Promise.delay(500);
                     await session.sendAsync(`ask2 ${zhifu.id}`);
@@ -109,7 +123,24 @@ export class ShimenTask extends Task {
                     await session.sendAsync(`ask3 ${zhifu.id}`);
                     await Promise.delay(10000);
                     //console.log("完成追捕..");
-                    await session.sendAsync("wakuang");
+                    if (config.name != "新月") {
+                        await session.sendAsync("wakuang");
+                    }else{
+                        await session.sendAsync("jh fam 0 start");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go north");
+                        await Promise.delay(500);
+                        await session.sendAsync("go enter");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("xiulian");
+
+                    }
                 }
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
                 //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")

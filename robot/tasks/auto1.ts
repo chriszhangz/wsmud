@@ -144,7 +144,7 @@ export class AutoTask extends Task {
                         await Promise.delay(1000);
                     }
                 } else {
-                    //await session.sendAsync("cr lingjiu/shanjiao 1 10");
+                    await session.sendAsync("cr xuedao/shankou 0 10");
                 }
                 await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
                 //console.log("完成副本..");
@@ -152,9 +152,9 @@ export class AutoTask extends Task {
                 await session.sendAsync("taskover signin");
                 await Promise.delay(1000);
                 if (config.name != "新月") {
-                    await session.sendAsync("shop 0 40");
-                }else{
                     await session.sendAsync("shop 0 20");
+                }else{
+                    await session.sendAsync("shop 0 40");
                 }
                 await Promise.delay(1000);
                 await session.sendAsync("jh fam 0 start");
@@ -203,7 +203,7 @@ export class AutoTask extends Task {
                         await Promise.delay(500);
                         await session.sendAsync("go west");
                         await Promise.delay(500);
-                        await session.sendAsync("siulian");
+                        await session.sendAsync("xiulian");
 
                     }
                 }
