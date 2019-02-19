@@ -2,11 +2,11 @@ import { UserConfig } from "../interface";
 import * as tasks from "../tasks";
 export var chris2: UserConfig = {
     key: "chris2",
-    name: "你也不懂",//白如盈
+    name: "白如盈",//白如盈
     server: 2,
     account: {
-        code: "look5454",//apollozzzz
-        pwd: "22369210"
+        code: "apollozzzz",//apollozzzz
+        pwd: "1982525"
     },
     tasks: [
         new tasks.ChrisTask2()

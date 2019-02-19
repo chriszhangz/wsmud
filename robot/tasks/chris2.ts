@@ -28,8 +28,8 @@ export class ChrisTask2 extends Task {
         let lastchat = new Date();
         let positions = '';
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
-        //TODO const ch = "chat";
-        const ch = "pty";
+        const ch = "chat";
+        //const ch = "pty";
         /**
          * 获取指南持续时间的中文描述
          */
@@ -143,6 +143,9 @@ export class ChrisTask2 extends Task {
                  }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('有人得到了')>=0){
                     //console.log(`襄阳保卫战现在开启`);
                     await session.sendAsync(`${ch} *恭喜`);
+                 }else if(data.content.indexOf('听说有人从武道塔跳下来摔死了')>=0 ){
+                    //console.log(`襄阳保卫战现在开启`);
+                    await session.sendAsync(`${ch} *鼓掌`);
                  }
                 }else if(data.ch === 'sys'){
                  if(data.content.indexOf('襄阳城大获全胜') >= 0 || data.content.indexOf('襄阳城失守')>=0){
@@ -167,7 +170,7 @@ export class ChrisTask2 extends Task {
                     await session.sendAsync(`${GetChinaTime()}`+positions);
                     numOfYaoyan=0;
                 }
-           //}else if (data.ch === ch) {
+           }else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
                 if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name!="" && data.name!="江湖精灵") {
                     //console.log(data.name+"::"+data.content);
@@ -253,6 +256,8 @@ export class ChrisTask2 extends Task {
                             await session.sendAsync(`${ch} 😄保底黑石墨~莎莎和诸葛的人头呢？`);
                         }else if(data.name==='紫云轩光'){
                             await session.sendAsync(`${ch} 😄赎罪小姐姐的老公~你好！`);
+                        }else if(data.name==='故里'){
+                            await session.sendAsync(`${ch} 😄二区最菜萌新~武帝故里~你好！`);
                         }else if(data.lv===5){
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`); 
                         }else if(data.lv===4){
