@@ -154,9 +154,6 @@ export class ChrisTask2 extends Task {
                     newXYe = true;
                     lastXYe = new Date().getTime()+3600000;
                  }
-               }else if(data.ch === 'tm'){
-                    //console.log(data.name+":"+data.content);
-                    positions+=data.content;
                }else if(data.ch === 'pty'){
                 //console.log(data.name+":"+data.content);
                 if(data.content.indexOf('-')>0&&(data.uid==='v8qh28f7257')){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
@@ -239,7 +236,7 @@ export class ChrisTask2 extends Task {
                         }else if(data.name==='无名剑客'){
                             await session.sendAsync(`${ch} 😄中二剑姬~老韩你好！`);
                         }else if(data.name==='夜臣'){
-                            await session.sendAsync(`${ch} 😄萌新杀手夜臣~你好！`);
+                            await session.sendAsync(`${ch} 😄你莫得感情，你系金牌杀手夜臣~！`);
                         }else if(data.name==='放鹤'){
                             await session.sendAsync(`${ch} 😄作死小能手放鹤~你好~~`);
                         }else if(data.name==='卧灬龙'){
