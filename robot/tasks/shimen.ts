@@ -85,6 +85,7 @@ export class ShimenTask extends Task {
                 //console.log(new Date() + "开始副本..")
                 if (config.name == "新月") {
                     await session.sendAsync("cr xuedao/shankou 0 20");
+                    await Promise.delay(10000);
                 }else if(config.name!="赫连侃璟"){
                 for(var i=0;i<20;i++){
                     await session.sendAsync("jh fb 0 start1");

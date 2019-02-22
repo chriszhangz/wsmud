@@ -110,7 +110,7 @@ export class AutoTask extends Task {
             if (this.isCancellationRequested) {
                 session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
-                session.on('data', processData);
+                session.removeListener('data', processData);
                 break;
             }
             await Promise.delay(1000 * 60 * 1);
