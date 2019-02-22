@@ -1,6 +1,6 @@
 
 
-export type Data = Msg | Roles | Items | Dialog | Room | Exits | RoomItem | Combat;
+export type Data = Msg | Roles | Items | Dialog | Room | Exits | RoomItem | Combat | Sc | Die;
 
 export interface Msg {
     type: "msg",
@@ -17,10 +17,21 @@ export interface Role {
     name: string
 }
 
+export interface Die {
+    type: "die"
+}
+
 export interface Combat {
     type: "combat",
     start: number,
     end: number
+}
+
+export interface Sc {
+    type: "sc",
+    id: string,
+    hp: number,
+    mp: number
 }
 
 export interface RoomItem {

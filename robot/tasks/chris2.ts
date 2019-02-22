@@ -62,9 +62,9 @@ export class ChrisTask2 extends Task {
                 time = time / 1000;
                 var mins = Math.floor(time / 60);
                 var secs = Math.floor(time % 60);
-                if(hour===18||hour===19||hour===20||hour===21||hour===22){
-                    return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前，门派战期间我不敢去搜索BOSS，抱歉😭`;
-                } 
+                // if(hour===18||hour===19||hour===20||hour===21||hour===22){
+                //     return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前，门派战期间我不敢去搜索BOSS，抱歉😭`;
+                // } 
                 return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
             }else{
                 if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
