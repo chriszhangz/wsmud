@@ -68,7 +68,8 @@ export class ChrisTask2 extends Task {
                 return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
             }else{
                 if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
-                    positions = '';
+                    positions = '';                    
+                    numOfYaoyan=0;
                    }
                 return `${ch} 😟${hour}点BOSS还未刷新，请耐心等待~`;
             }

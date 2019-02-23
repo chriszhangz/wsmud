@@ -19,6 +19,8 @@ let defenseName: String;
 let die = 0;
 let inCombat = 0;
 let masterId;
+let emei = 0;
+let emei2 = 0;
 
 export class AutoTask2 extends Task {
 
@@ -70,13 +72,17 @@ export class AutoTask2 extends Task {
                     var place;
                     attackName = matches[2];
                     defenseName = matches[3];
+                    emei=0;
                     if (attackName.includes('峨眉')) {
                         place = defenseName.replace('派', '').replace('弟子', '');
+                        emei=1;
                     }
                     if (defenseName.includes('峨眉')) {
                         place = attackName.replace('派', '');
+                        emei=1;
                     }
                     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `|` + defenseName + `|` + place + `\n`);
+                    if(emei==1){
                     if (place != null) {
                         var taskPath;
                         var masterName;
@@ -147,13 +153,17 @@ export class AutoTask2 extends Task {
                         session.removeListener('data', processData);
                         await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `place = null 任务end!!!!!!!!!!!!!!!!! \n`);
                     }
+                }
                 } else if ((matches = mpzStart2.exec(data.content)) != null && (data.name == '洪七公' || data.name == '逍遥子' || data.name == '玄难' || data.name == '灭绝' || data.name == '张三丰' || data.name == '岳不群')) {
                     attackName = '少林';
                     defenseName = matches[1];
+                    emei2=0;
                     if (defenseName.includes('峨眉')) {
                         place = attackName;
+                        emei2=1;
                     }
                     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `||` + defenseName + `||` + place + `\n`);
+                    if(emei2==1){
                     if (place != null) {
                         taskPath = "jh fam 2 start;go north;go north;go northwest;go northeast;go north;go north";
                         masterName = "玄难";
@@ -197,6 +207,7 @@ export class AutoTask2 extends Task {
                             //return;
                         }
                     }
+                }
                 }
 
             }
