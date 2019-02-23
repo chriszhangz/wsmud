@@ -18,6 +18,13 @@ export class TestTask extends Task {
         session.on('data', processData);
         await Promise.delay(5000);
         await session.sendAsync("stopstate");
+        let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
+        let taskPaths: string[] = taskPath.split(";");
+                        for (let i = 0; i < taskPaths.length; i++) {
+                            //console.log('Execute:'+cmdss[i].content);
+                            await session.sendAsync(taskPaths[i]);
+                            //await Promise.delay(100);
+                        }
         //await session.sendAsync("jh fam 0 start");
         //await session.sendAsync("go north");
         console.log(JSON.stringify(session.world.items, null, 4) + `\n`);
@@ -25,9 +32,10 @@ export class TestTask extends Task {
         //await session.sendAsync("go south");  
             await Promise.delay(5000);
 
-        let master = session.world.items.find(i => i && i.name.includes('守门人'));
+        let master = session.world.items.find(i => i && i.name.includes('张三丰'));
         if (master) {
         masterId=master.id;
+        console.log(JSON.stringify(master, null, 4) + `\n`);
         }
         while(true){
             //console.log(new Date()+JSON.stringify(master, null, 4) + `\n`);

@@ -106,9 +106,9 @@ export class AutoTask2 extends Task {
                         for (let i = 0; i < taskPaths.length; i++) {
                             //console.log('Execute:'+cmdss[i].content);
                             await session.sendAsync(taskPaths[i]);
-                            await Promise.delay(100);
+                            //await Promise.delay(100);
                         }
-                        await Promise.delay(1000);
+                        //await Promise.delay(1000);
                         const master = session.world.items.find(i => i && i.name.endsWith(masterName));
                         if (master) {
                             // while (master.hp == master.max_hp) {
@@ -161,9 +161,9 @@ export class AutoTask2 extends Task {
                         for (let i = 0; i < taskPaths.length; i++) {
                             //console.log('Execute:'+cmdss[i].content);
                             await session.sendAsync(taskPaths[i]);
-                            await Promise.delay(100);
+                            //await Promise.delay(100);
                         }
-                        await Promise.delay(1000);
+                        //await Promise.delay(1000);
                         const master = session.world.items.find(i => i && i.name.endsWith(masterName));
                         if (master) {
                             // while (master.hp == master.max_hp) {
