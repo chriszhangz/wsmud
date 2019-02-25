@@ -115,7 +115,8 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        const master = session.world.items.find(i => i && i.name.endsWith(masterName));
+                        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        const master = session.world.items.find(i => i && i.name.includes(masterName));
                         if (master) {
                             // while (master.hp == master.max_hp) {
                             //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `max hap has to wait\n`);
@@ -174,7 +175,8 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        const master = session.world.items.find(i => i && i.name.endsWith(masterName));
+                        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        const master = session.world.items.find(i => i && i.name.includes(masterName));
                         if (master) {
                             // while (master.hp == master.max_hp) {
                             //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
