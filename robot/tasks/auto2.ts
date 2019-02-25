@@ -9,6 +9,7 @@ import { appendFile } from "fs";
 //const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 const mpzStart = /击杀(\D+)，(\D+)众弟子听令，对(\D+)格杀勿论！/;
 const mpzStart2 = /，众弟子听令，对(\D+)格杀勿论！/;
+const mpzEnd = /和(\D+)的战斗结束了，你的门派/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
 let msgs = [""];
@@ -21,6 +22,7 @@ let inCombat = 0;
 let masterId;
 let emei = 0;
 let emei2 = 0;
+let masterName;
 
 export class AutoTask2 extends Task {
 
@@ -46,21 +48,12 @@ export class AutoTask2 extends Task {
 
         async function processMessage(msg: string) {
             await Promise.promisify(appendFile)(`./core/rooms/test1.json`, `msg:` + msg + `\n`);
-            //console.log(msg);
-            // var matches;
-            // if ((matches = endJob.exec(msg)) != null) {
-            //     //self.priority = -1;    
-            //     shimen = 1;
-            //     //console.log(new Date() + "师门完成..")
-            //     //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-            //     return;
-            // }
-            // if (msgs.length < 10) {
-            //     msgs.push(msg);
-            // } else {
-            //     msgs.shift();
-            //     msgs.push(msg);
-            // }
+            var matches;
+            if ((matches = mpzEnd.exec(msg)) != null) {
+                session.removeListener('message', processMessage);
+                session.removeListener('msg', processMsg);
+                session.removeListener('data', processData);
+            }
 
         };
         async function processMsg(data: Msg) {
@@ -84,8 +77,8 @@ export class AutoTask2 extends Task {
                     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `|` + defenseName + `|` + place + `\n`);
                     if(emei==1){
                     if (place != null) {
+                        session.on('data', processData);
                         var taskPath;
-                        var masterName;
                         switch (place) {
                             case '丐帮':
                                 taskPath = "jh fam 6 start;go down;go east;go east;go east;go east;go east;go up";
@@ -108,6 +101,7 @@ export class AutoTask2 extends Task {
                                 masterName = "岳不群";
                                 break;
                         }
+                        await session.sendAsync("stopstate");
                         let taskPaths: string[] = taskPath.split(";");
                         for (let i = 0; i < taskPaths.length; i++) {
                             //console.log('Execute:'+cmdss[i].content);
@@ -115,39 +109,39 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
-                        const master = session.world.items.find(i => i && i.name.includes(masterName));
-                        if (master) {
-                            // while (master.hp == master.max_hp) {
-                            //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `max hap has to wait\n`);
-                            //     await Promise.delay(3000);
-                            // }
-                            // await session.sendAsync(`kill ${master.id}`);
-                            masterId = master.id;
-                            session.on('data', processData);
-                        } else {
-                            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
-                            await session.sendAsync("stopstate");
-                            await session.sendAsync("jh fam 0 start");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("go north");
-                            await Promise.delay(500);
-                            await session.sendAsync("go enter");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("xiulian");
-                            session.removeListener('message', processMessage);
-                            session.removeListener('msg', processMsg);
-                            session.removeListener('data', processData);
-                            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
-                            //self.priority=-1;
-                            //return;
-                        }
+                        // await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        // const master = session.world.items.find(i => i && i.name.includes(masterName));
+                        // if (master) {
+                        //     // while (master.hp == master.max_hp) {
+                        //     //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `max hap has to wait\n`);
+                        //     //     await Promise.delay(3000);
+                        //     // }
+                        //     // await session.sendAsync(`kill ${master.id}`);
+                        //     masterId = master.id;
+                        //     session.on('data', processData);
+                        // } else {
+                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
+                        //     await session.sendAsync("stopstate");
+                        //     await session.sendAsync("jh fam 0 start");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go north");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go enter");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("xiulian");
+                        //     session.removeListener('message', processMessage);
+                        //     session.removeListener('msg', processMsg);
+                        //     session.removeListener('data', processData);
+                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
+                        //     //self.priority=-1;
+                        //     //return;
+                        // }
                     } else {
                         session.removeListener('message', processMessage);
                         session.removeListener('msg', processMsg);
@@ -166,8 +160,10 @@ export class AutoTask2 extends Task {
                     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `||` + defenseName + `||` + place + `\n`);
                     if(emei2==1){
                     if (place != null) {
+                        session.on('data', processData);
                         taskPath = "jh fam 2 start;go north;go north;go northwest;go northeast;go north;go north";
                         masterName = "玄难";
+                        await session.sendAsync("stopstate");
                         let taskPaths: string[] = taskPath.split(";");
                         for (let i = 0; i < taskPaths.length; i++) {
                             //console.log('Execute:'+cmdss[i].content);
@@ -175,39 +171,39 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
-                        const master = session.world.items.find(i => i && i.name.includes(masterName));
-                        if (master) {
-                            // while (master.hp == master.max_hp) {
-                            //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
-                            //     await Promise.delay(3000);
-                            // }
-                            // await session.sendAsync(`kill ${master.id}`);
-                            masterId = master.id;
-                            session.on('data', processData);
-                        } else {
-                            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
-                            await session.sendAsync("stopstate");
-                            await session.sendAsync("jh fam 0 start");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("go north");
-                            await Promise.delay(500);
-                            await session.sendAsync("go enter");
-                            await Promise.delay(500);
-                            await session.sendAsync("go west");
-                            await Promise.delay(500);
-                            await session.sendAsync("xiulian");
-                            session.removeListener('message', processMessage);
-                            session.removeListener('msg', processMsg);
-                            session.removeListener('data', processData);
-                            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
-                            //self.priority=-1;
-                            //return;
-                        }
+                        //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        //const master = session.world.items.find(i => i && i.name.includes(masterName));
+                        // if (master) {
+                        //     // while (master.hp == master.max_hp) {
+                        //     //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
+                        //     //     await Promise.delay(3000);
+                        //     // }
+                        //     // await session.sendAsync(`kill ${master.id}`);
+                        //     masterId = master.id;
+                        //     session.on('data', processData);
+                        // } else {
+                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
+                        //     await session.sendAsync("stopstate");
+                        //     await session.sendAsync("jh fam 0 start");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go north");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go enter");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("go west");
+                        //     await Promise.delay(500);
+                        //     await session.sendAsync("xiulian");
+                        //     session.removeListener('message', processMessage);
+                        //     session.removeListener('msg', processMsg);
+                        //     session.removeListener('data', processData);
+                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
+                        //     //self.priority=-1;
+                        //     //return;
+                        // }
                     }
                 }
                 }
@@ -254,6 +250,19 @@ export class AutoTask2 extends Task {
                             die =0;
                             await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `relive 任务end!!!!!!!!!!!!!!!!! \n`);
             }
+            if(data.type==='items'){
+                const master = data.items.find(i => i && i.name.includes(masterName));
+                if (master) {
+                    // while (master.hp == master.max_hp) {
+                    //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
+                    //     await Promise.delay(3000);
+                    // }
+                    // await session.sendAsync(`kill ${master.id}`);
+                    masterId = master.id;
+                    await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
+                    await session.sendAsync(`kill ${masterId}`);
+                }
+            }
             if (data.type === 'combat' && data.end === 1&&die!=1) {
                 inCombat=0;
                 await session.sendAsync("stopstate");
@@ -270,6 +279,7 @@ export class AutoTask2 extends Task {
                 await session.sendAsync("go west");
                 await Promise.delay(500);
                 await session.sendAsync("xiulian");
+                await Promise.delay(5000);
                 session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
                 session.removeListener('data', processData);
@@ -278,8 +288,13 @@ export class AutoTask2 extends Task {
                 //return;
             }
             if (data.type === 'sc' && data.hp != null&&data.id==masterId&&inCombat==0) {
-                await session.sendAsync(`kill ${masterId}`);
                 inCombat=1;
+                await session.sendAsync(`kill ${masterId}`);
+                await session.sendAsync(`perform dodge.power`);
+                await session.sendAsync(`perform force.power`);
+                await session.sendAsync(`perform sword.yi`);
+                await Promise.delay(6500);
+                await session.sendAsync(`perform sword.yi`);
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             }
         };
