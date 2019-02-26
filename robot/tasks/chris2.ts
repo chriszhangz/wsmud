@@ -6,6 +6,7 @@ import { Task } from "../task";
 
 //const r = /<hig>你获得了(\d+)点/;
 const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
+const bangpaizhan = /成员听令，即刻起开始进攻/;
 
 export class ChrisTask2 extends Task {
 
@@ -30,6 +31,7 @@ export class ChrisTask2 extends Task {
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
         const ch = "chat";
         //const ch = "pty";
+        const pty = "pty";
         /**
          * 获取指南持续时间的中文描述
          */
@@ -104,6 +106,22 @@ export class ChrisTask2 extends Task {
         //     //     }
         //     // }
         // };
+        async function processPartyWar() {
+            await Promise.delay(5*60*1000-5000);
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5*60*1000-5000);
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5*60*1000-5000);
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5*60*1000-5000);
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5*60*1000-5000);
+            await session.sendAsync(`${pty} 5秒内最后一波刷新！！！！！！！！！`);
+        }
         /**
          * 处理聊天消息
          * @param data 
@@ -157,6 +175,10 @@ export class ChrisTask2 extends Task {
                  }
                }else if(data.ch === 'pty'){
                 //console.log(data.name+":"+data.content);
+                if((matches = bangpaizhan.exec(data.content)) != null){
+                    await session.sendAsync(`${pty} 帮派战计时开始`);
+                    processPartyWar();
+                 }
                 if(data.content.indexOf('-')>0&&(data.uid==='v8qh28f7257')){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
                     positions+=data.content;
                     numOfYaoyan++;

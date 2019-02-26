@@ -226,11 +226,11 @@ export class AutoTask2 extends Task {
             //         }
             //     }
             // }
-            if(data.type==='die'){
+            if(data.type==='die'&&data.relive==null){
                 die=1;
                 inCombat=0;
                 await session.sendAsync("relive");
-                await Promise.delay(20000);
+                await Promise.delay(30000);
                             await session.sendAsync("jh fam 0 start");
                             await Promise.delay(500);
                             await session.sendAsync("go west");
@@ -265,21 +265,8 @@ export class AutoTask2 extends Task {
             }
             if (data.type === 'combat' && data.end === 1&&die!=1) {
                 inCombat=0;
-                await session.sendAsync("stopstate");
-                await session.sendAsync("jh fam 0 start");
-                await Promise.delay(500);
-                await session.sendAsync("go west");
-                await Promise.delay(500);
-                await session.sendAsync("go west");
-                await Promise.delay(500);
-                await session.sendAsync("go north");
-                await Promise.delay(500);
-                await session.sendAsync("go enter");
-                await Promise.delay(500);
-                await session.sendAsync("go west");
-                await Promise.delay(500);
-                await session.sendAsync("xiulian");
-                await Promise.delay(5000);
+                await wumiao(15000);
+                await xiulian(1000);
                 session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
                 session.removeListener('data', processData);
@@ -292,14 +279,46 @@ export class AutoTask2 extends Task {
                 await session.sendAsync(`kill ${masterId}`);
                 await session.sendAsync(`perform dodge.power`);
                 await session.sendAsync(`perform force.power`);
+                await session.sendAsync(`perform force.cui`);
+                await session.sendAsync(`perform parry.yi`);
                 await session.sendAsync(`perform sword.yi`);
-                await Promise.delay(6500);
+                await session.sendAsync(`perform throwing.jiang`);
+                await session.sendAsync(`perform unarmed.duo`);
+                await session.sendAsync(`perform unarmed.juan`);
+                while(inCombat==1){
+                await Promise.delay(5000);
                 await session.sendAsync(`perform sword.yi`);
+                }
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             }
         };
+        async function wumiao(time: number) {
+            await session.sendAsync("stopstate");
+            await session.sendAsync("jh fam 0 start");
+            await session.sendAsync("go north");
+            await session.sendAsync("go north");
+            await session.sendAsync("go west");
+            await Promise.delay(time);
+        }
+        async function xiulian(time: number) {
+            await session.sendAsync("stopstate");
+            await session.sendAsync("jh fam 0 start");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("go north");
+            await Promise.delay(500);
+            await session.sendAsync("go enter");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("xiulian");
+            await Promise.delay(time);
+        }
         var CronJob = require('cron').CronJob;
-        new CronJob('00 55 01,02,03,04 * * *', async function () {
+        new CronJob('00 55 01,02,03,04,05 * * *', async function () {
             await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
             //console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
             inCombat=0;

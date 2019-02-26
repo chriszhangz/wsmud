@@ -18,7 +18,8 @@ export interface Role {
 }
 
 export interface Die {
-    type: "die"
+    type: "die",
+    relive: boolean
 }
 
 export interface Combat {

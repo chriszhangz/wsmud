@@ -16,9 +16,11 @@ export class TestTask extends Task {
         let masterId;
         console.log(`start\n`);
         session.on('data', processData);
+        session.on('message', processMessage);
         await Promise.delay(5000);
         await session.sendAsync("stopstate");
-        let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
+        //let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
+        let taskPath = "jh fam 9 start";
         let taskPaths: string[] = taskPath.split(";");
                         for (let i = 0; i < taskPaths.length; i++) {
                             //console.log('Execute:'+cmdss[i].content);
@@ -50,6 +52,9 @@ export class TestTask extends Task {
         await Promise.delay(1000);
         this.priority=-1;
         return;
+        async function processMessage(msg: string) {
+            console.log(`msg:` + msg + `\n`);
+        };
         async function processData(data: Data) {
             console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             if (data.type === 'sc' && data.mp != null && data.id == masterId) {
@@ -57,11 +62,13 @@ export class TestTask extends Task {
             console.log(new Date()+`kill!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n`);
                 await session.sendAsync(`kill ${masterId}`);
             }
-            if(data.type==='die'){
+            if(data.type==='die'&&data.relive==null){
                 await session.sendAsync("relive");
+                await wumiao(5000);
+                await xiulian(1000);
             }
             if(data.type==='items'){
-                const master = data.items.find(i => i && i.name.includes('张三丰'));
+                const master = data.items.find(i => i && i.name.includes('守门人'));
                 if (master) {
                     // while (master.hp == master.max_hp) {
                     //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
@@ -74,6 +81,31 @@ export class TestTask extends Task {
                 }
             }
         };
+        async function wumiao(time: number) {
+            await session.sendAsync("stopstate");
+            await session.sendAsync("jh fam 0 start");
+            await session.sendAsync("go north");
+            await session.sendAsync("go north");
+            await session.sendAsync("go west");
+            await Promise.delay(time);
+        }
+        async function xiulian(time: number) {
+            await session.sendAsync("stopstate");
+            await session.sendAsync("jh fam 0 start");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("go north");
+            await Promise.delay(500);
+            await session.sendAsync("go enter");
+            await Promise.delay(500);
+            await session.sendAsync("go west");
+            await Promise.delay(500);
+            await session.sendAsync("xiulian");
+            await Promise.delay(time);
+        }
 
     }
 
