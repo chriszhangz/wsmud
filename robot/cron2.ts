@@ -25,8 +25,8 @@ async function start() {
                 pwd: "1982525"
             },
             tasks: [
-                //new tasks.AutoTask2()
-                new tasks.TestTask()
+                new tasks.AutoTask2()
+                //new tasks.TestTask()
                 //new tasks.ShouxiTask("jh fam 5 start;go north", "苏星河", "8wdo2ae4caf", new Date(2018,9,28))
             ]
         }

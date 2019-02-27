@@ -1,12 +1,13 @@
 import { UserConfig } from '../interface';
 import { Session } from '../../core';
-import { Msg } from '../../core/data';
+import { Msg,Data } from '../../core/data';
 import { Promise } from "bluebird";
 import { Task } from "../task";
 
 //const r = /<hig>你获得了(\d+)点/;
 const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 const bangpaizhan = /成员听令，即刻起开始进攻/;
+const jhstart = /襄阳战事正紧(\S+)</;
 
 export class ChrisTask2 extends Task {
 
@@ -28,6 +29,8 @@ export class ChrisTask2 extends Task {
         let lastHour = -1;
         let lastchat = new Date();
         let positions = '';
+        let partyWar = 0;
+        let jhmsg;
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
         const ch = "chat";
         //const ch = "pty";
@@ -108,18 +111,23 @@ export class ChrisTask2 extends Task {
         // };
         async function processPartyWar() {
             await Promise.delay(5*60*1000-5000);
+            if(partyWar==0)return;
             await session.sendAsync(`${pty} 5秒内下一波刷新`);
             await Promise.delay(5000);
             await Promise.delay(5*60*1000-5000);
+            if(partyWar==0)return;
             await session.sendAsync(`${pty} 5秒内下一波刷新`);
             await Promise.delay(5000);
             await Promise.delay(5*60*1000-5000);
+            if(partyWar==0)return;
             await session.sendAsync(`${pty} 5秒内下一波刷新`);
             await Promise.delay(5000);
             await Promise.delay(5*60*1000-5000);
+            if(partyWar==0)return;
             await session.sendAsync(`${pty} 5秒内下一波刷新`);
             await Promise.delay(5000);
             await Promise.delay(5*60*1000-5000);
+            if(partyWar==0)return;
             await session.sendAsync(`${pty} 5秒内最后一波刷新！！！！！！！！！`);
         }
         /**
@@ -159,6 +167,7 @@ export class ChrisTask2 extends Task {
                     newXYs = true;
                     newXYe = false;
                     lastXYs = new Date();
+                    jhmsg='';
                  }else if(data.content.indexOf('听说') >= 0&&data.content.indexOf('有人得到了')>=0){
                     //console.log(`襄阳保卫战现在开启`);
                     await session.sendAsync(`${ch} *恭喜`);
@@ -177,8 +186,13 @@ export class ChrisTask2 extends Task {
                 //console.log(data.name+":"+data.content);
                 if((matches = bangpaizhan.exec(data.content)) != null){
                     await session.sendAsync(`${pty} 帮派战计时开始`);
+                    partyWar=1;
                     processPartyWar();
                  }
+                if(data.content.includes("接下来的一小时所有弟子练习效率提高")){
+                    await session.sendAsync(`${pty} 帮派战计时结束`);
+                    partyWar=0;
+                }
                 if(data.content.indexOf('-')>0&&(data.uid==='v8qh28f7257')){//ucdv256631d新月;r7c61934494洛玖尧;v8qh28f7257江暮雨
                     positions+=data.content;
                     numOfYaoyan++;
@@ -327,11 +341,12 @@ export class ChrisTask2 extends Task {
                         lastchat = new Date();
                     }else if (content === "xy" ||content === "x" ){
                         if(newXYs){
+                            await session.sendAsync(`jh fam 8`);
                             var time = new Date().getTime() - lastXYs.getTime();
                             time = time / 1000;
                             var mins = Math.floor(time / 60);
                             var secs = Math.floor(time % 60);
-                            await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                            await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`+jhmsg);
                             //console.log(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
                         }else if(newXYe){
                             var time = lastXYe - new Date().getTime();
@@ -351,17 +366,31 @@ export class ChrisTask2 extends Task {
                 }
             }
         }
-
+        async function processData(data: Data) {
+            //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
+            if (data.type === 'dialog'&&data.dialog==='jh'&&data.index!=null&&data.index==8){
+                if(data.desc.includes("襄阳战事正紧，")){
+                    var matches;
+                    if((matches = jhstart.exec(data.desc)) != null){
+                        jhmsg = matches[1];
+                        //console.log('jhmsg:'+jhmsg);
+                    }
+                }
+            }
+        }
 
         //session.removeListener('message', processMessage);
         session.removeListener('msg', processMsg);
+        session.removeListener('data', processData);
         //session.on('message', processMessage);
         session.on('msg', processMsg);
+        session.on('data', processData);
 
         while (true) {
             if (this.isCancellationRequested) {
                 //session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
+                session.removeListener('data', processData);
                 break;
             }
             await Promise.delay(1000 * 60 * 1);

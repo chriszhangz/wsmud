@@ -5,6 +5,9 @@ import {Promise} from "bluebird";
 import { Data } from "../../core/data";
 //import { exists } from "fs";
 
+const jhstart = /襄阳战事正紧(\S+)</;
+let jhmsg;
+
 export class TestTask extends Task {
 
     constructor() {
@@ -45,6 +48,7 @@ export class TestTask extends Task {
         }else{
             console.log(`can't find master \n`);
         }
+        await session.sendAsync("jh fam 8");
         while (true) {
             console.log("check if end.. "+this.isCancellationRequested);   
             console.log("check priority.. "+cancelled);     
@@ -64,7 +68,17 @@ export class TestTask extends Task {
             console.log(`msg:` + msg + `\n`);
         };
         async function processData(data: Data) {
-            //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
+            console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
+            if (data.type === 'dialog'&&data.dialog==='jh'&&data.index!=null&&data.index==8){
+                if(data.desc.includes("襄阳战事正紧，")){
+                    console.log('jhmsg:'+jhmsg);
+                    var matches;
+                    if((matches = jhstart.exec(data.desc)) != null){
+                        jhmsg = matches[1];
+                        console.log('jhmsg:'+jhmsg);
+                    }
+                }
+            }
             if (data.type === 'sc' && data.mp != null && data.id == masterId) {
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             console.log(new Date()+`kill!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n`);
@@ -77,19 +91,19 @@ export class TestTask extends Task {
                 cancelled=true;
                 //this.isCancellationRequested=true;
             }
-            if(data.type==='items'){
-                const master = data.items.find(i => i && i.name.includes('守门人'));
-                if (master) {
-                    // while (master.hp == master.max_hp) {
-                    //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
-                    //     await Promise.delay(3000);
-                    // }
-                    // await session.sendAsync(`kill ${master.id}`);
-                    masterId = master.id;
-                    console.log(new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
-                    await session.sendAsync(`kill ${masterId}`);
-                }
-            }
+            // if(data.type==='items'){
+            //     const master = data.items.find(i => i && i.name.includes('守门人'));
+            //     if (master) {
+            //         // while (master.hp == master.max_hp) {
+            //         //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
+            //         //     await Promise.delay(3000);
+            //         // }
+            //         // await session.sendAsync(`kill ${master.id}`);
+            //         masterId = master.id;
+            //         console.log(new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
+            //         await session.sendAsync(`kill ${masterId}`);
+            //     }
+            // }
         };
         async function wumiao(time: number) {
             await session.sendAsync("stopstate");
