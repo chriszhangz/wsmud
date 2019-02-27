@@ -6,7 +6,7 @@ import { appendFile } from "fs";
 import { Task } from "../task";
 
 //const r = /<hig>你获得了(\d+)点/;
-const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
+//const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 
 export class ChrisTask extends Task {
 
@@ -17,18 +17,18 @@ export class ChrisTask extends Task {
 
     async start(session: Session, config: UserConfig) {
 
-        let newbook = false; //是否有新的book
-        //let current = 0; //当前数值
-        let newXYs = false;
-        let newXYe = false;
-        let lastXYs = new Date();
-        let lastXYe = new Date().getTime();
-        let lastbook = new Date();
-        let lastHour = -1;
-        let lastchat = new Date();
-        let positions = '';
-        //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
-        const ch = "chat";
+        // let newbook = false; //是否有新的book
+        // //let current = 0; //当前数值
+        // let newXYs = false;
+        // let newXYe = false;
+        // let lastXYs = new Date();
+        // let lastXYe = new Date().getTime();
+        // let lastbook = new Date();
+        // let lastHour = -1;
+        // // let lastchat = new Date();
+        // // let positions = '';
+        // //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
+        // const ch = "chat";
         //const ch = "pty";
         /**
          * 获取指南持续时间的中文描述
@@ -40,40 +40,40 @@ export class ChrisTask extends Task {
         //     var secs = Math.floor(time % 60);
         //     return `${mins}分${secs}秒`;
         // }
-        function GetChinaTime() {
-            var d=new Date(); //创建一个Date对象
-            var localTime = d.getTime();
-            var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
-            var utc = localTime + localOffset; //utc即GMT时间
-            var offset = 8; 
-            var hawaii = utc + (3600000 * offset);
-            var nd = new Date(hawaii);
-            var hour = nd.getHours();
-            //console.log("Hawaii time is " + nd.toLocaleString()); 
-            if(hour===21&&(nd.getDay()===2||nd.getDay()===4||nd.getDay()===6)){
-                var time = new Date().getTime() - lastbook.getTime();
-                time = time / 1000;
-                var mins = Math.floor(time / 60);
-                var secs = Math.floor(time % 60);
-                return `${ch} 🐾上一个BOSS出现在${mins}分${secs}秒以前`;
-            }          
-            if(nd.getHours()===lastHour){
-                var time = new Date().getTime() - lastbook.getTime();
-                time = time / 1000;
-                var mins = Math.floor(time / 60);
-                var secs = Math.floor(time % 60);
-                if(hour===18||hour===19||hour===20||hour===21||hour===22){
-                    return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前，门派战期间我不敢去搜索BOSS，抱歉😭`;
-                } 
-                return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
-            }else{
-                if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
-                    positions = '';
-                   }
-                return `${ch} 😟${hour}点BOSS还未刷新，请耐心等待~`;
-            }
-            //return `${mins}分${secs}秒`;
-        }   
+        // function GetChinaTime() {
+        //     var d=new Date(); //创建一个Date对象
+        //     var localTime = d.getTime();
+        //     var localOffset = d.getTimezoneOffset() * 60000; //获得当地时间偏移的毫秒数
+        //     var utc = localTime + localOffset; //utc即GMT时间
+        //     var offset = 8; 
+        //     var hawaii = utc + (3600000 * offset);
+        //     var nd = new Date(hawaii);
+        //     var hour = nd.getHours();
+        //     //console.log("Hawaii time is " + nd.toLocaleString()); 
+        //     if(hour===21&&(nd.getDay()===2||nd.getDay()===4||nd.getDay()===6)){
+        //         var time = new Date().getTime() - lastbook.getTime();
+        //         time = time / 1000;
+        //         var mins = Math.floor(time / 60);
+        //         var secs = Math.floor(time % 60);
+        //         return `${ch} 🐾上一个BOSS出现在${mins}分${secs}秒以前`;
+        //     }          
+        //     if(nd.getHours()===lastHour){
+        //         var time = new Date().getTime() - lastbook.getTime();
+        //         time = time / 1000;
+        //         var mins = Math.floor(time / 60);
+        //         var secs = Math.floor(time % 60);
+        //         if(hour===18||hour===19||hour===20||hour===21||hour===22){
+        //             return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前，门派战期间我不敢去搜索BOSS，抱歉😭`;
+        //         } 
+        //         return `${ch} 🐾${hour}点BOSS已经出现在${mins}分${secs}秒以前`;
+        //     }else{
+        //         if(new Date().getTime() - lastbook.getTime() >= 1000 * 60*10){
+        //             positions = '';
+        //            }
+        //         return `${ch} 😟${hour}点BOSS还未刷新，请耐心等待~`;
+        //     }
+        //     //return `${mins}分${secs}秒`;
+        // }   
         /**
          * 处理普通文本消息，这个函数只处理经验获得消息
          * @param msg 普通文本消息

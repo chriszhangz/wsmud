@@ -110,4 +110,8 @@ export class Session extends EventEmitter {
     static getServers() {
         return api.GetServers();
     }
+
+    public async close() {        
+        this.client.close();
+    }
 }

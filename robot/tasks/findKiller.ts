@@ -5,24 +5,21 @@ import { UserConfig } from "../interface";
 import { Promise } from "bluebird";
 
 
-const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
-const endJob = /你先去休息一下吧/;
-const quest = /为师最近突然想尝一下<wht>包子/;
-const quest2 = /我要的是<wht>包子/;
+// const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
+// const endJob = /你先去休息一下吧/;
+// const quest = /为师最近突然想尝一下<wht>包子/;
+// const quest2 = /我要的是<wht>包子/;
 const team = /<hig>已经发送对(\D+)的组队邀请。/;
 const team2 = /(\D+)已加入组队，无法接受你的请求。/;
 const team3 = /你已经邀请过(\D+)了，正在等待回应。/;
-let msgs = [""];
-let idOfBaoZi = '';
+// let msgs = [""];
+// let idOfBaoZi = '';
 let needCheck = 0;
 let checking = 0;
 
 export class FindKillerTask extends Task {
 
-    constructor(
-        private taskPath: string[],
-        private masterName: string,
-    ) {
+    constructor() {
         super();
         this.priority = 100;
     }
@@ -78,12 +75,12 @@ export class FindKillerTask extends Task {
         //let current = 0; //当前数值
         //let lastbook = new Date();
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
-        const ch = "chat";
+        //const ch = "chat";
         //const tm = "tm";
         const pty = "pty";
-        const rumor = "rumor";
+        // const rumor = "rumor";
 
-        var self = this;
+        // var self = this;
         var checkName = "";
         var checkId = "";
         var results = new Array();

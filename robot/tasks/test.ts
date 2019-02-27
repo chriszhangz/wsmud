@@ -3,6 +3,7 @@ import { Session } from "../../core";
 import { UserConfig } from "../interface";
 import {Promise} from "bluebird";
 import { Data } from "../../core/data";
+//import { exists } from "fs";
 
 export class TestTask extends Task {
 
@@ -14,9 +15,11 @@ export class TestTask extends Task {
     
     async start(session: Session, config: UserConfig) {
         let masterId;
+        let cancelled=false;
+        //var self = this;
         console.log(`start\n`);
-        session.on('data', processData);
         session.on('message', processMessage);
+        session.on('data', processData);
         await Promise.delay(5000);
         await session.sendAsync("stopstate");
         //let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
@@ -42,11 +45,16 @@ export class TestTask extends Task {
         }else{
             console.log(`can't find master \n`);
         }
-        while(true){
-            //console.log(new Date()+JSON.stringify(master, null, 4) + `\n`);
-            //console.log(JSON.stringify(session.world.items, null, 4) + `\n`);
-            //master = session.world.items.find(i => i && i.name.includes('邹有竦'));
-            await Promise.delay(5000);
+        while (true) {
+            console.log("check if end.. "+this.isCancellationRequested);   
+            console.log("check priority.. "+cancelled);     
+            if (this.isCancellationRequested||cancelled) {
+                session.removeListener('message', processMessage);
+                session.removeListener('data', processData);
+                break;
+            }
+            await Promise.delay(1000 * 10 * 1);
+            await session.sendAsync("look");
         }
         console.log("end.. "+config.name);          
         await Promise.delay(1000);
@@ -56,7 +64,7 @@ export class TestTask extends Task {
             console.log(`msg:` + msg + `\n`);
         };
         async function processData(data: Data) {
-            console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
+            //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             if (data.type === 'sc' && data.mp != null && data.id == masterId) {
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             console.log(new Date()+`kill!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n`);
@@ -66,6 +74,8 @@ export class TestTask extends Task {
                 await session.sendAsync("relive");
                 await wumiao(5000);
                 await xiulian(1000);
+                cancelled=true;
+                //this.isCancellationRequested=true;
             }
             if(data.type==='items'){
                 const master = data.items.find(i => i && i.name.includes('守门人'));

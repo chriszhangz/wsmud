@@ -3,7 +3,7 @@ import { Promise } from 'bluebird';
 import { UserConfig } from '../interface';
 import { Task } from "../task";
 
-const pty = "pty";
+//const pty = "pty";
 const waitJob = /你想趁人之危吗/;
 const endJob = /承让/;
 const endJob2 = /阁下武艺不凡/;
@@ -15,7 +15,6 @@ export class XineiTask extends Task {
     constructor(
         private taskPath: string[],
         private masterName: string,
-        private tokenId: string,
         firstChiefDate: Date
     ) {
         super();

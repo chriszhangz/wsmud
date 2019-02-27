@@ -1,5 +1,5 @@
 import { Session } from '../../core';
-import { Data } from "../../core/data";
+//import { Data } from "../../core/data";
 import { Promise } from 'bluebird';
 import { UserConfig } from '../interface';
 import { Task } from "../task";
@@ -72,7 +72,7 @@ export class ShouxiTask extends Task {
         }
 
        
-        //await callback()            
+        await callback()            
         console.log(`${new Date()} job start`);
         this.priority = -1;        
 
