@@ -8,6 +8,14 @@ import { Task } from "../task";
 const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 const bangpaizhan = /成员听令，即刻起开始进攻/;
 const jhstart = /襄阳战事正紧(\S+)</;
+const endJob = /你先去休息一下吧/;
+const quest = /为师最近突然想尝一下<wht>包子/;
+const quest2 = /我要的是<wht>包子/;
+let msgs = [""];
+let idOfBaoZi = '';
+let shimen = 0;
+let taskPath = "jh fam 4 start;go west";
+let masterName = "苏梦清";
 
 export class ChrisTask2 extends Task {
 
@@ -377,18 +385,181 @@ export class ChrisTask2 extends Task {
                     }
                 }
             }
+            if (data.type==='dialog'&&data.dialog === "pack") {
+                if(data.name&&data.name.indexOf('养精丹')>=0){
+                //console.log(new Date() + "************************************使用养精丹 ..");
+                await session.sendAsync(`use ${data.id}`);
+                }else if(data.items){
+                    for(const item in data.items){
+                        if(data.items[item].name.includes('包子'))
+                        {
+                        //console.log(roomName+':'+items[item].name);
+                        idOfBaoZi=data.items[item].id;
+                        break;
+                        }
+                    }
+                }
+            }
         }
+        async function processMessage(msg: string) {
+            //console.log(msg);
+            var matches;
+            if ((matches = endJob.exec(msg)) != null) {
+                //self.priority = -1;    
+                shimen = 1;
+                //console.log(new Date() + "师门完成..")
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                return;
+            }
+            if (msgs.length < 10) {
+                msgs.push(msg);
+            } else {
+                msgs.shift();
+                msgs.push(msg);
+            }
+        };
+        var CronJob = require('cron').CronJob;
+        new CronJob('00 10 13 * * *', async function () {
+            //console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
+            await callback();
+        }, null, true, 'America/Los_Angeles');
 
-        //session.removeListener('message', processMessage);
+        session.removeListener('message', processMessage);
         session.removeListener('msg', processMsg);
         session.removeListener('data', processData);
-        //session.on('message', processMessage);
+        session.on('message', processMessage);
         session.on('msg', processMsg);
         session.on('data', processData);
 
+        async function callback() {
+            //console.log("start..")
+            await session.sendAsync("stopstate");
+            let taskPaths: string[] = taskPath.split(";");
+            for (let i = 0; i < taskPaths.length; i++) {
+                //console.log('Execute:'+cmdss[i].content);
+                await session.sendAsync(taskPaths[i]);
+                await Promise.delay(500);
+            }
+            await Promise.delay(5050);
+            await session.sendAsync("tasks");
+            const master = session.world.items.find(i => i && i.name.endsWith(masterName))
+
+            if (master) {
+                shimen = 0;
+                idOfBaoZi = '';
+                //console.log("查找找包子ID..")
+                while (idOfBaoZi == '') {
+                    await session.sendAsync(`pack`);
+                    await Promise.delay(1000);
+                }
+                //console.log("找到包子ID："+idOfBaoZi);
+                await session.sendAsync(`${pty} 开始师门任务..`);
+                while (shimen == 0) {
+                    //console.log(new Date() + "excute任务..")
+                    await session.sendAsync(`task sm ${master.id}`);
+                    await Promise.delay(1000);
+                    var found = 0;
+                    //console.log(new Date() + "check任务..")
+                    for (let msg in msgs) {
+                        //console.log('msg..'+msgs[msg]);
+                        var match;
+                        if ((match = quest.exec(msgs[msg])) != null || quest2.exec(msgs[msg]) != null) {
+                            //console.log(new Date() + "发现任务..")
+                            msgs = [""];
+                            await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
+                            //await Promise.delay(1000);
+                            found = 1;
+                            break;
+                        }
+                    }
+                    if (found == 0) {
+                        await session.sendAsync(`task sm ${master.id} giveup`);
+                        //await Promise.delay(1000);
+                    }
+                    await Promise.delay(1000);
+                }
+                await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
+                //console.log(new Date() + "开始副本..")
+                if (config.name != "新月") {
+                    for (var i = 0; i < 20; i++) {
+                        await session.sendAsync("jh fb 0 start1");
+                        await session.sendAsync("cr yz/lw/shangu");
+                        await session.sendAsync("cr over");
+                        await Promise.delay(1000);
+                    }
+                } else {
+                    await session.sendAsync("cr xuedao/shankou 0 20");
+                }
+                await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
+                //console.log("完成副本..");
+                //console.log(new Date() + "开始追捕..")
+                await session.sendAsync("taskover signin");
+                await Promise.delay(1000);
+                if (config.name != "新月") {
+                    await session.sendAsync("shop 0 20");
+                }else{
+                    await session.sendAsync("shop 0 40");
+                }
+                await Promise.delay(1000);
+                await session.sendAsync("jh fam 0 start");
+                await Promise.delay(500);
+                await session.sendAsync("go west");
+                await Promise.delay(500);
+                await session.sendAsync("go north");
+                await Promise.delay(500);
+                await session.sendAsync("go north");
+                await Promise.delay(2000);
+                let zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
+                while (!zhifu) {
+                    await Promise.delay(1000);
+                    await session.sendAsync("jh fam 0 start");
+                    await Promise.delay(500);
+                    await session.sendAsync("go west");
+                    await Promise.delay(500);
+                    await session.sendAsync("go north");
+                    await Promise.delay(500);
+                    await session.sendAsync("go north");
+                    await Promise.delay(2000);
+                    zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
+                }
+                if (zhifu) {
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask1 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask2 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(10000);
+                    //console.log("完成追捕..");
+                    if (config.name != "新月") {
+                        await session.sendAsync("wakuang");
+                    }else{
+                        await session.sendAsync("jh fam 0 start");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go north");
+                        await Promise.delay(500);
+                        await session.sendAsync("go enter");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("xiulian");
+
+                    }
+                }
+                await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                return;
+            }
+        }
+
         while (true) {
             if (this.isCancellationRequested) {
-                //session.removeListener('message', processMessage);
+                session.removeListener('message', processMessage);
                 session.removeListener('msg', processMsg);
                 session.removeListener('data', processData);
                 break;
