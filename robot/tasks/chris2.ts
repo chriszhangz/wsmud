@@ -350,11 +350,11 @@ export class ChrisTask2 extends Task {
                     }else if (content === "xy" ||content === "x" ){
                         if(newXYs){
                             await session.sendAsync(`jh fam 8`);
-                            var time = new Date().getTime() - lastXYs.getTime();
-                            time = time / 1000;
-                            var mins = Math.floor(time / 60);
-                            var secs = Math.floor(time % 60);
-                            await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`+jhmsg);
+                            // var time = new Date().getTime() - lastXYs.getTime();
+                            // time = time / 1000;
+                            // var mins = Math.floor(time / 60);
+                            // var secs = Math.floor(time % 60);
+                            // await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`+jhmsg);
                             //console.log(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
                         }else if(newXYe){
                             var time = lastXYe - new Date().getTime();
@@ -381,6 +381,11 @@ export class ChrisTask2 extends Task {
                     var matches;
                     if((matches = jhstart.exec(data.desc)) != null){
                         jhmsg = matches[1];
+                        var time = new Date().getTime() - lastXYs.getTime();
+                        time = time / 1000;
+                        var mins = Math.floor(time / 60);
+                        var secs = Math.floor(time % 60);
+                        await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`+jhmsg);
                         //console.log('jhmsg:'+jhmsg);
                     }
                 }
