@@ -14,10 +14,6 @@ const connection = mysql.createConnection({
   password: '1982525',
   database: 'wsmud'
 });
-connection.connect((err) => {
-  if (err) throw err;
-  console.log('Connected!');
-});
 export class RecordTask extends Task {
 
     constructor() {
@@ -30,6 +26,10 @@ export class RecordTask extends Task {
         let cancelled=false;
         //var self = this;
         //console.log(`start\n`);
+        connection.connect((err) => {
+            if (err) throw err;
+            console.log('Connected!');
+        });
         session.on('msg', processMsg);
         //session.on('message', processMessage);
         //session.on('data', processData);
