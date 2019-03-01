@@ -33,7 +33,7 @@ async function start() {
         //let wugong:string = 'poyuquan';
         //let wugong:string = 'kuangfengkuaijian';
         //let wugong:string = 'feiyanhuixiang';
-        let wugong:string = 'dugujiujian';
+        //let wugong:string = 'dugujiujian';
         //let wugong:string = 'huashanjianfa';
         //let wugong:string = 'zixiashengong';
         let config: UserConfig = {
@@ -45,7 +45,7 @@ async function start() {
                 pwd: "1982525"
             },
             tasks: [
-                new tasks.XineiTask(cmds, master, wugong, new Date(2018, 4, 21))
+                new tasks.XineiTask(cmds, master, new Date(2018, 4, 21))
             ]
         }
         console.log("begin ......................................" + config.name);

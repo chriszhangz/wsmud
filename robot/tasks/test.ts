@@ -6,9 +6,9 @@ import { Data,Msg } from "../../core/data";
 //import { exists } from "fs";
 
 const jhstart = /襄阳战事正紧(\S+)</;
-const combatStart = /想杀死你！/;
+//const combatStart = /想杀死你！/;
 let jhmsg;
-let players: player[]=[];
+// let players: player[]=[];
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: '54.241.201.225',
@@ -98,12 +98,12 @@ export class TestTask extends Task {
         await Promise.delay(1000);
         this.priority=-1;
         return;
-        function processPlayers(value) {
-            connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
-                if(err) throw err;
+        // function processPlayers(value) {
+        //     connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
+        //         if(err) throw err;
               
-            });
-        }
+        //     });
+        // }
         async function processMsg(data: Msg) {
             if(data.ch==='pty'&&(data.content.startsWith('c ')||data.content.startsWith('check '))){
                 var userName='';
@@ -233,7 +233,7 @@ export class TestTask extends Task {
 
     
 }
-interface player {
-    user_id: string;
-    user_name: string;
-}
+// interface player {
+//     user_id: string;
+//     user_name: string;
+// }
