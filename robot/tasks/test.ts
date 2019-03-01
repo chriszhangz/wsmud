@@ -119,7 +119,7 @@ export class TestTask extends Task {
                     console.log("格式错误，请用c或check 加空格 加人物名称来查询改名历史。")
                 }
             }
-            if(data.ch==='pty'&&(data.content.startsWith('l ')||data.content.startsWith('look '))){
+            if(data.ch==='pty' &&(data.content.startsWith('l ')||data.content.startsWith('look '))){
                 var userName='';
                 userName = data.content.replace('look ','').replace('l ','');
                 if(userName != ''){
