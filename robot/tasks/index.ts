@@ -16,7 +16,8 @@ import { XineiTask } from "./xinei";
 import { AiTask } from "./ai";
 import { AutoTask } from "./auto1";
 import { AutoTask2 } from "./auto2";
+import { RecordTask } from "./record";
 import { FindKillerTask } from "./findKiller";
-export { SmTask,ShimenTask,ChrisTask2, AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask,XiyanTask,ShengJiTask,ShouxiTask,XineiTask,AiTask,AutoTask,AutoTask2,FindKillerTask }
+export { SmTask,ShimenTask,ChrisTask2, RecordTask,AnswerTask, BadiTask,ChrisTask, ConnectTask, MapTask, MineTask, MineTask2,TestTask,XiyanTask,ShengJiTask,ShouxiTask,XineiTask,AiTask,AutoTask,AutoTask2,FindKillerTask }
 
 

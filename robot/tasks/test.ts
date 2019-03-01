@@ -2,12 +2,23 @@ import { Task } from "../task";
 import { Session } from "../../core";
 import { UserConfig } from "../interface";
 import {Promise} from "bluebird";
-import { Data } from "../../core/data";
+import { Data,Msg } from "../../core/data";
 //import { exists } from "fs";
 
 const jhstart = /襄阳战事正紧(\S+)</;
 let jhmsg;
-
+let players: player[]=[];
+const mysql = require('mysql');
+const connection = mysql.createConnection({
+  host: '54.241.201.225',
+  user: 'chris',
+  password: '1982525',
+  database: 'wsmud'
+});
+connection.connect((err) => {
+  if (err) throw err;
+  console.log('Connected!');
+});
 export class TestTask extends Task {
 
     constructor() {
@@ -21,21 +32,34 @@ export class TestTask extends Task {
         let cancelled=false;
         //var self = this;
         console.log(`start\n`);
+        session.on('msg', processMsg);
         session.on('message', processMessage);
-        session.on('data', processData);
-        await Promise.delay(5000);
-        await session.sendAsync("stopstate");
+        //session.on('data', processData);
+        connection.query('SELECT * FROM ws_user', (err,rows) => {
+            if(err) throw err;
+          
+            console.log('Data received from Db:\n');
+            console.log(rows);
+        });
+        //const employee = { user_id: 'ucm427b2a93', user_name: '天照命' };
+        // connection.query('INSERT INTO ws_user SET ?', employee, (err, res) => {
+        //     if(err) throw err;
+          
+        //     console.log('Last insert ID:', res.insertId);
+        // });          
+        await Promise.delay(2000);
+        //await session.sendAsync("stopstate");
         //let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
-        let taskPath = "jh fam 9 start";
-        let taskPaths: string[] = taskPath.split(";");
-                        for (let i = 0; i < taskPaths.length; i++) {
-                            //console.log('Execute:'+cmdss[i].content);
-                            await session.sendAsync(taskPaths[i]);
-                            //await Promise.delay(100);
-                        }
+        // let taskPath = "jh fam 9 start";
+        // let taskPaths: string[] = taskPath.split(";");
+        //                 for (let i = 0; i < taskPaths.length; i++) {
+        //                     //console.log('Execute:'+cmdss[i].content);
+        //                     await session.sendAsync(taskPaths[i]);
+        //                     //await Promise.delay(100);
+        //                 }
         //await session.sendAsync("jh fam 0 start");
         //await session.sendAsync("go north");
-        console.log("mastttter:"+JSON.stringify(session.world.items, null, 4) + `\n`);
+        //console.log("mastttter:"+JSON.stringify(session.world.items, null, 4) + `\n`);
         //await session.sendAsync("kill r9ms39c437e");
         //await session.sendAsync("go south");  
             //await Promise.delay(5000);
@@ -44,28 +68,88 @@ export class TestTask extends Task {
         let master = session.world.items.find(i => i && i.name.includes('张三丰'));
         if (master) {
         masterId=master.id;
-        console.log(JSON.stringify(master, null, 4) + `\n`);
+        //console.log(JSON.stringify(master, null, 4) + `\n`);
         }else{
             console.log(`can't find master \n`);
         }
-        await session.sendAsync("jh fam 8");
+        //session.sendAsync(`look3 jx3227ed880`);
+        //await session.sendAsync("jh fam 8");
         while (true) {
-            console.log("check if end.. "+this.isCancellationRequested);   
-            console.log("check priority.. "+cancelled);     
+            //console.log("check if end.. "+this.isCancellationRequested);   
+            //console.log("check priority.. "+cancelled); 
+            //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
+            //players.forEach(processPlayers); 
             if (this.isCancellationRequested||cancelled) {
                 session.removeListener('message', processMessage);
                 session.removeListener('data', processData);
                 break;
             }
-            await Promise.delay(1000 * 10 * 1);
+            await Promise.delay(5000 * 10 * 1);
             await session.sendAsync("look");
+
         }
         console.log("end.. "+config.name);          
         await Promise.delay(1000);
         this.priority=-1;
         return;
+        function processPlayers(value) {
+            connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
+                if(err) throw err;
+              
+            });
+        }
+        async function processMsg(data: Msg) {
+            if(data.ch==='pty'&&(data.content.startsWith('c ')||data.content.startsWith('check '))){
+                var userName='';
+                userName = data.content.replace('check ','').replace('c ','');
+                
+                if(userName != ''){
+                connection.query(`select a.user_name,a.user_lastchat from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ?`, [userName,userName+',%','%,'+userName], (err, rows) => {
+                        if(err) throw err;
+                        if(rows.length==0){
+                            console.log('抱歉，暂无 '+userName+' 的数据记录');
+                        }else{
+                            let date = new Date();
+                            date=rows[0].user_lastchat;
+                            console.log(userName+'曾用名:'+rows[0].user_name+' 最后一次发言日期:'+date.toISOString().split("T")[0]);
+                        }
+                    }); 
+                
+                }else{
+                    console.log("格式错误，请用c或check 加空格 加人物名称来查询改名历史。")
+                }
+            }
+            if(data.ch==='pty'&&(data.content.startsWith('l ')||data.content.startsWith('look '))){
+                var userName='';
+                userName = data.content.replace('look ','').replace('l ','');
+                if(userName != ''){
+                connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ?`, [userName,userName+',%','%,'+userName], (err, rows) => {
+                        if(err) throw err;
+                        if(rows.length==0){
+                            console.log('抱歉，暂无 '+userName+' 的数据记录');
+                        }else{
+                            session.sendAsync(`look3 ${rows[0].user_id}`);
+                        }
+                    }); 
+                
+                }else{
+                    console.log("格式错误，请用l或look 加空格 加人物名称来查询玩家当前状态。")
+                }
+            }
+        }
         async function processMessage(msg: string) {
-            console.log(`msg:` + msg + `\n`);
+            if(msg.includes('看起来约')){
+                var status:string;
+                if(msg.includes('他看起来约')){
+                    status=msg.split('他装备着')[0];
+                }else{
+                    status=msg.split('她装备着')[0];
+                }
+                status=status.replace(/<[A-Za-z]+>/g,'').replace(/<\/[A-Za-z]+>/g,'').replace('&lt;','<').replace('&gt;','>').replace(/(?:\r\n|\r|\n)/g, ' ');
+                console.log('status:'+status);
+                await session.sendAsync(`pty ${status}`);
+            }
+            //console.log(`msg:` + msg + `\n`);
         };
         async function processData(data: Data) {
             console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
@@ -136,4 +220,7 @@ export class TestTask extends Task {
 
     
 }
-
+interface player {
+    user_id: string;
+    user_name: string;
+}

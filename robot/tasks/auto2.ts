@@ -10,6 +10,7 @@ import { appendFile } from "fs";
 const mpzStart = /击杀(\D+)，(\D+)众弟子听令，对(\D+)格杀勿论！/;
 const mpzStart2 = /，众弟子听令，对(\D+)格杀勿论！/;
 const mpzEnd = /和(\D+)的战斗结束了，你的门派/;
+const combatStart = /想杀死你！/;
 // const quest = /为师最近突然想尝一下<wht>包子/;
 // const quest2 = /我要的是<wht>包子/;
 // let msgs = [""];
@@ -53,7 +54,26 @@ export class AutoTask2 extends Task {
             if ((matches = mpzEnd.exec(msg)) != null) {                      
                 cancelled=true;
             }
-
+            if ((matches = combatStart.exec(msg)) != null){
+                inCombat=1;
+                await session.sendAsync(`perform dodge.power`);
+                await session.sendAsync(`perform force.power`);
+                await session.sendAsync(`perform force.cui`);
+                await session.sendAsync(`perform parry.yi`);
+                await session.sendAsync(`perform sword.yi`);
+                await session.sendAsync(`perform throwing.jiang`);
+                await session.sendAsync(`perform unarmed.duo`);
+                await session.sendAsync(`perform unarmed.juan`);
+                while(inCombat==1){
+                await Promise.delay(5000);
+                await session.sendAsync(`perform force.cui`);
+                await session.sendAsync(`perform parry.yi`);
+                await session.sendAsync(`perform sword.yi`);
+                await session.sendAsync(`perform throwing.jiang`);
+                await session.sendAsync(`perform unarmed.duo`);
+                await session.sendAsync(`perform unarmed.juan`);
+                }
+            }
         };
         async function processMsg(data: Msg) {
 
@@ -266,15 +286,15 @@ export class AutoTask2 extends Task {
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);
                 await session.sendAsync(`perform unarmed.juan`);
-                while(inCombat==1){
-                await Promise.delay(5000);
-                await session.sendAsync(`perform force.cui`);
-                await session.sendAsync(`perform parry.yi`);
-                await session.sendAsync(`perform sword.yi`);
-                await session.sendAsync(`perform throwing.jiang`);
-                await session.sendAsync(`perform unarmed.duo`);
-                await session.sendAsync(`perform unarmed.juan`);
-                }
+                // while(inCombat==1){
+                // await Promise.delay(5000);
+                // await session.sendAsync(`perform force.cui`);
+                // await session.sendAsync(`perform parry.yi`);
+                // await session.sendAsync(`perform sword.yi`);
+                // await session.sendAsync(`perform throwing.jiang`);
+                // await session.sendAsync(`perform unarmed.duo`);
+                // await session.sendAsync(`perform unarmed.juan`);
+                // }
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
             }
         };
