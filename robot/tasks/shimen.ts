@@ -43,113 +43,113 @@ export class ShimenTask extends Task {
                 await Promise.delay(500);
             }
             //await session.sendAsync(self.taskPath);
-            await Promise.delay(5050);
-            await session.sendAsync("tasks");
-            const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            // await Promise.delay(5050);
+            // await session.sendAsync("tasks");
+            // const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
 
-            if (master) {                
-                shimen=0;
-                idOfBaoZi = '';
-                //console.log("查找找包子ID..")
-                while(idOfBaoZi==''){
-                    await session.sendAsync(`pack`);
-                    await Promise.delay(1000);
-                }                
-                //console.log("找到包子ID："+idOfBaoZi);
-                await session.sendAsync(`${pty} 开始师门任务..`);
-                while (shimen==0) {
-                    //console.log(new Date() + "excute任务..")
-                    await session.sendAsync(`task sm ${master.id}`);
-                    await Promise.delay(1000);
-                    var found=0;
-                    //console.log(new Date() + "check任务..")
-                    for(let msg in msgs){
-                        //console.log('msg..'+msgs[msg]);
-                        var match;
-                        if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
-                            //console.log(new Date() + "发现任务..")
-                            msgs=[""];
-                            await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
-                            //await Promise.delay(1000);
-                            found=1;
-                            break;
-                        }
-                    }
-                    if(found==0){
-                        await session.sendAsync(`task sm ${master.id} giveup`);
-                        //await Promise.delay(1000);
-                    }
-                    await Promise.delay(1000);
-                }
-                await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
-                //console.log(new Date() + "开始副本..")
-                if (config.name == "新月") {
-                    await session.sendAsync("cr xuedao/shankou 0 20");
-                    await Promise.delay(15000);
-                }else if(config.name!="赫连侃璟"){
-                for(var i=0;i<20;i++){
-                    await session.sendAsync("jh fb 0 start1");
-                    await session.sendAsync("cr yz/lw/shangu");
-                    await session.sendAsync("cr over");
-                    await Promise.delay(1000);
-                }
-                }
-                await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
-                //console.log("完成副本..");
-                //console.log(new Date() + "开始追捕..")
-                await session.sendAsync("taskover signin");
-                await Promise.delay(1000);
-                if (config.name != "新月") {
-                    await session.sendAsync("shop 0 20");
-                }else{
-                    await session.sendAsync("shop 0 40");
-                }
-                await Promise.delay(1000);
-                await session.sendAsync("jh fam 0 start");
-                await Promise.delay(500);
-                await session.sendAsync("go west");
-                await Promise.delay(500);
-                await session.sendAsync("go north");
-                await Promise.delay(500);
-                await session.sendAsync("go north");
-                await Promise.delay(2000);
-                const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
-                if (zhifu) {
-                    await session.sendAsync(`ask3 ${zhifu.id}`);
-                    await Promise.delay(500);
-                    await session.sendAsync(`ask1 ${zhifu.id}`);
-                    await Promise.delay(500);
-                    await session.sendAsync(`ask2 ${zhifu.id}`);
-                    await Promise.delay(500);
-                    await session.sendAsync(`ask3 ${zhifu.id}`);
-                    await Promise.delay(10000);
-                    //console.log("完成追捕..");
-                    if (config.name != "新月") {
-                        await session.sendAsync("wakuang");
-                    }else{
-                        await session.sendAsync("jh fam 0 start");
-                        await Promise.delay(500);
-                        await session.sendAsync("go west");
-                        await Promise.delay(500);
-                        await session.sendAsync("go west");
-                        await Promise.delay(500);
-                        await session.sendAsync("go north");
-                        await Promise.delay(500);
-                        await session.sendAsync("go enter");
-                        await Promise.delay(500);
-                        await session.sendAsync("go west");
-                        await Promise.delay(500);
-                        await session.sendAsync("xiulian");
+            // if (master) {                
+            //     shimen=0;
+            //     idOfBaoZi = '';
+            //     //console.log("查找找包子ID..")
+            //     while(idOfBaoZi==''){
+            //         await session.sendAsync(`pack`);
+            //         await Promise.delay(1000);
+            //     }                
+            //     //console.log("找到包子ID："+idOfBaoZi);
+            //     await session.sendAsync(`${pty} 开始师门任务..`);
+            //     while (shimen==0) {
+            //         //console.log(new Date() + "excute任务..")
+            //         await session.sendAsync(`task sm ${master.id}`);
+            //         await Promise.delay(1000);
+            //         var found=0;
+            //         //console.log(new Date() + "check任务..")
+            //         for(let msg in msgs){
+            //             //console.log('msg..'+msgs[msg]);
+            //             var match;
+            //             if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
+            //                 //console.log(new Date() + "发现任务..")
+            //                 msgs=[""];
+            //                 await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
+            //                 //await Promise.delay(1000);
+            //                 found=1;
+            //                 break;
+            //             }
+            //         }
+            //         if(found==0){
+            //             await session.sendAsync(`task sm ${master.id} giveup`);
+            //             //await Promise.delay(1000);
+            //         }
+            //         await Promise.delay(1000);
+            //     }
+            //     await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
+            //     //console.log(new Date() + "开始副本..")
+            //     if (config.name == "新月") {
+            //         await session.sendAsync("cr xuedao/shankou 0 20");
+            //         await Promise.delay(20000);
+            //     }else if(config.name!="赫连侃璟"){
+            //     for(var i=0;i<20;i++){
+            //         await session.sendAsync("jh fb 0 start1");
+            //         await session.sendAsync("cr yz/lw/shangu");
+            //         await session.sendAsync("cr over");
+            //         await Promise.delay(1000);
+            //     }
+            //     }
+            //     await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
+            //     //console.log("完成副本..");
+            //     //console.log(new Date() + "开始追捕..")
+            //     await session.sendAsync("taskover signin");
+            //     await Promise.delay(1000);
+            //     if (config.name != "新月") {
+            //         await session.sendAsync("shop 0 20");
+            //     }else{
+            //         await session.sendAsync("shop 0 40");
+            //     }
+            //     await Promise.delay(1000);
+            //     await session.sendAsync("jh fam 0 start");
+            //     await Promise.delay(500);
+            //     await session.sendAsync("go west");
+            //     await Promise.delay(500);
+            //     await session.sendAsync("go north");
+            //     await Promise.delay(500);
+            //     await session.sendAsync("go north");
+            //     await Promise.delay(2000);
+            //     const zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
+            //     if (zhifu) {
+            //         await session.sendAsync(`ask3 ${zhifu.id}`);
+            //         await Promise.delay(10500);
+            //         await session.sendAsync(`ask1 ${zhifu.id}`);
+            //         await Promise.delay(500);
+            //         await session.sendAsync(`ask2 ${zhifu.id}`);
+            //         await Promise.delay(500);
+            //         await session.sendAsync(`ask3 ${zhifu.id}`);
+            //         await Promise.delay(10000);
+            //         //console.log("完成追捕..");
+            //         if (config.name != "新月") {
+            //             await session.sendAsync("wakuang");
+            //         }else{
+            //             await session.sendAsync("jh fam 0 start");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("go west");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("go west");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("go north");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("go enter");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("go west");
+            //             await Promise.delay(500);
+            //             await session.sendAsync("xiulian");
 
-                    }
-                }
-                await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
-                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-                self.priority=-1;
-                session.removeListener('message', processMessage);
-                session.removeListener('data', processData);
-                return;
-            }
+            //         }
+            //     }
+            //     await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
+            //     //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+            //     self.priority=-1;
+            //     session.removeListener('message', processMessage);
+            //     session.removeListener('data', processData);
+            //     return;
+            // }
    
         }
 
@@ -187,6 +187,114 @@ export class ShimenTask extends Task {
                     }
                 }
             }
+            if(data.type==='items'){
+                const master = data.items.find(i => i && i.name.includes(self.masterName));
+                if (master) {
+                    shimen=0;
+                    idOfBaoZi = '';
+                    //console.log("查找找包子ID..")
+                    while(idOfBaoZi==''){
+                        await session.sendAsync(`pack`);
+                        await Promise.delay(1000);
+                    }                
+                    //console.log("找到包子ID："+idOfBaoZi);
+                    await session.sendAsync(`${pty} 开始师门任务..`);
+                    while (shimen==0) {
+                        //console.log(new Date() + "excute任务..")
+                        await session.sendAsync(`task sm ${master.id}`);
+                        await Promise.delay(1000);
+                        var found=0;
+                        //console.log(new Date() + "check任务..")
+                        for(let msg in msgs){
+                            //console.log('msg..'+msgs[msg]);
+                            var match;
+                            if ((match = quest.exec(msgs[msg])) != null||quest2.exec(msgs[msg]) != null) {
+                                //console.log(new Date() + "发现任务..")
+                                msgs=[""];
+                                await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
+                                //await Promise.delay(1000);
+                                found=1;
+                                break;
+                            }
+                        }
+                        if(found==0){
+                            await session.sendAsync(`task sm ${master.id} giveup`);
+                            //await Promise.delay(1000);
+                        }
+                        await Promise.delay(1000);
+                    }
+                    await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
+                    //console.log(new Date() + "开始副本..")
+                    if (config.name == "新月") {
+                        await session.sendAsync("cr xuedao/shankou 0 20");
+                        await Promise.delay(20000);
+                    }else if(config.name!="赫连侃璟"){
+                    for(var i=0;i<20;i++){
+                        await session.sendAsync("jh fb 0 start1");
+                        await session.sendAsync("cr yz/lw/shangu");
+                        await session.sendAsync("cr over");
+                        await Promise.delay(1000);
+                    }
+                    }
+                    await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
+                    //console.log("完成副本..");
+                    //console.log(new Date() + "开始追捕..")
+                    await session.sendAsync("taskover signin");
+                    await Promise.delay(1000);
+                    if (config.name != "新月") {
+                        await session.sendAsync("shop 0 20");
+                    }else{
+                        await session.sendAsync("shop 0 40");
+                    }
+                    await Promise.delay(1000);
+                    await session.sendAsync("jh fam 0 start");
+                    await Promise.delay(500);
+                    await session.sendAsync("go west");
+                    await Promise.delay(500);
+                    await session.sendAsync("go north");
+                    await Promise.delay(500);
+                    await session.sendAsync("go north");
+                    await Promise.delay(2000);
+                }
+                const zhifu = data.items.find(i => i && i.name.endsWith('程药发'));
+                if (zhifu) {
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(10500);
+                    await session.sendAsync(`ask1 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask2 ${zhifu.id}`);
+                    await Promise.delay(500);
+                    await session.sendAsync(`ask3 ${zhifu.id}`);
+                    await Promise.delay(10000);
+                    //console.log("完成追捕..");
+                    if (config.name != "新月") {
+                        await session.sendAsync("wakuang");
+                    }else{
+                        await session.sendAsync("jh fam 0 start");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("go north");
+                        await Promise.delay(500);
+                        await session.sendAsync("go enter");
+                        await Promise.delay(500);
+                        await session.sendAsync("go west");
+                        await Promise.delay(500);
+                        await session.sendAsync("xiulian");
+
+                    }
+                    
+                await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                self.priority=-1;
+                session.removeListener('message', processMessage);
+                session.removeListener('data', processData);
+                return;
+                }
+            }
+            
         };
         // cron.scheduleJob("55 0 5 * * *", async fireDate => {
         //     var isChiefDate = this.isChiefDate(fireDate);
@@ -200,12 +308,14 @@ export class ShimenTask extends Task {
         //         await callback()
         //     }
         // });
+        session.removeListener('message', processMessage);
+        session.removeListener('data', processData);
         session.on('message', processMessage);
         session.on('data', processData);
         //session.on('msg', processMsg);
         await Promise.delay(5050);
         await callback();
-        this.priority = -1;        
+        //this.priority = -1;        
 
         while (true) {
             if (this.isCancellationRequested) {
