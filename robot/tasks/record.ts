@@ -3,6 +3,7 @@ import { Session } from "../../core";
 import { UserConfig } from "../interface";
 import {Promise} from "bluebird";
 import { Msg } from "../../core/data";
+import { appendFile } from "fs";
 //import { exists } from "fs";
 
 let players: player[]=[];
@@ -64,12 +65,15 @@ export class RecordTask extends Task {
         return;
         function processPlayers(value) {
             connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
-                if(err) throw err;
+                if(err){ 
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
+                    throw err;
+                }
               
             });
         }
         async function processMsg(data: Msg) {
-            if(data.ch==='chat'&&data.name!=""&&data.uid!=null&&data.uid!=''){
+            if(data.ch==='chat'&&data.name!=""&&data.uid!=null&&data.uid!=''&&data.name!='<him>婚庆主持</him>'){
                 var player = { user_id: data.uid, user_name: data.name };
                 var index;
                 if(index=players.findIndex(i => i.user_id === data.uid)==-1){

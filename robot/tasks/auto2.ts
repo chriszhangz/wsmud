@@ -49,17 +49,18 @@ export class AutoTask2 extends Task {
         //this.priority = -1;
 
         async function processMessage(msg: string) {
-            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, `msg:` + msg + `\n`);
+            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() +`msg:` + msg + `\n`);
             var matches;
             if ((matches = mpzEnd.exec(msg)) != null) {                      
                 cancelled=true;
             }
-            if ((matches = combatStart.exec(msg)) != null){
+            if (msg.includes('想杀死你！')){
+                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `start combat!!!!!!!!!!!!!!!!! \n`);  
                 inCombat=1;
-                await session.sendAsync(`perform dodge.power`);
-                await session.sendAsync(`perform force.power`);
-                await session.sendAsync(`perform force.cui`);
-                await session.sendAsync(`perform parry.yi`);
+                //await session.sendAsync(`perform dodge.power`);
+                //await session.sendAsync(`perform force.power`);
+                //await session.sendAsync(`perform force.cui`);
+                //await session.sendAsync(`perform parry.yi`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);
@@ -73,6 +74,11 @@ export class AutoTask2 extends Task {
                 await session.sendAsync(`perform unarmed.duo`);
                 await session.sendAsync(`perform unarmed.juan`);
                 }
+            }
+            if(msg.includes("只能在战斗中使用。")&&inCombat==1){                
+                inCombat=0;
+                await xiulian(1000);
+                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `combat end????? 任务end!!!!!!!!!!!!!!!!! \n`);  
             }
         };
         async function processMsg(data: Msg) {
@@ -262,8 +268,12 @@ export class AutoTask2 extends Task {
                     // }
                     // await session.sendAsync(`kill ${master.id}`);
                     masterId = master.id;
-                    await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
-                    await session.sendAsync(`kill ${masterId}`);
+                    //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
+                    //await session.sendAsync(`kill ${masterId}`);
+                await session.sendAsync(`perform sword.yi`);
+                await session.sendAsync(`perform throwing.jiang`);
+                await session.sendAsync(`perform unarmed.duo`);
+                await session.sendAsync(`perform unarmed.juan`);
                 }
             }
             if (data.type === 'combat' && data.end === 1&&die!=1) {
@@ -276,12 +286,13 @@ export class AutoTask2 extends Task {
                 //return;
             }
             if (data.type === 'sc' && data.hp != null&&data.id==masterId&&inCombat==0) {
+                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `detect hp loose start combat!!!!!!!!!!!!!!!!! \n`);  
                 inCombat=1;
-                await session.sendAsync(`kill ${masterId}`);
-                await session.sendAsync(`perform dodge.power`);
-                await session.sendAsync(`perform force.power`);
-                await session.sendAsync(`perform force.cui`);
-                await session.sendAsync(`perform parry.yi`);
+                //await session.sendAsync(`kill ${masterId}`);
+                //await session.sendAsync(`perform dodge.power`);
+                //await session.sendAsync(`perform force.power`);
+                //await session.sendAsync(`perform force.cui`);
+                //await session.sendAsync(`perform parry.yi`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);

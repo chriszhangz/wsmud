@@ -6,6 +6,7 @@ import { Data,Msg } from "../../core/data";
 //import { exists } from "fs";
 
 const jhstart = /襄阳战事正紧(\S+)</;
+const combatStart = /想杀死你！/;
 let jhmsg;
 let players: player[]=[];
 const mysql = require('mysql');
@@ -35,12 +36,12 @@ export class TestTask extends Task {
         session.on('msg', processMsg);
         session.on('message', processMessage);
         //session.on('data', processData);
-        connection.query('SELECT * FROM ws_user', (err,rows) => {
-            if(err) throw err;
+        // connection.query('SELECT * FROM ws_user', (err,rows) => {
+        //     if(err) throw err;
           
-            console.log('Data received from Db:\n');
-            console.log(rows);
-        });
+        //     console.log('Data received from Db:\n');
+        //     console.log(rows);
+        // });
         //const employee = { user_id: 'ucm427b2a93', user_name: '天照命' };
         // connection.query('INSERT INTO ws_user SET ?', employee, (err, res) => {
         //     if(err) throw err;
@@ -48,9 +49,9 @@ export class TestTask extends Task {
         //     console.log('Last insert ID:', res.insertId);
         // });          
         await Promise.delay(2000);
-        //await session.sendAsync("stopstate");
+        await session.sendAsync("stopstate");
         //let taskPath = "jh fam 1 start;go west;go northup;go north;go west;go northup;go northup;go northup;go north;go north;go north;go north;go north;go north";
-        // let taskPath = "jh fam 9 start";
+        //  let taskPath = "jh fam 2 start;go north;go west";
         // let taskPaths: string[] = taskPath.split(";");
         //                 for (let i = 0; i < taskPaths.length; i++) {
         //                     //console.log('Execute:'+cmdss[i].content);
@@ -60,18 +61,22 @@ export class TestTask extends Task {
         //await session.sendAsync("jh fam 0 start");
         //await session.sendAsync("go north");
         //console.log("mastttter:"+JSON.stringify(session.world.items, null, 4) + `\n`);
-        //await session.sendAsync("kill r9ms39c437e");
-        //await session.sendAsync("go south");  
+        await session.sendAsync("cr yz/lw/shangu");
+        await session.sendAsync("go west");  
             //await Promise.delay(5000);
             //console.log("mastttter2:"+JSON.stringify(session.world.items, null, 4) + `\n`);
 
-        let master = session.world.items.find(i => i && i.name.includes('张三丰'));
-        if (master) {
-        masterId=master.id;
-        //console.log(JSON.stringify(master, null, 4) + `\n`);
-        }else{
-            console.log(`can't find master \n`);
-        }
+        // let master = session.world.items.find(i => i && i.name.includes('张三丰'));
+        // if (master) {
+        // masterId=master.id;
+        // //console.log(JSON.stringify(master, null, 4) + `\n`);
+        // }else{
+        //     console.log(`can't find master \n`);
+        // }
+        await Promise.delay(6000);
+        await session.sendAsync("cr over");        
+        await Promise.delay(5000);
+        await session.sendAsync("wakuang");
         //session.sendAsync(`look3 jx3227ed880`);
         //await session.sendAsync("jh fam 8");
         while (true) {
@@ -149,7 +154,14 @@ export class TestTask extends Task {
                 console.log('status:'+status);
                 await session.sendAsync(`pty ${status}`);
             }
-            //console.log(`msg:` + msg + `\n`);
+            console.log(`msg:` + msg + `\n`);
+            var matches;
+            if ((matches = jhstart.exec(msg)) != null){
+            }
+            if (msg.includes('想杀死你！')) {
+                console.log('perform unarmed.zhong');
+                await session.sendAsync("perform unarmed.zhong");
+            }
         };
         async function processData(data: Data) {
             console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
