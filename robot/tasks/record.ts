@@ -52,7 +52,7 @@ export class RecordTask extends Task {
             //console.log("check priority.. "+cancelled); 
             //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);
             if (this.isCancellationRequested||cancelled) {
-                session.removeListener('message', processMessage);
+                session.removeListener('msg', processMsg);
                 break;
             }
             await Promise.delay(5000 * 10 * 1);
@@ -78,9 +78,9 @@ export class RecordTask extends Task {
                 
             }
         }
-        async function processMessage(msg: string) {
-            console.log(`msg:` + msg + `\n`);
-        };
+        // async function processMessage(msg: string) {
+        //     console.log(`msg:` + msg + `\n`);
+        // };
         async function record(){   
             console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
             await players.forEach(processPlayers);             
