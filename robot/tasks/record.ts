@@ -39,7 +39,7 @@ export class RecordTask extends Task {
         //     console.log(rows);
         // });
         var CronJob = require('cron').CronJob;
-        new CronJob('00 00 * * * *', async function () {
+        new CronJob('00 00 */1 * * *', async function () {
         //new CronJob('00 24,30 15 * * *', async function () {        
             //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
             //console.log(new Date()+"start record!");
