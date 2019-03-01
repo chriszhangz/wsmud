@@ -153,7 +153,7 @@ export class TestTask extends Task {
         };
         async function processData(data: Data) {
             console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
-            if (data.type === 'dialog'&&data.dialog==='jh'&&data.index!=null&&data.index==8){
+            if ( data.type === 'dialog'&&data.dialog==='jh'&&data.index!=null&&data.index==8){
                 if(data.desc.includes("襄阳战事正紧，")){
                     console.log('jhmsg:'+jhmsg);
                     var matches;
