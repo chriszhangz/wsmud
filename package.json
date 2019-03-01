@@ -21,6 +21,7 @@
     "test3": "node ./robot/index.js -u=test3",
     "test4": "node ./robot/index.js -u=test4",
     "test5": "node ./robot/index.js -u=test5",
+    "record": "node ./robot/index.js -u=record",
     "cron": "node ./robot/cron.js",
     "cron2": "node ./robot/cron2.js",
     "cron3": "node ./robot/cron3.js",
