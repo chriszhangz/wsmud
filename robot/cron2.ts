@@ -38,8 +38,57 @@ async function start() {
         
 
         session.close();
-        console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
+    async function callback2() {
+        //const config = getConfig();
+        let config: UserConfig = {
+            key: "test4",
+            name: "咬人的馒头",//咬人的豆包
+            server: 2,
+            account: {
+                code: "apollozz",
+                pwd: "1982525"
+            },
+            tasks: [
+                new tasks.AutoTask2()
+                //new tasks.TestTask()
+                //new tasks.ShouxiTask("jh fam 5 start;go north", "苏星河", "8wdo2ae4caf", new Date(2018,9,28))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        const server = await selectServer(config);
+        const session = new Session(server);
+        //运行
+        await new TaskSchedule(config.tasks, session, config).Run();
+        
+
+        session.close();
+    }
+    async function callback3() {
+        //const config = getConfig();
+        let config: UserConfig = {
+            key: "test4",
+            name: "半俗",//咬人的豆包
+            server: 2,
+            account: {
+                code: "xiaozhi8124",
+                pwd: "jz880514"
+            },
+            tasks: [
+                new tasks.AutoTask2()
+                //new tasks.TestTask()
+                //new tasks.ShouxiTask("jh fam 5 start;go north", "苏星河", "8wdo2ae4caf", new Date(2018,9,28))
+            ]
+        }
+        //console.log("begin ......................................" + config.name);
+        const server = await selectServer(config);
+        const session = new Session(server);
+        //运行
+        await new TaskSchedule(config.tasks, session, config).Run();
+        
+
+        session.close();
+    }    
     //callback()
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();
@@ -49,7 +98,9 @@ async function start() {
         //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
         //console.log("start !");
         //await callback(self);
-        callback()
+        callback();
+        callback2();
+        callback3();
     }, null, true, 'America/Los_Angeles');
     // new CronJob('55 0 14 * * *', async function() {
     //     const today = new Date();

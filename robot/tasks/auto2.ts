@@ -42,6 +42,7 @@ export class AutoTask2 extends Task {
         //const pty = "pty";
         //const rumor = "rumor";
         let cancelled=false;
+        let fileName=`./core/rooms/`+config.name;
 
         //var self = this;
         //let taskPath = self.taskPath;
@@ -49,13 +50,13 @@ export class AutoTask2 extends Task {
         //this.priority = -1;
 
         async function processMessage(msg: string) {
-            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() +`msg:` + msg + `\n`);
+            await Promise.promisify(appendFile)(fileName, new Date() +`msg:` + msg + `\n`);
             var matches;
             if ((matches = mpzEnd.exec(msg)) != null) {                      
                 cancelled=true;
             }
             if (msg.includes('想杀死你！')){
-                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `start combat!!!!!!!!!!!!!!!!! \n`);  
+                await Promise.promisify(appendFile)(fileName, new Date() + `start combat!!!!!!!!!!!!!!!!! \n`);  
                 inCombat=1;
                 //await session.sendAsync(`perform dodge.power`);
                 //await session.sendAsync(`perform force.power`);
@@ -78,7 +79,8 @@ export class AutoTask2 extends Task {
             if(msg.includes("只能在战斗中使用。")&&inCombat==1){                
                 inCombat=0;
                 await xiulian(1000);
-                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `combat end????? 任务end!!!!!!!!!!!!!!!!! \n`);  
+                await Promise.promisify(appendFile)(fileName, new Date() + `combat end????? 任务end!!!!!!!!!!!!!!!!! \n`);                      
+                cancelled=true; 
             }
         };
         async function processMsg(data: Msg) {
@@ -86,7 +88,7 @@ export class AutoTask2 extends Task {
             if (data.ch === ch) {
                 var matches;
                 if ((matches = mpzStart.exec(data.content)) != null && (data.name == '洪七公' || data.name == '逍遥子' || data.name == '玄难' || data.name == '灭绝' || data.name == '张三丰' || data.name == '岳不群')) {
-                    await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(data, null, 4) + `\n`);
+                    await Promise.promisify(appendFile)(fileName, new Date() + JSON.stringify(data, null, 4) + `\n`);
                     var place;
                     attackName = matches[2];
                     defenseName = matches[3];
@@ -99,7 +101,7 @@ export class AutoTask2 extends Task {
                         place = attackName.replace('派', '');
                         emei=1;
                     }
-                    await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `|` + defenseName + `|` + place + `\n`);
+                    await Promise.promisify(appendFile)(fileName, attackName + `|` + defenseName + `|` + place + `\n`);
                     if(emei==1){
                     if (place != null) {
                         session.on('data', processData);
@@ -134,18 +136,18 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        // await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        // await Promise.promisify(appendFile)(fileName, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
                         // const master = session.world.items.find(i => i && i.name.includes(masterName));
                         // if (master) {
                         //     // while (master.hp == master.max_hp) {
-                        //     //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `max hap has to wait\n`);
+                        //     //     await Promise.promisify(appendFile)(fileName, new Date() + `max hap has to wait\n`);
                         //     //     await Promise.delay(3000);
                         //     // }
                         //     // await session.sendAsync(`kill ${master.id}`);
                         //     masterId = master.id;
                         //     session.on('data', processData);
                         // } else {
-                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
+                        //     await Promise.promisify(appendFile)(fileName, new Date() + `can't find master go back xiulian \n`);
                         //     await session.sendAsync("stopstate");
                         //     await session.sendAsync("jh fam 0 start");
                         //     await Promise.delay(500);
@@ -163,12 +165,12 @@ export class AutoTask2 extends Task {
                         //     session.removeListener('message', processMessage);
                         //     session.removeListener('msg', processMsg);
                         //     session.removeListener('data', processData);
-                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
+                        //     await Promise.promisify(appendFile)(fileName, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
                         //     //self.priority=-1;
                         //     //return;
                         // }
                     } else {
-                        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `place = null 任务end!!!!!!!!!!!!!!!!! \n`);                        
+                        await Promise.promisify(appendFile)(fileName, new Date() + `place = null 任务end!!!!!!!!!!!!!!!!! \n`);                        
                         cancelled=true;
                     }
                 }
@@ -180,7 +182,7 @@ export class AutoTask2 extends Task {
                         place = attackName;
                         emei2=1;
                     }
-                    await Promise.promisify(appendFile)(`./core/rooms/test1.json`, attackName + `||` + defenseName + `||` + place + `\n`);
+                    await Promise.promisify(appendFile)(fileName, attackName + `||` + defenseName + `||` + place + `\n`);
                     if(emei2==1){
                     if (place != null) {
                         session.on('data', processData);
@@ -194,18 +196,18 @@ export class AutoTask2 extends Task {
                             //await Promise.delay(100);
                         }
                         //await Promise.delay(1000);
-                        //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
+                        //await Promise.promisify(appendFile)(fileName, new Date() + JSON.stringify(session.world.items, null, 4) +`\n`);
                         //const master = session.world.items.find(i => i && i.name.includes(masterName));
                         // if (master) {
                         //     // while (master.hp == master.max_hp) {
-                        //     //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
+                        //     //     await Promise.promisify(appendFile)(fileName, new Date() + master.name + `max hap has to wait\n`);
                         //     //     await Promise.delay(3000);
                         //     // }
                         //     // await session.sendAsync(`kill ${master.id}`);
                         //     masterId = master.id;
                         //     session.on('data', processData);
                         // } else {
-                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master go back xiulian \n`);
+                        //     await Promise.promisify(appendFile)(fileName, new Date() + `can't find master go back xiulian \n`);
                         //     await session.sendAsync("stopstate");
                         //     await session.sendAsync("jh fam 0 start");
                         //     await Promise.delay(500);
@@ -223,7 +225,7 @@ export class AutoTask2 extends Task {
                         //     session.removeListener('message', processMessage);
                         //     session.removeListener('msg', processMsg);
                         //     session.removeListener('data', processData);
-                        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
+                        //     await Promise.promisify(appendFile)(fileName, new Date() + `can't find master 任务end!!!!!!!!!!!!!!!!! \n`);
                         //     //self.priority=-1;
                         //     //return;
                         // }
@@ -256,19 +258,19 @@ export class AutoTask2 extends Task {
                 await Promise.delay(50000);
                 await xiulian(1000);
                             die =0;
-                            await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `relive 任务end!!!!!!!!!!!!!!!!! \n`);                      
+                            await Promise.promisify(appendFile)(fileName, new Date() + `relive 任务end!!!!!!!!!!!!!!!!! \n`);                      
                             cancelled=true;
             }
             if(data.type==='items'){
                 const master = data.items.find(i => i && i.name.includes(masterName));
                 if (master) {
                     // while (master.hp == master.max_hp) {
-                    //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + master.name + `max hap has to wait\n`);
+                    //     await Promise.promisify(appendFile)(fileName, new Date() + master.name + `max hap has to wait\n`);
                     //     await Promise.delay(3000);
                     // }
                     // await session.sendAsync(`kill ${master.id}`);
                     masterId = master.id;
-                    //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
+                    //await Promise.promisify(appendFile)(fileName, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
                     //await session.sendAsync(`kill ${masterId}`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
@@ -280,13 +282,13 @@ export class AutoTask2 extends Task {
                 inCombat=0;
                 await wumiao(15000);
                 await xiulian(1000);
-                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `combat end 任务end!!!!!!!!!!!!!!!!! \n`);                      
+                await Promise.promisify(appendFile)(fileName, new Date() + `combat end 任务end!!!!!!!!!!!!!!!!! \n`);                      
                 cancelled=true;
                 //self.priority=-1;
                 //return;
             }
             if (data.type === 'sc' && data.hp != null&&data.id==masterId&&inCombat==0) {
-                await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `detect hp loose start combat!!!!!!!!!!!!!!!!! \n`);  
+                await Promise.promisify(appendFile)(fileName, new Date() + `detect hp loose start combat!!!!!!!!!!!!!!!!! \n`);  
                 inCombat=1;
                 //await session.sendAsync(`kill ${masterId}`);
                 //await session.sendAsync(`perform dodge.power`);
@@ -336,7 +338,7 @@ export class AutoTask2 extends Task {
         }
         // var CronJob = require('cron').CronJob;
         // new CronJob('00 55 01,02,03,04,05 * * *', async function () {
-        //     await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
+        //     await Promise.promisify(appendFile)(fileName, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
         //     //console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
         //     inCombat=0;
         //     session.on('msg', processMsg);
@@ -350,7 +352,7 @@ export class AutoTask2 extends Task {
         //session.on('message', processMessage);
         //session.on('msg', processMsg);
         //session.on('data', processData);
-        await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
+        await Promise.promisify(appendFile)(fileName, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
         inCombat=0;
         session.on('msg', processMsg);
         session.on('message', processMessage);
@@ -367,130 +369,6 @@ export class AutoTask2 extends Task {
         }
         this.priority=-1;
         return;
-        // async function callback(self) {
-        //     //console.log("start..")
-        //     await session.sendAsync("stopstate");
-        //     for (let i = 0; i < self.taskPath.length; i++) {
-        //         //console.log('Execute:'+cmdss[i].content);
-        //         await session.sendAsync(self.taskPath[i]);
-        //         await Promise.delay(500);
-        //     }
-        //     await Promise.delay(5050);
-        //     await session.sendAsync("tasks");
-        //     const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-
-        //     if (master) {
-        //         shimen = 0;
-        //         idOfBaoZi = '';
-        //         //console.log("查找找包子ID..")
-        //         while (idOfBaoZi == '') {
-        //             await session.sendAsync(`pack`);
-        //             await Promise.delay(1000);
-        //         }
-        //         //console.log("找到包子ID："+idOfBaoZi);
-        //         await session.sendAsync(`${pty} 开始师门任务..`);
-        //         while (shimen == 0) {
-        //             //console.log(new Date() + "excute任务..")
-        //             await session.sendAsync(`task sm ${master.id}`);
-        //             await Promise.delay(1000);
-        //             var found = 0;
-        //             //console.log(new Date() + "check任务..")
-        //             for (let msg in msgs) {
-        //                 //console.log('msg..'+msgs[msg]);
-        //                 var match;
-        //                 if ((match = quest.exec(msgs[msg])) != null || quest2.exec(msgs[msg]) != null) {
-        //                     //console.log(new Date() + "发现任务..")
-        //                     msgs = [""];
-        //                     await session.sendAsync(`task sm ${master.id} give ${idOfBaoZi}`);
-        //                     //await Promise.delay(1000);
-        //                     found = 1;
-        //                     break;
-        //                 }
-        //             }
-        //             if (found == 0) {
-        //                 await session.sendAsync(`task sm ${master.id} giveup`);
-        //                 //await Promise.delay(1000);
-        //             }
-        //             await Promise.delay(1000);
-        //         }
-        //         await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
-        //         //console.log(new Date() + "开始副本..")
-        //         if (config.name != "新月") {
-        //             for (var i = 0; i < 20; i++) {
-        //                 await session.sendAsync("jh fb 0 start1");
-        //                 await session.sendAsync("cr yz/lw/shangu");
-        //                 await session.sendAsync("cr over");
-        //                 await Promise.delay(1000);
-        //             }
-        //         } else {
-        //             await session.sendAsync("cr xuedao/shankou 0 20");
-        //         }
-        //         await session.sendAsync(`${pty} 副本完成，开始扫荡追捕..`);
-        //         //console.log("完成副本..");
-        //         //console.log(new Date() + "开始追捕..")
-        //         await session.sendAsync("taskover signin");
-        //         await Promise.delay(1000);
-        //         if (config.name != "新月") {
-        //             await session.sendAsync("shop 0 20");
-        //         } else {
-        //             await session.sendAsync("shop 0 40");
-        //         }
-        //         await Promise.delay(1000);
-        //         await session.sendAsync("jh fam 0 start");
-        //         await Promise.delay(500);
-        //         await session.sendAsync("go west");
-        //         await Promise.delay(500);
-        //         await session.sendAsync("go north");
-        //         await Promise.delay(500);
-        //         await session.sendAsync("go north");
-        //         await Promise.delay(2000);
-        //         let zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
-        //         while (!zhifu) {
-        //             await Promise.delay(1000);
-        //             await session.sendAsync("jh fam 0 start");
-        //             await Promise.delay(500);
-        //             await session.sendAsync("go west");
-        //             await Promise.delay(500);
-        //             await session.sendAsync("go north");
-        //             await Promise.delay(500);
-        //             await session.sendAsync("go north");
-        //             await Promise.delay(2000);
-        //             zhifu = session.world.items.find(i => i && i.name.endsWith('程药发'));
-        //         }
-        //         if (zhifu) {
-        //             await session.sendAsync(`ask3 ${zhifu.id}`);
-        //             await Promise.delay(500);
-        //             await session.sendAsync(`ask1 ${zhifu.id}`);
-        //             await Promise.delay(500);
-        //             await session.sendAsync(`ask2 ${zhifu.id}`);
-        //             await Promise.delay(500);
-        //             await session.sendAsync(`ask3 ${zhifu.id}`);
-        //             await Promise.delay(10000);
-        //             //console.log("完成追捕..");
-        //             if (config.name != "新月") {
-        //                 await session.sendAsync("wakuang");
-        //             } else {
-        //                 await session.sendAsync("jh fam 0 start");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("go west");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("go west");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("go north");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("go enter");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("go west");
-        //                 await Promise.delay(500);
-        //                 await session.sendAsync("xiulian");
-
-        //             }
-        //         }
-        //         await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
-        //         //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
-        //         return;
-        //     }
-        // }
 
 
     }
