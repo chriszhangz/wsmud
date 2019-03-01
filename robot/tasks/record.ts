@@ -28,7 +28,7 @@ export class RecordTask extends Task {
     async start(session: Session, config: UserConfig) {
         let cancelled=false;
         //var self = this;
-        console.log(`start\n`);
+        //console.log(`start\n`);
         session.on('msg', processMsg);
         //session.on('message', processMessage);
         //session.on('data', processData);
@@ -42,7 +42,7 @@ export class RecordTask extends Task {
         new CronJob('00 00 * * * *', async function () {
         //new CronJob('00 24,30 15 * * *', async function () {        
             //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
-            console.log(new Date()+"start record!");
+            //console.log(new Date()+"start record!");
             //await callback(self);
             record()
         }, null, true, 'America/Los_Angeles');
@@ -82,7 +82,7 @@ export class RecordTask extends Task {
         //     console.log(`msg:` + msg + `\n`);
         // };
         async function record(){   
-            console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
+            //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
             await players.forEach(processPlayers);             
             players=[];
         }
