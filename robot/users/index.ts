@@ -8,6 +8,7 @@ import { badi2 } from "./badi2";
 import { record } from "./record";
 import { chris } from "./chris";
 import { chris2 } from "./chris2";
+import { chris3 } from "./chris3";
 import { findKiller } from "./findKiller";
-export var users = [test2,test3,test4,test5, wd2, gb2, badi2,record, chris,chris2,findKiller];
+export var users = [test2,test3,test4,test5, wd2, gb2, badi2,record, chris,chris2,chris3,findKiller];
 

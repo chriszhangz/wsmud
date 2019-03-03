@@ -55,9 +55,9 @@ export class AutoTask2 extends Task {
             if ((matches = mpzEnd.exec(msg)) != null) {                      
                 cancelled=true;
             }
-            if (msg.includes('想杀死你！')){
-                await Promise.promisify(appendFile)(fileName, new Date() + `start combat!!!!!!!!!!!!!!!!! \n`);  
+            if (msg.includes('想杀死你！')&&inCombat==0){ 
                 inCombat=1;
+                await Promise.promisify(appendFile)(fileName, new Date() + `start combat!!!!!!!!!!!!!!!!! \n`); 
                 //await session.sendAsync(`perform dodge.power`);
                 //await session.sendAsync(`perform force.power`);
                 //await session.sendAsync(`perform force.cui`);
@@ -79,10 +79,18 @@ export class AutoTask2 extends Task {
                 await session.sendAsync(`perform unarmed.juan`);
                 }
             }
-            if(msg.includes("只能在战斗中使用。")&&inCombat==1){                
+            if((msg.includes("只能在战斗中使用。")||msg.includes("这里不允许战斗。"))&&inCombat==1){                
                 inCombat=0;
                 await xiulian(1000);
                 await Promise.promisify(appendFile)(fileName, new Date() + `combat end????? 任务end!!!!!!!!!!!!!!!!! \n`);                      
+                cancelled=true; 
+            }
+            if(msg.includes("这里不能修炼。")){          
+                await Promise.promisify(appendFile)(fileName, new Date() + `这里不能修炼。????? 执行修炼任务! \n`);         
+                inCombat=0;
+                await Promise.delay(5000);
+                await xiulian(1000);
+                await Promise.promisify(appendFile)(fileName, new Date() + ` 执行修炼任务完毕! 任务end!!!!!!!!!!!!!!!!! \n`);                      
                 cancelled=true; 
             }
         };
@@ -258,13 +266,19 @@ export class AutoTask2 extends Task {
                 die=1;
                 inCombat=0;
                 await session.sendAsync("relive");
-                await Promise.delay(50000);
+                await Promise.delay(10000);
+                inCombat=0;
+                await session.sendAsync("relive");
+                await Promise.delay(20000);
+                inCombat=0;
+                await session.sendAsync("relive");
+                await Promise.delay(20000);
                 await xiulian(1000);
                             die =0;
                             await Promise.promisify(appendFile)(fileName, new Date() + `relive 任务end!!!!!!!!!!!!!!!!! \n`);                      
                             cancelled=true;
             }
-            if(data.type==='items'){
+            if(data.type==='items'&&inCombat==0){
                 const master = data.items.find(i => i && i.name.includes(masterName));
                 if (master) {
                     // while (master.hp == master.max_hp) {
@@ -281,7 +295,7 @@ export class AutoTask2 extends Task {
                 await session.sendAsync(`perform unarmed.juan`);
                 }
             }
-            if (data.type === 'combat' && data.end === 1&&die!=1) {
+            if (data.type === 'combat' && data.end === 1 && die!=1) {
                 inCombat=0;
                 await wumiao(15000);
                 await xiulian(1000);

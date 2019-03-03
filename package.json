@@ -27,7 +27,8 @@
     "cron3": "node ./robot/cron3.js",
     "shengji": "node ./robot/shengji.js",
     "chris": "node ./robot/index.js -u=chris",
-    "chris2": "node ./robot/index.js -u=chris2"
+    "chris2": "node ./robot/index.js -u=chris2",
+    "chris3": "node ./robot/index.js -u=chris3"
   },
   "keywords": [
     "wsmud"
