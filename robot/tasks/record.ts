@@ -73,7 +73,8 @@ export class RecordTask extends Task {
             });
         }
         async function processMsg(data: Msg) {
-            if(data.ch==='chat'&&data.name!=""&&data.uid!=null&&data.uid!=''&&data.name!='<him>婚庆主持</him>'){
+            if(data.ch==='chat'&&data.name!=""&&data.uid!=null&&data.uid!=''&&data.name!='<him>婚庆主持</him>'&&data.name!='金古易'&&data.name!='张三丰'&&data.name != '岳不群'&&data.name != '灭绝'&&data.name != '逍遥子'
+            &&data.name != '洪七公'&&data.name != '唐楠'){
                 var player = { user_id: data.uid, user_name: data.name };
                 var index;
                 if(index=players.findIndex(i => i.user_id === data.uid)==-1){

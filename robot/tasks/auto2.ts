@@ -373,6 +373,25 @@ export class AutoTask2 extends Task {
         inCombat=0;
         session.on('msg', processMsg);
         session.on('message', processMessage);
+        await Promise.delay(10000);
+        await session.sendAsync("stopstate");
+
+        if(config.name=='咬人的豆包'){
+            await session.sendAsync("enable parry hengshanwushenjian");
+            await session.sendAsync("enable force mingyugong");
+            await session.sendAsync("enable dodge anyingfuxiang");
+            await session.sendAsync("eq opst2f7f72f");
+        }else if(config.name=='咬人的馒头'){
+            await session.sendAsync("enable force mingyugong");
+            await session.sendAsync("enable dodge anyingfuxiang");
+            await session.sendAsync("eq rm4h3247f48");
+        }else if(config.name=='半俗'){
+            await session.sendAsync("enable force mingyugong");
+            await session.sendAsync("enable dodge anyingfuxiang");
+            await session.sendAsync("eq une4321ec96");
+        }
+        await Promise.delay(5000);
+        await session.sendAsync("xiulian");
 
         while (true) {
             if (this.isCancellationRequested||cancelled) {
