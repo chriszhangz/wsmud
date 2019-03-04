@@ -16,14 +16,6 @@ const combatStart = /想杀死你！/;
 // let msgs = [""];
 // let idOfBaoZi = '';
 // let shimen = 0;
-let attackName: String;
-let defenseName: String;
-let die = 0;
-let inCombat = 0;
-let masterId;
-let emei = 0;
-let emei2 = 0;
-let masterName;
 
 export class AutoTask2 extends Task {
 
@@ -43,6 +35,14 @@ export class AutoTask2 extends Task {
         //const rumor = "rumor";
         let cancelled=false;
         let fileName=`./core/rooms/`+config.name;
+        let attackName: String;
+        let defenseName: String;
+        let die = 0;
+        let inCombat = 0;
+        let masterId;
+        let emei = 0;
+        let emei2 = 0;
+        let masterName;
 
         //var self = this;
         //let taskPath = self.taskPath;

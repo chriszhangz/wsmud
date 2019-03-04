@@ -25,6 +25,7 @@
     "cron": "node ./robot/cron.js",
     "cron2": "node ./robot/cron2.js",
     "cron3": "node ./robot/cron3.js",
+    "cron4": "node ./robot/cron4.js",
     "shengji": "node ./robot/shengji.js",
     "chris": "node ./robot/index.js -u=chris",
     "chris2": "node ./robot/index.js -u=chris2",

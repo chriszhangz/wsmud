@@ -16,6 +16,7 @@ const connection = mysql.createConnection({
   password: '1982525',
   database: 'wsmud'
 });
+let inCombat = 0;
 
 export class TestTask extends Task {
 
@@ -28,6 +29,7 @@ export class TestTask extends Task {
     async start(session: Session, config: UserConfig) {
         let masterId;
         let cancelled=false;
+        let die = 0;
         //var self = this;
         console.log(`start\n`);
         session.on('msg', processMsg);
@@ -62,8 +64,8 @@ export class TestTask extends Task {
         //await session.sendAsync("jh fam 0 start");
         //await session.sendAsync("go north");
         //console.log("mastttter:"+JSON.stringify(session.world.items, null, 4) + `\n`);
-        await session.sendAsync("cr yz/lw/shangu");
-        await session.sendAsync("go west");  
+        // await session.sendAsync("cr yz/lw/shangu");
+        // await session.sendAsync("go west");  
             //await Promise.delay(5000);
             //console.log("mastttter2:"+JSON.stringify(session.world.items, null, 4) + `\n`);
 
@@ -75,14 +77,16 @@ export class TestTask extends Task {
         //     console.log(`can't find master \n`);
         // }
         await Promise.delay(6000);
-        await session.sendAsync("cr over");        
-        await Promise.delay(5000);
-        await session.sendAsync("wakuang");
         //session.sendAsync(`look3 jx3227ed880`);
         //await session.sendAsync("jh fam 8");
         while (true) {
             //console.log("check if end.. "+this.isCancellationRequested);   
-            //console.log("check priority.. "+cancelled); 
+            //console.log(config.name+" check inCombat.. "+inCombat); 
+            //console.log(config.name+" check die.. "+die);
+            if(config.name=='邹有竦'){
+                inCombat=1;
+                die=1;
+            } 
             //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
             //players.forEach(processPlayers); 
             if (this.isCancellationRequested||cancelled) {
@@ -117,7 +121,15 @@ export class TestTask extends Task {
                         }else{
                             let date = new Date();
                             date=rows[0].user_lastchat;
-                            console.log(userName+'曾用名:'+rows[0].user_name+' 最后一次发言日期:'+date.toISOString().split("T")[0]);
+                            var foundMsg='';
+                            for(const row in rows){
+                                if(userName!=rows[row].user_name){
+                                    foundMsg+=userName+'('+rows[row].user_name+') 最后一次发言日期:'+date.toISOString().split("T")[0]+'。 ';
+                                }else{
+                                    foundMsg+=userName+' 最后一次发言日期:'+date.toISOString().split("T")[0]+' ';
+                                }
+                            }
+                            console.log(foundMsg);
                         }
                     }); 
                 
