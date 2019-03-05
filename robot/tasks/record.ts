@@ -30,6 +30,7 @@ export class RecordTask extends Task {
             if (err) throw err;
             console.log('Connected!');
         });
+        session.removeAllListeners('msg');
         session.on('msg', processMsg);
         //session.on('message', processMessage);
         //session.on('data', processData);
@@ -53,7 +54,7 @@ export class RecordTask extends Task {
             //console.log("check priority.. "+cancelled); 
             //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);
             if (this.isCancellationRequested||cancelled) {
-                session.removeListener('msg', processMsg);
+                session.removeAllListeners('msg');
                 break;
             }
             await Promise.delay(5000 * 10 * 1);

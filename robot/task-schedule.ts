@@ -30,6 +30,7 @@ export class TaskSchedule {
                 return;
             }
             try {
+                this.currentTask.isCancellationRequested=false;
                 await this.currentTask.start(this.session, this.config);
             } catch (error) {
                 if (error instanceof ConnectionError) {

@@ -14,6 +14,7 @@ async function start() {
     const session = new Session(server);
     //运行
     await new TaskSchedule(config.tasks, session, config).Run();
+    session.close();
 }
 
 start();

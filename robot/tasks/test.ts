@@ -38,7 +38,7 @@ export class TestTask extends Task {
             if (err) throw err;
             console.log('Connected!');
           });
-        //session.on('data', processData);
+        session.on('data', processData);
         // connection.query('SELECT * FROM ws_user', (err,rows) => {
         //     if(err) throw err;
           
@@ -118,6 +118,7 @@ export class TestTask extends Task {
                         if(err) throw err;
                         if(rows.length==0){
                             console.log('抱歉，暂无 '+userName+' 的数据记录');
+                            session.sendAsync(`pty 抱歉，暂无 ${userName} 的数据记录`);
                         }else{
                             let date = new Date();
                             date=rows[0].user_lastchat;
@@ -130,6 +131,7 @@ export class TestTask extends Task {
                                 }
                             }
                             console.log(foundMsg);
+                            session.sendAsync(`pty ${foundMsg}`);
                         }
                     }); 
                 
@@ -145,6 +147,7 @@ export class TestTask extends Task {
                         if(err) throw err;
                         if(rows.length==0){
                             console.log('抱歉，暂无 '+userName+' 的数据记录');
+                            session.sendAsync(`pty 抱歉，暂无 ${userName} 的数据记录`);
                         }else{
                             session.sendAsync(`look3 ${rows[0].user_id}`);
                         }

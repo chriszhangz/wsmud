@@ -7,9 +7,6 @@ import { Task } from "../task";
 const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
-let shimen = 0;
-let idOfBaoZi = '';
-let msgs = [""];
 const pty = "pty";
 export class ShimenTask extends Task {
 
@@ -34,6 +31,9 @@ export class ShimenTask extends Task {
 
     async  start(session: Session, config: UserConfig) {
         var self = this;
+        let shimen = 0;
+        let idOfBaoZi = '';
+        let msgs = [""];
         async function callback() {
             await session.sendAsync("stopstate");
             let taskPaths: string[] = self.taskPath.split(";");
@@ -201,6 +201,7 @@ export class ShimenTask extends Task {
                     await session.sendAsync(`${pty} 开始师门任务..`);
                     while (shimen==0) {
                         //console.log(new Date() + "excute任务..")
+                        await Promise.delay(1000);
                         await session.sendAsync(`task sm ${master.id}`);
                         await Promise.delay(1000);
                         var found=0;
@@ -308,8 +309,9 @@ export class ShimenTask extends Task {
         //         await callback()
         //     }
         // });
-        session.removeListener('message', processMessage);
-        session.removeListener('data', processData);
+        session.removeAllListeners('message');
+        session.removeAllListeners('data');
+        //session.removeAllListeners('msg');
         session.on('message', processMessage);
         session.on('data', processData);
         //session.on('msg', processMsg);
@@ -319,9 +321,9 @@ export class ShimenTask extends Task {
 
         while (true) {
             if (this.isCancellationRequested) {
-                session.removeListener('message', processMessage);
-                session.removeListener('data', processData);
-                //session.removeListener('msg', processMsg);
+                session.removeAllListeners('message');
+                session.removeAllListeners('data');
+                //session.removeAllListeners('msg');
                 break;
             }
             await Promise.delay(1000 * 60 * 1);

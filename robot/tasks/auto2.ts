@@ -62,6 +62,7 @@ export class AutoTask2 extends Task {
                 //await session.sendAsync(`perform force.power`);
                 //await session.sendAsync(`perform force.cui`);
                 //await session.sendAsync(`perform parry.yi`);
+                await session.sendAsync(`perform force.power`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);
@@ -363,9 +364,9 @@ export class AutoTask2 extends Task {
         //     //await callback(self);
         // }, null, true, 'America/Los_Angeles');
 
-        session.removeListener('message', processMessage);
-        session.removeListener('msg', processMsg);
-        session.removeListener('data', processData);
+        session.removeAllListeners('message');
+        session.removeAllListeners('msg');
+        session.removeAllListeners('data');
         //session.on('message', processMessage);
         //session.on('msg', processMsg);
         //session.on('data', processData);
@@ -395,9 +396,9 @@ export class AutoTask2 extends Task {
 
         while (true) {
             if (this.isCancellationRequested||cancelled) {
-                session.removeListener('message', processMessage);
-                session.removeListener('msg', processMsg);
-                session.removeListener('data', processData);
+                session.removeAllListeners('message');
+                session.removeAllListeners('msg');
+                session.removeAllListeners('data');
                 break;
             }
             await Promise.delay(1000 * 60 * 1);
