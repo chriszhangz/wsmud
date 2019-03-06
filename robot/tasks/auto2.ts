@@ -10,7 +10,7 @@ import { appendFile } from "fs";
 const mpzStart = /击杀(\D+)，(\D+)众弟子听令，对(\D+)格杀勿论！/;
 const mpzStart2 = /，众弟子听令，对(\D+)格杀勿论！/;
 const mpzEnd = /和(\D+)的战斗结束了，你的门派/;
-const combatStart = /想杀死你！/;
+//const combatStart = /想杀死你！/;
 // const quest = /为师最近突然想尝一下<wht>包子/;
 // const quest2 = /我要的是<wht>包子/;
 // let msgs = [""];

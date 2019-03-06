@@ -32,9 +32,14 @@ export class ShimenTask extends Task {
     async  start(session: Session, config: UserConfig) {
         var self = this;
         let shimen = 0;
+        let doingShimen = 0;
+        let doingZhuibu = 0;
         let idOfBaoZi = '';
         let msgs = [""];
         async function callback() {
+            await session.sendAsync("setting off_move 1");
+            await session.sendAsync("setting no_message 1");
+            await session.sendAsync("setting no_combatmsg 1");
             await session.sendAsync("stopstate");
             let taskPaths: string[] = self.taskPath.split(";");
             for (let i = 0; i < taskPaths.length; i++) {
@@ -154,7 +159,7 @@ export class ShimenTask extends Task {
         }
 
         async function processMessage(msg: string) {
-            //console.log(msg);
+            console.log(msg);
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
                 //self.priority = -1;    
@@ -189,8 +194,10 @@ export class ShimenTask extends Task {
             }
             if(data.type==='items'){
                 const master = data.items.find(i => i && i.name.includes(self.masterName));
-                if (master) {
+                if (master&&shimen==0&&doingShimen==0) {
+                    //console.log('data='+JSON.stringify(data,null,4));
                     shimen=0;
+                    doingShimen=1;
                     idOfBaoZi = '';
                     //console.log("查找找包子ID..")
                     while(idOfBaoZi==''){
@@ -200,12 +207,13 @@ export class ShimenTask extends Task {
                     //console.log("找到包子ID："+idOfBaoZi);
                     await session.sendAsync(`${pty} 开始师门任务..`);
                     while (shimen==0) {
-                        //console.log(new Date() + "excute任务..")
-                        await Promise.delay(1000);
+                        console.log(new Date() + "excute任务..")
+                        //await Promise.delay(1000);
+                        await Promise.delay(500);
                         await session.sendAsync(`task sm ${master.id}`);
-                        await Promise.delay(1000);
+                        await Promise.delay(500);
                         var found=0;
-                        //console.log(new Date() + "check任务..")
+                        console.log(new Date() + "check任务..")
                         for(let msg in msgs){
                             //console.log('msg..'+msgs[msg]);
                             var match;
@@ -222,10 +230,10 @@ export class ShimenTask extends Task {
                             await session.sendAsync(`task sm ${master.id} giveup`);
                             //await Promise.delay(1000);
                         }
-                        await Promise.delay(1000);
+                        //await Promise.delay(1000);
                     }
                     await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
-                    //console.log(new Date() + "开始副本..")
+                    console.log(new Date() + "开始副本..")
                     if (config.name == "新月") {
                         await session.sendAsync("cr xuedao/shankou 0 20");
                         await Promise.delay(20000);
@@ -258,7 +266,8 @@ export class ShimenTask extends Task {
                     await Promise.delay(2000);
                 }
                 const zhifu = data.items.find(i => i && i.name.endsWith('程药发'));
-                if (zhifu) {
+                if (zhifu&&doingZhuibu==0) {
+                    doingZhuibu=1;
                     await session.sendAsync(`ask3 ${zhifu.id}`);
                     await Promise.delay(10500);
                     await session.sendAsync(`ask1 ${zhifu.id}`);
@@ -290,8 +299,8 @@ export class ShimenTask extends Task {
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
                 //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
                 self.priority=-1;
-                session.removeListener('message', processMessage);
-                session.removeListener('data', processData);
+                session.removeAllListeners('message');
+                session.removeAllListeners('data');
                 return;
                 }
             }

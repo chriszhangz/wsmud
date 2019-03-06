@@ -9,9 +9,6 @@ const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在�
 const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
-let msgs = [""];
-let idOfBaoZi = '';
-let shimen = 0;
 
 export class AutoTask extends Task {
 
@@ -32,6 +29,9 @@ export class AutoTask extends Task {
         //const tm = "tm";
         const pty = "pty";
         const rumor = "rumor";
+        let msgs = [""];
+        let idOfBaoZi = '';
+        let shimen = 0;
 
         var self = this;
         //let taskPath = self.taskPath;
