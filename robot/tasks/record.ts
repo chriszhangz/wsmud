@@ -26,10 +26,10 @@ export class RecordTask extends Task {
         let cancelled=false;
         //var self = this;
         //console.log(`start\n`);
-        connection.connect((err) => {
-            if (err) throw err;
-            console.log('Connected!');
-        });
+        // connection.connect((err) => {
+        //     if (err) throw err;
+        //     console.log('Connected!');
+        // });
         session.removeAllListeners('msg');
         session.on('msg', processMsg);
         //session.on('message', processMessage);

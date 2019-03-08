@@ -99,18 +99,18 @@ export class AutoTask extends Task {
             await callback(self);
         }, null, true, 'America/Los_Angeles');
         
-        session.removeListener('message', processMessage);
-        session.removeListener('msg', processMsg);
-        session.removeListener('data', processData);
+        session.removeAllListeners('message');
+        session.removeAllListeners('msg');
+        session.removeAllListeners('data');
         session.on('message', processMessage);
         session.on('msg', processMsg);
         session.on('data', processData);
 
         while (true) {
             if (this.isCancellationRequested) {
-                session.removeListener('message', processMessage);
-                session.removeListener('msg', processMsg);
-                session.removeListener('data', processData);
+                session.removeAllListeners('message');
+                session.removeAllListeners('msg');
+                session.removeAllListeners('data');
                 break;
             }
             await Promise.delay(1000 * 60 * 1);
