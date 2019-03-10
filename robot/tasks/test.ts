@@ -76,6 +76,13 @@ export class TestTask extends Task {
         // }else{
         //     console.log(`can't find master \n`);
         // }
+        var CronJob = require('cron').CronJob;
+        new CronJob('00 30 01 * * *', async function () {
+        //new CronJob('00 24,30 15 * * *', async function () {        
+            //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
+            console.log("start !");
+            //await callback(self);
+        }, null, true, 'Asia/Shanghai');        
         await Promise.delay(6000);
         //session.sendAsync(`look3 jx3227ed880`);
         //await session.sendAsync("jh fam 8");

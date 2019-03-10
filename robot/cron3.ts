@@ -544,9 +544,9 @@ async function start() {
     //var rule = new schedule.RecurrenceRule();
     //await callback();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 15 13 * * *', async function() {
+    new CronJob('00 15 05 * * *', async function() {
         await callback();
-      }, null, true, 'America/Los_Angeles');
+      }, null, true, 'Asia/Shanghai');
 
 }
 

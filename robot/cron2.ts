@@ -93,7 +93,7 @@ async function start() {
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();
     var CronJob = require('cron').CronJob;
-    new CronJob('00 55 01,02,03,04,05 * * *', async function () {
+    new CronJob('00 55 17,18,19,20,21 * * *', async function () {
     //new CronJob('00 24,30 15 * * *', async function () {        
         //await Promise.promisify(appendFile)(`./core/rooms/test1.json`, new Date() + `任务start!!!!!!!!!!!!!!!!! \n`);
         //console.log("start !");
@@ -101,7 +101,7 @@ async function start() {
         callback();
         callback2();
         callback3();
-    }, null, true, 'America/Los_Angeles');
+    }, null, true, 'Asia/Shanghai');
     // new CronJob('55 0 14 * * *', async function() {
     //     const today = new Date();
     //     var days = (today.getTime() - firstChiefTime) / ONE_DAY_MS;
