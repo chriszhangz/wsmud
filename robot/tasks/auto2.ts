@@ -63,6 +63,7 @@ export class AutoTask2 extends Task {
                 //await session.sendAsync(`perform force.cui`);
                 //await session.sendAsync(`perform parry.yi`);
                 await session.sendAsync(`perform force.power`);
+                await session.sendAsync(`perform force.wang`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);
@@ -71,9 +72,8 @@ export class AutoTask2 extends Task {
                 await Promise.delay(5000);
                 await session.sendAsync(`perform force.cui`);
                 await session.sendAsync(`perform force.xi`);
-                await session.sendAsync(`perform force.power`);
-                await session.sendAsync(`perform force.wang`);
                 await session.sendAsync(`perform parry.yi`);
+                await session.sendAsync(`perform parry.wu`);
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);

@@ -424,10 +424,10 @@ export class ChrisTask2 extends Task {
             }
         };
         var CronJob = require('cron').CronJob;
-        new CronJob('00 10 13 * * *', async function () {
+        new CronJob('00 10 05 * * *', async function () {
             //console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
             await callback();
-        }, null, true, 'America/Los_Angeles');
+        }, null, true, 'Asia/Shanghai');
 
         session.removeAllListeners('message');
         session.removeAllListeners('msg');
