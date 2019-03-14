@@ -7,6 +7,8 @@ import { appendFile } from "fs";
 //import { exists } from "fs";
 
 let players: player[]=[];
+let msgs="";
+const message = /^(message|m)\s([\S\s]*)$/;
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: '54.241.201.225',
@@ -82,6 +84,11 @@ export class RecordTask extends Task {
                     players.push(player);
                 }
                 
+            }else{
+                var matches;
+                if ((matches = message.exec(data.content)) != null) {
+                    msgs+=data.name+":"+matches[2]+'\n';
+                }
             }
         }
         // async function processMessage(msg: string) {
@@ -91,6 +98,16 @@ export class RecordTask extends Task {
             //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
             await players.forEach(processPlayers);             
             players=[];
+            if(msgs!=''){
+            connection.query(`CALL saveMessage('${msgs}')`, (err,rows) => {
+                if(err){ 
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
+                    throw err;
+                }
+              
+            });
+            msgs='';
+            }
         }
 
     }
