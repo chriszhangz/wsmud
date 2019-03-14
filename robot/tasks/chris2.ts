@@ -595,6 +595,22 @@ export class ChrisTask2 extends Task {
                             }
                         }
                         lastchat = new Date();
+                    }else if(content==="c"||content==="check"){
+                        await session.sendAsync(`${ch} 💡c/check 角色名：查询该角色曾用名以及最后发言日期。由于记录数据时间较晚，有好心侠客想提供以前的曾用名请用m/message留言谢谢。`);
+                    }else if(content==="l"){
+                        await session.sendAsync(`${ch} 💡l/look 角色名：查询该角色当前状态。| l/lxjs 先天悟性 后天悟性 练习效率 当前等级 目标等级 技能颜色：查询练习所需潜能以及时间。`);
+                    }else if(content==="d"||content==="dzjs"){
+                        await session.sendAsync(`${ch} 💡d/dzjs 每跳加内力 当前内力 目标内力：查询打坐所需时间。`);
+                    }else if(content==="m"||content==="message"){
+                        await session.sendAsync(`${ch} 💡m/message 留言：如果有任何建议，意见欢迎留言，豆包会定时查看谢谢。`);
+                    }else if(content==="q"||content==="qnjs"){
+                        await session.sendAsync(`${ch} 💡q/qnjs 当前等级 目标等级 技能颜色：查询练习所需潜能。`);
+                    }else if(content==="s"||content==="sxjs"){
+                        await session.sendAsync(`${ch} 💡s/sxjs 技能等级 境界：查询到达该境界技能等级上限所需经验。`);
+                    }else if(content==="look"){
+                        await session.sendAsync(`${ch} 💡l/look 角色名：查询该角色当前状态。`);
+                    }else if(content==="lxjs"){
+                        await session.sendAsync(`${ch} 💡l/lxjs 先天悟性 后天悟性 练习效率 当前等级 目标等级 技能颜色：查询练习所需潜能以及时间。`);
                     }
                 }
             }
@@ -642,7 +658,7 @@ export class ChrisTask2 extends Task {
                 }
                 status=status.replace(/<[A-Za-z]+>/g,'').replace(/<\/[A-Za-z]+>/g,'').replace('&lt;','<').replace('&gt;','>').replace(/(?:\r\n|\r|\n)/g, ' ');
                 //console.log('status:'+status);
-                await session.sendAsync(`pty ${status}`);
+                await session.sendAsync(`${ch} ${status}`);
             }
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
