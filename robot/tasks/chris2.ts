@@ -463,7 +463,7 @@ export class ChrisTask2 extends Task {
                                 return;
                         }
                         var qianneng = caculateQN(matches[2], matches[3], level);
-                        await session.sendAsync(`pty ${data.name} 需要潜能：${qianneng}`);
+                        await session.sendAsync(`${ch} ${data.name} 需要潜能：${qianneng}`);
     
                     }
                     else if ((matches = lxjs.exec(data.content)) != null) {
