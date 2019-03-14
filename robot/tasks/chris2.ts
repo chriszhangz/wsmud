@@ -525,7 +525,7 @@ export class ChrisTask2 extends Task {
                                 return;
                         }
                         var jingyan = caculateJY(matches[2], level);
-                        await session.sendAsync(`pty ${matches[3]}${matches[2]}级技能上限，需要经验：${jingyan}`);
+                        await session.sendAsync(`${ch} ${matches[3]}${matches[2]}级技能上限，需要经验：${jingyan}`);
                     }
                     else if ((matches = check.exec(data.content)) != null) {
                         if (matches[2] != '') {
