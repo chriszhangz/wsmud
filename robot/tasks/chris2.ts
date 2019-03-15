@@ -529,7 +529,7 @@ export class ChrisTask2 extends Task {
                     }
                     else if ((matches = check.exec(data.content)) != null) {
                         if (matches[2] != '') {
-                            connection.query(`select a.user_name,a.user_lastchat from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ?`, [matches[2], matches[2] + ',%', '%,' + matches[2]], (err, rows) => {
+                            connection.query(`select a.user_name,a.user_lastchat from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ? or a.user_name like ? `, [matches[2], matches[2] + ',%', '%,' + matches[2], '%,' + matches[2]+ ',%'], (err, rows) => {
                                 if (err) throw err;
                                 if (rows.length == 0) {
                                     //console.log('抱歉，暂无 ' + userName + ' 的数据记录');

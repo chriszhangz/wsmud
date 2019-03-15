@@ -15,9 +15,11 @@ const check = /^(check|c)\s(\D+)$/;
 const message = /^(message|m)\s([\S\s]*)$/;
 const help = /^(help|h)$/;
 const helpDetail = /^(help|h)\s(\D+)$/;
+const fuli = /听说武帝(\D+)闭关修炼似有所悟，你随之受益获得了(\d+)经验/;
 //const combatStart = /想杀死你！/;
 let jhmsg;
 // let players: player[]=[];
+let exps: exp[]=[];
 const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: '54.241.201.225',
@@ -300,9 +302,6 @@ export class TestTask extends Task {
                                 session.sendAsync(`${ch} ${foundMsg}`);
                             }
                         });
-
-                    } else {
-                        console.log("格式错误，请用c或check 加空格 加人物名称来查询改名历史。")
                     }
                 }
                 else if ((matches = look.exec(data.content)) != null) {
@@ -319,6 +318,14 @@ export class TestTask extends Task {
                         });
 
                     }
+                }else if(data.content==='f'||data.content==='fl'){
+
+                }
+            }
+            if(data.ch==='rumor'){
+                var matches;
+                if ((matches = fuli.exec(data.content)) != null) {
+
                 }
             }
         }
@@ -418,6 +425,18 @@ export class TestTask extends Task {
             //console.log('jingyan:' + jingyan);
             return parseInt(jingyan.toString());
         }
+        function findHighestExp(name:string,fuli:number){
+            for(const item in exps){
+                // if(exps[item].p!=1&&items[item].name)
+                // {
+                // //console.log(roomName+':'+items[item].name);
+                // let cont = searchBoss(items[item].name,roomName);
+                // if(cont && cont!=''){
+                //     await session.sendAsync(`${tm} ${cont}`);
+                // }
+                // }
+            }
+        }
         function timeText(t: number): string {
             if (t < 60) {
                 var text = "";
@@ -447,3 +466,7 @@ export class TestTask extends Task {
 //     user_id: string;
 //     user_name: string;
 // }
+interface exp {
+    user_name: string;
+    user_jingyan: number;
+}
