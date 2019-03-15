@@ -9,6 +9,7 @@ const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在�
 const endJob = /你先去休息一下吧/;
 const quest = /为师最近突然想尝一下<wht>包子/;
 const quest2 = /我要的是<wht>包子/;
+const bangpaizhan = /成员听令，即刻起开始进攻/;
 
 export class AutoTask extends Task {
 
@@ -32,6 +33,8 @@ export class AutoTask extends Task {
         let msgs = [""];
         let idOfBaoZi = '';
         let shimen = 0;
+        let partyWar = 0;
+        let lastBpz = new Date();
 
         var self = this;
         //let taskPath = self.taskPath;
@@ -74,8 +77,56 @@ export class AutoTask extends Task {
                 }
             }
             else if (data.ch === ch) {
+            }else if (data.ch === 'pty'&&config.name=='江暮雨') {
+                if (data.content === "bpz" || data.content === "b") {
+                    var time = lastBpz.getTime() + 3600000 - new Date().getTime();
+                    //time = time / 1000;
+                    //var mins = Math.floor(time / 60);
+                    //var secs = Math.floor(time % 60);
+                    //await session.sendAsync(`${ch} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`+jhmsg);
+                    //console.log('time='+time);
+                    if (time > 0) {
+                        time = time / 1000;
+                        var mins = Math.floor(time / 60);
+                        var secs = Math.floor(time % 60);
+                        await session.sendAsync(`${pty} 😄帮派战可在 ${mins}分${secs}秒以后重新开启`);
+                    } else {
+                        await session.sendAsync(`${pty} 😄帮派战现在可以开启`);
+                    }
+                }
+                if ((matches = bangpaizhan.exec(data.content)) != null) {
+                    await session.sendAsync(`${pty} 帮派战计时开始`);
+                    partyWar = 1;
+                    lastBpz = new Date();
+                    processPartyWar();
+                }
+                if (data.content.includes("接下来的一小时所有弟子练习效率提高")) {
+                    await session.sendAsync(`${pty} 帮派战计时结束`);
+                    partyWar = 0;
+                }
             }
         }
+        async function processPartyWar() {
+            await Promise.delay(5 * 60 * 1000 - 5000);
+            if (partyWar == 0) return;
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5 * 60 * 1000 - 5000);
+            if (partyWar == 0) return;
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5 * 60 * 1000 - 5000);
+            if (partyWar == 0) return;
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5 * 60 * 1000 - 5000);
+            if (partyWar == 0) return;
+            await session.sendAsync(`${pty} 5秒内下一波刷新`);
+            await Promise.delay(5000);
+            await Promise.delay(5 * 60 * 1000 - 5000);
+            if (partyWar == 0) return;
+            await session.sendAsync(`${pty} 5秒内最后一波刷新！！！！！！！！！`);
+        }        
         async function processData(data: Data) {
             if (data.type==='dialog'&&data.dialog === "pack") {
                 if(data.name&&data.name.indexOf('养精丹')>=0){

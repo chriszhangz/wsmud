@@ -15,6 +15,7 @@ const check = /^(check|c)\s(\D+)$/;
 const message = /^(message|m)\s([\S\s]*)$/;
 const help = /^(help|h)$/;
 const helpDetail = /^(help|h)\s(\D+)$/;
+const top = /^(top|t)$/i;
 const fuli = /听说武帝(\D+)闭关修炼似有所悟，你随之受益获得了(\d+)经验/;
 //const combatStart = /想杀死你！/;
 let jhmsg;
@@ -318,14 +319,32 @@ export class TestTask extends Task {
                         });
 
                     }
-                }else if(data.content==='f'||data.content==='fl'){
-
+                }else if((matches = top.exec(data.content)) != null){
+                    var expYesterday='';
+                    var expNow='';
+                    if(exps.length>=1){
+                        expNow += exps[0].user_name+'('+exps[0].user_exp+') ';
+                    }
+                    if(exps.length>=2){
+                        expNow += exps[1].user_name+'('+exps[1].user_exp+') ';
+                    }
+                    if(exps.length>=3){
+                        expNow += exps[2].user_name+'('+exps[2].user_exp+') ';
+                    }
+                    if(expNow!=''){
+                        await session.sendAsync(`${ch} 今日武帝出关经验排名：${expNow}`);
+                    }else{
+                        await session.sendAsync(`${ch} 今日武帝出关经验排名：暂无数据`);
+                    }
                 }
             }
             if(data.ch==='rumor'){
                 var matches;
                 if ((matches = fuli.exec(data.content)) != null) {
-
+                    var tmp:exp={user_name:matches[1],user_exp:matches[2]};
+                    exps.push(tmp);
+                    exps.sort(function(a, b){return b.user_exp - a.user_exp});
+                    console.log(JSON.stringify(exps, null, 4));
                 }
             }
         }
@@ -333,9 +352,9 @@ export class TestTask extends Task {
             if (msg.includes('看起来约')) {
                 var status: string;
                 if (msg.includes('他看起来约')) {
-                    status = msg.split('他装备着')[0];
+                    status = msg.split('他的武功')[0];
                 } else {
-                    status = msg.split('她装备着')[0];
+                    status = msg.split('她的武功')[0];
                 }
                 status = status.replace(/<[A-Za-z]+>/g, '').replace(/<\/[A-Za-z]+>/g, '').replace('&lt;', '<').replace('&gt;', '>').replace(/(?:\r\n|\r|\n)/g, ' ');
                 console.log('status:' + status);
@@ -425,18 +444,6 @@ export class TestTask extends Task {
             //console.log('jingyan:' + jingyan);
             return parseInt(jingyan.toString());
         }
-        function findHighestExp(name:string,fuli:number){
-            for(const item in exps){
-                // if(exps[item].p!=1&&items[item].name)
-                // {
-                // //console.log(roomName+':'+items[item].name);
-                // let cont = searchBoss(items[item].name,roomName);
-                // if(cont && cont!=''){
-                //     await session.sendAsync(`${tm} ${cont}`);
-                // }
-                // }
-            }
-        }
         function timeText(t: number): string {
             if (t < 60) {
                 var text = "";
@@ -468,5 +475,5 @@ export class TestTask extends Task {
 // }
 interface exp {
     user_name: string;
-    user_jingyan: number;
+    user_exp: number;
 }
