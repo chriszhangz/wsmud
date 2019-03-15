@@ -9,6 +9,7 @@ import { appendFile } from "fs";
 let players: player[]=[];
 let msgs="";
 const message = /^(message|m)\s([\S\s]*)$/;
+const fuli = /听说武帝(\D+)闭关修炼似有所悟，你随之受益获得了(\d+)经验/;
 const mysql = require('mysql');
 const connection = mysql.createConnection({
   host: '54.241.201.225',
@@ -86,6 +87,17 @@ export class RecordTask extends Task {
                 var matches;
                 if ((matches = message.exec(data.content)) != null) {
                     msgs+=data.name+":"+matches[2]+'\n';
+                }
+            }else if(data.ch==='rumor'){
+                var matches;
+                if ((matches = fuli.exec(data.content)) != null) {
+                    connection.query(`CALL saveExp('${matches[1]}','${matches[2]}')`, (err,rows) => {
+                        if(err){ 
+                            Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
+                            throw err;
+                        }
+                      
+                    });
                 }
             }
         }
