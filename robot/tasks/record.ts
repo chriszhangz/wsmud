@@ -83,8 +83,6 @@ export class RecordTask extends Task {
                 if(index=players.findIndex(i => i.user_id === data.uid)==-1){
                     players.push(player);
                 }
-                
-            }else{
                 var matches;
                 if ((matches = message.exec(data.content)) != null) {
                     msgs+=data.name+":"+matches[2]+'\n';
