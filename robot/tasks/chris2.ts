@@ -615,6 +615,7 @@ export class ChrisTask2 extends Task {
                         lastchat = new Date();
                     } else if ((matches = top.exec(data.content)) != null) {
                         var fulimsg='';
+                        expNow='';
                         if (exps.length >= 1) {
                             expNow += exps[0].user_name + '(' + exps[0].user_exp + ') ';
                         }

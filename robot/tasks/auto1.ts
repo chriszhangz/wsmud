@@ -99,8 +99,10 @@ export class AutoTask extends Task {
                     partyWar = 1;
                     lastBpz = new Date();
                     processPartyWar();
-                }
-                if (data.content.includes("接下来的一小时所有弟子练习效率提高")) {
+                }else if(data.content.includes("即刻起奔赴前线守卫襄阳")){
+                    partyWar = 1;
+                    lastBpz = new Date();
+                }else if (data.content.includes("接下来的一小时所有弟子练习效率提高")) {
                     await session.sendAsync(`${pty} 帮派战计时结束`);
                     partyWar = 0;
                 }
