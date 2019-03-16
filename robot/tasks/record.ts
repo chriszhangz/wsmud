@@ -70,7 +70,7 @@ export class RecordTask extends Task {
         function processPlayers(value) {
             connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
                 if(err){ 
-                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `updateUser error\n`);
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `|${value.user_id}|${value.user_name}updateUser error\n`);
                     //throw err;
                 }
               
@@ -86,14 +86,16 @@ export class RecordTask extends Task {
                 }
                 var matches;
                 if ((matches = message.exec(data.content)) != null) {
-                    msgs+=data.name+":"+matches[2]+'\n';
+                    if(matches[2]!=null&&matches[2]!=''){
+                        msgs+=data.name+":"+matches[2]+'\n';
+                    }
                 }
             }else if(data.ch==='rumor'){
                 var matches;
                 if ((matches = fuli.exec(data.content)) != null) {
                     connection.query(`CALL saveExp('${matches[1]}','${matches[2]}')`, (err,rows) => {
                         if(err){ 
-                            Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `saveExp error\n`);
+                            Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `|'${matches[1]}|'${matches[2]}|saveExp error\n`);
                             //throw err;
                         }
                       
@@ -111,7 +113,7 @@ export class RecordTask extends Task {
             if(msgs!=''){
             connection.query(`CALL saveMessage('${msgs}')`, (err,rows) => {
                 if(err){ 
-                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `save Message error\n`);
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `|${msgs}|save Message error\n`);
                     //throw err;
                 }
               
