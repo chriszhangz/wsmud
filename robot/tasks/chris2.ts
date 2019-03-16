@@ -570,11 +570,18 @@ export class ChrisTask2 extends Task {
                     else if ((matches = look.exec(data.content)) != null) {
                         //var userName = matches[2];
                         if (matches[2] != '') {
-                            connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ?`, [matches[2], matches[2] + ',%', '%,' + matches[2]], (err, rows) => {
+                            connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ?`, [matches[2], '%,' + matches[2]], (err, rows) => {
                                 if (err) throw err;
                                 if (rows.length == 0) {
                                     //console.log('抱歉，暂无 ' + matches[2] + ' 的数据记录');
-                                    session.sendAsync(`${ch} 抱歉，暂无 ${matches[2]} 的数据记录`);
+                                    connection.query(`select a.user_id from ws_user a where a.user_name like ? or a.user_name like ?`, [matches[2] + ',%', '%,' + matches[2] + ',%'], (err, rows) => {
+
+                                        if (rows.length == 0) {
+                                            session.sendAsync(`${ch} 抱歉，暂无 ${matches[2]} 的数据记录`);
+                                        } else {
+                                            session.sendAsync(`look3 ${rows[0].user_id}`);
+                                        }
+                                    });
                                 } else {
                                     session.sendAsync(`look3 ${rows[0].user_id}`);
                                 }
@@ -614,8 +621,8 @@ export class ChrisTask2 extends Task {
                         }
                         lastchat = new Date();
                     } else if ((matches = top.exec(data.content)) != null) {
-                        var fulimsg='';
-                        expNow='';
+                        var fulimsg = '';
+                        expNow = '';
                         if (exps.length >= 1) {
                             expNow += exps[0].user_name + '(' + exps[0].user_exp + ') ';
                         }
@@ -626,16 +633,16 @@ export class ChrisTask2 extends Task {
                             expNow += exps[2].user_name + '(' + exps[2].user_exp + ') ';
                         }
                         if (expNow != '') {
-                            fulimsg+= `今日武帝出关经验排名：${expNow}`;
+                            fulimsg += `今日武帝出关经验排名：${expNow}`;
                         } else {
-                            fulimsg+= `今日武帝出关经验排名：暂无数据。|`;
+                            fulimsg += `今日武帝出关经验排名：暂无数据。|`;
                         }
                         if (expYesterday != '') {
-                            fulimsg+= `昨日排名：${expYesterday}`;
+                            fulimsg += `昨日排名：${expYesterday}`;
                         } else {
-                            fulimsg+= `昨日排名：暂无数据`;
-                        }          
-                        await session.sendAsync(`${ch} ${fulimsg}`);              
+                            fulimsg += `昨日排名：暂无数据`;
+                        }
+                        await session.sendAsync(`${ch} ${fulimsg}`);
                     } else if (content === "c" || content === "check") {
                         await session.sendAsync(`${ch} 💡c/check 角色名：查询该角色曾用名以及最后发言日期。由于记录数据时间较晚，有好心侠客想提供以前的曾用名请用m/message留言谢谢。`);
                     } else if (content === "l") {
@@ -730,10 +737,10 @@ export class ChrisTask2 extends Task {
 
         async function callback() {
             //console.log("start..")
-            if(expNow!=''){
-                expYesterday=expNow;
-                expNow='';
-                exps=[];
+            if (expNow != '') {
+                expYesterday = expNow;
+                expNow = '';
+                exps = [];
             }
             await session.sendAsync("stopstate");
             let taskPaths: string[] = taskPath.split(";");

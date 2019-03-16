@@ -2,7 +2,7 @@ import { UserConfig } from "../interface";
 import * as tasks from "../tasks";
 export var record: UserConfig = {
     key: "record",
-    name: "司徒昌昊",
+    name: "诸葛朴",
     server: 2,
     account: {
         code: "apollozz",
