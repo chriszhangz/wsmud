@@ -70,8 +70,8 @@ export class RecordTask extends Task {
         function processPlayers(value) {
             connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
                 if(err){ 
-                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
-                    throw err;
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `updateUser error\n`);
+                    //throw err;
                 }
               
             });
@@ -93,8 +93,8 @@ export class RecordTask extends Task {
                 if ((matches = fuli.exec(data.content)) != null) {
                     connection.query(`CALL saveExp('${matches[1]}','${matches[2]}')`, (err,rows) => {
                         if(err){ 
-                            Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
-                            throw err;
+                            Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `saveExp error\n`);
+                            //throw err;
                         }
                       
                     });
@@ -111,8 +111,8 @@ export class RecordTask extends Task {
             if(msgs!=''){
             connection.query(`CALL saveMessage('${msgs}')`, (err,rows) => {
                 if(err){ 
-                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `\n`);
-                    throw err;
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `save Message error\n`);
+                    //throw err;
                 }
               
             });
