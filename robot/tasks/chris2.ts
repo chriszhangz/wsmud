@@ -633,9 +633,9 @@ export class ChrisTask2 extends Task {
                             expNow += exps[2].user_name + '(' + exps[2].user_exp + ') ';
                         }
                         if (expNow != '') {
-                            fulimsg += `今日武帝出关经验排名：${expNow}`;
+                            fulimsg += `今日武帝出关福利排名：${expNow}`;
                         } else {
-                            fulimsg += `今日武帝出关经验排名：暂无数据。|`;
+                            fulimsg += `今日武帝出关福利排名：暂无数据。| `;
                         }
                         if (expYesterday != '') {
                             fulimsg += `昨日排名：${expYesterday}`;
@@ -699,13 +699,23 @@ export class ChrisTask2 extends Task {
             if (msg.includes('看起来约')) {
                 var status: string;
                 if (msg.includes('他看起来约')) {
-                    status = msg.split('他的武功')[0];
+                    if(msg.includes('他看上去似乎')){
+                        status = msg.split('他看上去似乎')[0];
+                    }else {
+                        status = msg.split('他的武功')[0];
+                    }
                 } else {
-                    status = msg.split('她的武功')[0];
-                }
+                    if(msg.includes('她看上去似乎')){
+                        status = msg.split('她看上去似乎')[0];
+                    }else {
+                        status = msg.split('她的武功')[0];
+                    }
+                } 
                 status = status.replace(/<[A-Za-z]+>/g, '').replace(/<\/[A-Za-z]+>/g, '').replace('&lt;', '<').replace('&gt;', '>').replace(/(?:\r\n|\r|\n)/g, ' ');
                 //console.log('status:'+status);
                 await session.sendAsync(`${ch} ${status}`);
+            }else if(msg.includes('没有这个玩家。')){
+                await session.sendAsync(`${ch} 该玩家已删号。。。`);
             }
             var matches;
             if ((matches = endJob.exec(msg)) != null) {

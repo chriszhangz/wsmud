@@ -77,7 +77,7 @@ export class AutoTask extends Task {
                 }
             }
             else if (data.ch === ch) {
-            }else if (data.ch === 'pty'&&config.name=='江暮雨') {
+            }else if (data.ch === 'pty'&&(config.name=='江暮雨'||config.name=='水碧')) {
                 if (data.content === "bpz" || data.content === "b") {
                     var time = lastBpz.getTime() + 3600000 - new Date().getTime();
                     //time = time / 1000;

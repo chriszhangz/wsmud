@@ -366,6 +366,8 @@ export class TestTask extends Task {
                 status = status.replace(/<[A-Za-z]+>/g, '').replace(/<\/[A-Za-z]+>/g, '').replace('&lt;', '<').replace('&gt;', '>').replace(/(?:\r\n|\r|\n)/g, ' ');
                 console.log('status:' + status);
                 await session.sendAsync(`${ch} ${status}`);
+            }else if(msg.includes('没有这个玩家。')){
+                await session.sendAsync(`${ch} 该玩家已删号。。。`);
             }
             console.log(`msg:` + msg + `\n`);
             var matches;
