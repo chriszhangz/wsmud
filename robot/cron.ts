@@ -291,7 +291,27 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();          
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        
+        config = {key: "test4", name: "申屠辈", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren"},
+        tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4", name: "皇甫佺", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren"},
+        tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4", name: "吴有操", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren"},
+        tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4", name: "王世马", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren"},
+        tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();  
+        
+        config = {key: "test4", name: "仲孙煜", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren"},
+        tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
+        await new TaskSchedule(config.tasks, session, config).Run();  
         
         // config = {key: "test4",name: "赫连侃璟",server: 2,account: {code: "apollozz4",pwd: "1982525"},
         //     tasks: [
