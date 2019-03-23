@@ -52,7 +52,8 @@ export class AutoTask2 extends Task {
         async function processMessage(msg: string) {
             await Promise.promisify(appendFile)(fileName, new Date() +`msg:` + msg + `\n`);
             var matches;
-            if ((matches = mpzEnd.exec(msg)) != null) {                      
+            if ((matches = mpzEnd.exec(msg)) != null) { 
+                await xiulian(1000);                     
                 cancelled=true;
             }
             if (msg.includes('想杀死你！')&&inCombat==0){ 

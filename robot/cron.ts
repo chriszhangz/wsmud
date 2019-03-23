@@ -25,7 +25,7 @@ async function start() {
                 new tasks.ShimenTask("jh fam 3 start", "高根明", "956z2902a39", new Date(2018, 4, 21))
             ]
         }
-        console.log("begin ......................................" + config.name);
+        //console.log("begin ......................................" + config.name);
         const server = await selectServer(config);
         const session = new Session(server);
         //运行
@@ -514,7 +514,7 @@ async function start() {
         // await new TaskSchedule(config.tasks, session, config).Run();            
         
         session.close();
-        console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
+        //console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();

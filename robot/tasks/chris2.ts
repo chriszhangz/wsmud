@@ -270,6 +270,10 @@ export class ChrisTask2 extends Task {
                     //     await session.sendAsync(`${ch} 目前的挖矿指南是+${current}已持续${GetZNTimes()}`);
                     //     lastchat = new Date();
                     // }
+                    if ((matches = message.exec(data.content)) != null) {
+                        await session.sendAsync(`${ch} 留言已记录，谢谢这位大侠。`);
+                        return;
+                    }
                     if (data.name === '金古易' && content.indexOf('恭') >= 0) {
                         await session.sendAsync(`${ch} *恭喜`);
                         lastchat = new Date();
@@ -390,9 +394,6 @@ export class ChrisTask2 extends Task {
                         lastchat = new Date();
                     } else if ((matches = help.exec(data.content)) != null) {
                         await session.sendAsync(`${ch} 目前可用命令 b/boss c/check d/dzjs l/lxjs l/look m/message q/qnjs s/sxjs t/top x/xy, help 加命令查询具体使用方法。`);
-                    }
-                    else if ((matches = message.exec(data.content)) != null) {
-                        await session.sendAsync(`${ch} 留言已记录，谢谢这位大侠。`);
                     }
                     else if ((matches = helpDetail.exec(data.content)) != null) {
                         var rtmsg;
@@ -715,7 +716,7 @@ export class ChrisTask2 extends Task {
                 //console.log('status:'+status);
                 await session.sendAsync(`${ch} ${status}`);
             }else if(msg.includes('没有这个玩家。')){
-                await session.sendAsync(`${ch} 该玩家已删号。。。`);
+                1await session.sendAsync(`${ch} 该玩家闲置状态离线1小时以上或已删号。。。`);
             }
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
