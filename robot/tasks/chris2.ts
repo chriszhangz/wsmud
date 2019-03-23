@@ -716,7 +716,7 @@ export class ChrisTask2 extends Task {
                 //console.log('status:'+status);
                 await session.sendAsync(`${ch} ${status}`);
             }else if(msg.includes('没有这个玩家。')){
-                1await session.sendAsync(`${ch} 该玩家闲置状态离线1小时以上或已删号。。。`);
+                await session.sendAsync(`${ch} 该玩家闲置状态离线1小时以上或已删号。。。`);
             }
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
