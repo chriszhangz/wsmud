@@ -56,7 +56,7 @@ export class ShengJiTask extends Task {
                 //await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
                 //await Promise.delay(500);
-                //await session.sendAsync(`bai ${master.id}`);
+                await session.sendAsync(`bai ${master.id}`);
                 //await session.sendAsync(`setting auto_work jh fam 0 start,go west,go west,go north,go enter,go west,lianxi force 917,lianxi zixiashengong 917,dazuo`);
                 await Promise.delay(1500);
                 //await session.sendAsync(`give ${master.id} 1000 cash`);

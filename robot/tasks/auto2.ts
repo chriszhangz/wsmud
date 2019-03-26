@@ -86,7 +86,7 @@ export class AutoTask2 extends Task {
                 await Promise.delay(5000);
                 await xiulian(1000);
                 await Promise.promisify(appendFile)(fileName, new Date() + `combat end????? 任务end!!!!!!!!!!!!!!!!! \n`);                      
-                //cancelled=true; 
+                cancelled=true; 
             }
             if(msg.includes("这里不能修炼。")){          
                 await Promise.promisify(appendFile)(fileName, new Date() + `这里不能修炼。????? 执行修炼任务! \n`);         
