@@ -37,8 +37,8 @@ export class AutoTask extends Task {
         let lastBpz = new Date();
 
         var self = this;
-        //let taskPath = self.taskPath;
-        //let masterName = self.masterName;
+        let taskPath = self.taskPath;
+        let masterName = self.masterName;
         //this.priority = -1;
 
         async function processMessage(msg: string) {
@@ -149,7 +149,7 @@ export class AutoTask extends Task {
         var CronJob = require('cron').CronJob;
         new CronJob('00 10 05 * * *', async function () {
             //console.log(new Date() + "任务start!!!!!!!!!!!!!!!!!")
-            await callback(self);
+            await callback(taskPath,masterName);
         }, null, true, 'Asia/Shanghai');
         
         session.removeAllListeners('message');
@@ -170,17 +170,17 @@ export class AutoTask extends Task {
             await session.sendAsync("look");
         }
 
-        async function callback(self) {
+        async function callback(taskPath: string[],masterName: string) {
             //console.log("start..")
             await session.sendAsync("stopstate");
-            for (let i = 0; i < self.taskPath.length; i++) {
+            for (let i = 0; i < taskPath.length; i++) {
                 //console.log('Execute:'+cmdss[i].content);
                 await session.sendAsync(self.taskPath[i]);
                 await Promise.delay(500);
             }
             await Promise.delay(5050);
             await session.sendAsync("tasks");
-            const master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            const master = session.world.items.find(i => i && i.name.endsWith(masterName))
 
             if (master) {
                 shimen = 0;

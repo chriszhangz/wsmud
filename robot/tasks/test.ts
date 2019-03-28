@@ -28,7 +28,7 @@ const connection = mysql.createConnection({
     password: '1982525',
     database: 'wsmud'
 });
-let inCombat = 0;
+//let inCombat = 0;
 
 export class TestTask extends Task {
 
@@ -41,7 +41,7 @@ export class TestTask extends Task {
     async start(session: Session, config: UserConfig) {
         let masterId;
         let cancelled = false;
-        let die = 0;
+        //let die = 0;
         //var self = this;
         console.log(`start\n`);
         session.on('msg', processMsg);
@@ -102,10 +102,10 @@ export class TestTask extends Task {
             //console.log("check if end.. "+this.isCancellationRequested);   
             //console.log(config.name+" check inCombat.. "+inCombat); 
             //console.log(config.name+" check die.. "+die);
-            if (config.name == '邹有竦') {
-                inCombat = 1;
-                die = 1;
-            }
+            // if (config.name == '邹有竦') {
+            //     inCombat = 1;
+            //     die = 1;
+            // }
             //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
             //players.forEach(processPlayers); 
             if (this.isCancellationRequested || cancelled) {
@@ -327,7 +327,7 @@ export class TestTask extends Task {
 
                     }
                 }else if((matches = top.exec(data.content)) != null){
-                    var expYesterday='';
+                    //var expYesterday='';
                     var expNow='';
                     if(exps.length>=1){
                         expNow += exps[0].user_name+'('+exps[0].user_exp+') ';

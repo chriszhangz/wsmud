@@ -13,15 +13,10 @@ export class ShimenTask extends Task {
     constructor(
         private taskPath: string,
         private masterName: string,
-        private tokenId: string,
-        firstChiefDate: Date
+        //private tokenId: string,
+        //firstChiefDate: Date
     ) {
         super();
-        this.firstChiefTime = new Date(
-            firstChiefDate.getFullYear(),
-            firstChiefDate.getMonth(),
-            firstChiefDate.getDate())
-            .getTime();
         this.priority = 100;
     }
 

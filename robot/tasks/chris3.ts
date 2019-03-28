@@ -1,6 +1,6 @@
 import { UserConfig } from '../interface';
 import { Session } from '../../core';
-import { Msg,Data } from '../../core/data';
+import { Msg } from '../../core/data';
 import { Promise } from "bluebird";
 import { Task } from "../task";
 
@@ -20,7 +20,7 @@ export class ChrisTask3 extends Task {
 
         let partyWar = 0;
         //const ch = (config.key.startsWith("badi") ? "chat" : "tm");
-        const ch = "chat";
+        //const ch = "chat";
         //const ch = "pty";
         const pty = "pty";
 

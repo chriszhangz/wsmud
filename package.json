@@ -17,6 +17,7 @@
   },
   "main": "./robot/index.js",
   "scripts": {
+    "build": "tsc",
     "test2": "node ./robot/index.js -u=test2",
     "test3": "node ./robot/index.js -u=test3",
     "test4": "node ./robot/index.js -u=test4",

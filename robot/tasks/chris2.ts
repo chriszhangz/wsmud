@@ -62,7 +62,7 @@ export class ChrisTask2 extends Task {
         const pty = "pty";
         const mysql = require('mysql');
         const connection = mysql.createConnection({
-            host: '54.241.201.225',
+            host: 'localhost',
             user: 'chris',
             password: '1982525',
             database: 'wsmud'
