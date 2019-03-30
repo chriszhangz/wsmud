@@ -12,7 +12,7 @@ const message = /^(message|m)\s([\S\s]*)$/;
 const fuli = /听说武帝(\D+)闭关修炼似有所悟，你随之受益获得了(\d+)经验/;
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host: 'localhost',
+  host: '54.241.201.225',
   user: 'chris',
   password: '1982525',
   database: 'wsmud'
