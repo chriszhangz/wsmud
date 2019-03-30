@@ -3,7 +3,9 @@ import { Session } from '../../core';
 import { Msg, Data } from '../../core/data';
 import { Promise } from "bluebird";
 import { Task } from "../task";
+import { appendFile } from "fs";
 
+let players: player[]=[];
 //const r = /<hig>你获得了(\d+)点/;
 const yaoyan = /听说(\D+)出现在(\D+)一带。/;//听说张无忌出现在峨嵋派-厨房一带。
 //const bangpaizhan = /成员听令，即刻起开始进攻/;
@@ -62,7 +64,7 @@ export class ChrisTask2 extends Task {
         const pty = "pty";
         const mysql = require('mysql');
         const connection = mysql.createConnection({
-            host: 'localhost',
+            host: '54.241.201.225',
             user: 'chris',
             password: '1982525',
             database: 'wsmud'
@@ -259,10 +261,36 @@ export class ChrisTask2 extends Task {
                     await session.sendAsync(`${GetChinaTime()}` + positions);
                     numOfYaoyan = 0;
                 }
+                if ((matches = xy.exec(data.content)) != null) {
+                if (newXYs) {
+                    //await session.sendAsync(`jh fam 8`);
+                     var time = new Date().getTime() - lastXYs.getTime();
+                     time = time / 1000;
+                     var mins = Math.floor(time / 60);
+                     var secs = Math.floor(time % 60);
+                     await session.sendAsync(`${pty} 😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                    //console.log(`😄襄阳保卫战开始于 ${mins}分${secs}秒以前`);
+                } else if (newXYe) {
+                    var time = lastXYe - new Date().getTime();
+                    if (time >= 0) {
+                        time = time / 1000;
+                        var mins = Math.floor(time / 60);
+                        var secs = Math.floor(time % 60);
+                        await session.sendAsync(`${pty} 😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
+                        //console.log(`😄襄阳保卫战可在 ${mins}分${secs}秒以后重新开启`);
+                    } else {
+                        await session.sendAsync(`${pty} 😄襄阳保卫战现在可以开启`);
+                        //console.log(`😄襄阳保卫战现在可以开启`);
+                    }
+                } else {
+                    await session.sendAsync(`${pty} 😉抱歉，我刚升级完毕,将等待下一次襄阳开启后开始计时。`);
+                }
+                lastchat = new Date();
+            }
             } else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
                 var matches;
-                if (new Date().getTime() - lastchat.getTime() > 1000 * 8 && data.name != "" && data.name != "江湖精灵") {
+                if (new Date().getTime() - lastchat.getTime() > 1000 * 5 && data.name != "" && data.name != "江湖精灵") {
                     //console.log(data.name+"::"+data.content);
                     var content = data.content.trim().toLowerCase();
                     var userName = data.name;
@@ -321,7 +349,7 @@ export class ChrisTask2 extends Task {
                         } else if (data.name === '深井镔') {
                             await session.sendAsync(`${ch} 😄神经病。。。你好！`);
                         } else if (data.name === '骨傲天无敌') {
-                            await session.sendAsync(`${ch} 😄恭迎过本过塔狂魔~骨帝~~~`);
+                            await session.sendAsync(`${ch} 😄恭迎欧皇~骨帝~~~`);
                         } else if (data.name === '独孤一求败') {
                             await session.sendAsync(`${ch} 😄华山第一骚东方小娘子你好！`);
                         } else if (data.name === '酩酊酌雪') {
@@ -908,6 +936,20 @@ export class ChrisTask2 extends Task {
                 return text;
             }
         }
+        function processPlayers(value) {
+            connection.query(`CALL updateUser('${value.user_id}','${value.user_name}')`, (err,rows) => {
+                if(err){ 
+                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `|${value.user_id}|${value.user_name}updateUser error\n`);
+                    //throw err;
+                }
+              
+            });
+        }
+        async function record(){   
+            //console.log("players:"+JSON.stringify(players, null, 4) + `\n`);   
+            await players.forEach(processPlayers);             
+            players=[];
+        };
         while (true) {
             if (this.isCancellationRequested) {
                 session.removeAllListeners('message');
@@ -923,6 +965,11 @@ export class ChrisTask2 extends Task {
 interface exp {
     user_name: string;
     user_exp: number;
+}
+interface player {
+    user_name: string;
+    user_id: string;
+    user_lastmsg: string;
 }
 
 

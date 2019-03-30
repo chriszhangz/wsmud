@@ -41,16 +41,16 @@ export class ShengJiTask extends Task {
             // await Promise.delay(1050);
             let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
             let waitTimes=0
-            while(master==null){
+            // while(master==null){
                 
-                await Promise.delay(1000);
-                if(waitTimes>5){      
-                    console.log('Can\'t find master...');
-                    break;
-                }
-                master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-                waitTimes++;
-            }
+            //     await Promise.delay(1000);
+            //     if(waitTimes>5){      
+            //         console.log('Can\'t find master...');
+            //         break;
+            //     }
+            //     master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            //     waitTimes++;
+            // }
             if (master) {   
                 //await session.sendAsync(`setting auto_work 1`);
                 //await session.sendAsync(`enable force zixiashengong`);
