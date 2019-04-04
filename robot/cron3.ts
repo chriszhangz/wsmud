@@ -537,6 +537,14 @@ async function start() {
         tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]}
         await new TaskSchedule(config.tasks, session, config).Run();              
         
+        config = {key: "test4", name: "你也不懂", server: 2, account: { code: "look5454", pwd: "22369210"},
+        tasks: [new tasks.ShimenTask("jh fam 0 start;go south;go south;go west", "武馆教习")]}
+        await new TaskSchedule(config.tasks, session, config).Run();    
+
+        config = {key: "test4", name: "我也不懂", server: 2, account: { code: "look5454", pwd: "22369210"},
+        tasks: [new tasks.ShimenTask("jh fam 7 start;go north", "何小二")]}
+        await new TaskSchedule(config.tasks, session, config).Run();    
+        
         session.close();
         //console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }

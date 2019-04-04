@@ -28,6 +28,7 @@
     "cron3": "node ./robot/cron3.js",
     "cron4": "node ./robot/cron4.js",
     "shengji": "node ./robot/shengji.js",
+    "buy": "node ./robot/buy.js",
     "chris": "node ./robot/index.js -u=chris",
     "chris2": "node ./robot/index.js -u=chris2",
     "chris3": "node ./robot/index.js -u=chris3"

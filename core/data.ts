@@ -77,7 +77,14 @@ export interface Exits {
     items: any
 }
 
-export type Dialog = TaskDialog | PackDialog | ScoreDialog | JhDialog;
+export type Dialog = TaskDialog | PackDialog | ScoreDialog | JhDialog | ListDialog;
+
+export interface ListDialog {
+    type: "dialog",
+    dialog: "list",
+    seller: string,
+    selllist: Item[]
+}
 
 export interface JhDialog {
     type: "dialog",

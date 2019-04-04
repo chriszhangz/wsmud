@@ -599,11 +599,11 @@ export class ChrisTask2 extends Task {
                     else if ((matches = look.exec(data.content)) != null) {
                         //var userName = matches[2];
                         if (matches[2] != '') {
-                            connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ?`, [matches[2], '%,' + matches[2]], (err, rows) => {
+                            connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ? order by user_lastchat desc`, [matches[2], '%,' + matches[2]], (err, rows) => {
                                 if (err) throw err;
                                 if (rows.length == 0) {
                                     //console.log('抱歉，暂无 ' + matches[2] + ' 的数据记录');
-                                    connection.query(`select a.user_id from ws_user a where a.user_name like ? or a.user_name like ?`, [matches[2] + ',%', '%,' + matches[2] + ',%'], (err, rows) => {
+                                    connection.query(`select a.user_id from ws_user a where a.user_name like ? or a.user_name like ? order by user_lastchat desc`, [matches[2] + ',%', '%,' + matches[2] + ',%'], (err, rows) => {
 
                                         if (rows.length == 0) {
                                             session.sendAsync(`${ch} 抱歉，暂无 ${matches[2]} 的数据记录`);

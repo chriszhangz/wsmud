@@ -154,7 +154,7 @@ export class ShimenTask extends Task {
         }
 
         async function processMessage(msg: string) {
-            console.log(msg);
+            //console.log(msg);
             var matches;
             if ((matches = endJob.exec(msg)) != null) {
                 //self.priority = -1;    
@@ -202,13 +202,13 @@ export class ShimenTask extends Task {
                     //console.log("找到包子ID："+idOfBaoZi);
                     await session.sendAsync(`${pty} 开始师门任务..`);
                     while (shimen==0) {
-                        console.log(new Date() + "excute任务..")
+                        //console.log(new Date() + "excute任务..")
                         //await Promise.delay(1000);
                         await Promise.delay(500);
                         await session.sendAsync(`task sm ${master.id}`);
                         await Promise.delay(500);
                         var found=0;
-                        console.log(new Date() + "check任务..")
+                        //console.log(new Date() + "check任务..")
                         for(let msg in msgs){
                             //console.log('msg..'+msgs[msg]);
                             var match;
@@ -228,7 +228,7 @@ export class ShimenTask extends Task {
                         //await Promise.delay(1000);
                     }
                     await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
-                    console.log(new Date() + "开始副本..")
+                    //console.log(new Date() + "开始副本..")
                     if (config.name == "新月") {
                         await session.sendAsync("cr xuedao/shankou 0 20");
                         await Promise.delay(20000);
