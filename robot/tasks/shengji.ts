@@ -42,23 +42,23 @@ export class ShengJiTask extends Task {
             // await Promise.delay(1050);
             let master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
             let waitTimes=0
-            while(master==null){
+            // while(master==null){
                 
-                await Promise.delay(1000);
-                if(waitTimes>5){      
-                    console.log('Can\'t find master...');
-                    break;
-                }
-                master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
-                waitTimes++;
-            }
+            //     await Promise.delay(1000);
+            //     if(waitTimes>5){      
+            //         console.log('Can\'t find master...');
+            //         break;
+            //     }
+            //     master = session.world.items.find(i => i && i.name.endsWith(self.masterName))
+            //     waitTimes++;
+            // }
             if (master) {   
                 //await session.sendAsync(`setting auto_work 1`);
                 //await session.sendAsync(`enable force zixiashengong`);
                 //console.log(new Date() + "任务开始..")
                 //await Promise.delay(500);
                 //await session.sendAsync(`bai ${master.id}`);
-                await session.sendAsync(`setting auto_work xue poyuquan from ${master.id},xue zixiashengong from ${master.id},jh fam 0 start,go west,go west,go north,go enter,go west,lianxi force 917,lianxi zixiashengong 917,dazuo`);
+                await session.sendAsync(`setting auto_work xue poyuquan from ${master.id},xue zixiashengong from ${master.id},jh fam 0 start,go west,go west,go north,go enter,go west,lianxi force 937,lianxi zixiashengong 937,dazuo`);
                 //await Promise.delay(1500);
                 //await session.sendAsync(`give ${master.id} 1000 cash`);
                 //await session.sendAsync(`zhounian ${master.id}`);
@@ -93,6 +93,7 @@ export class ShengJiTask extends Task {
             // // await session.sendAsync(`enable sword kuangfengkuaijian`);
             // // await session.sendAsync(`enable dodge kuangfengkuaijian`);
             // await session.sendAsync(`enable force zixiashengong`);
+            await session.sendAsync(`setting auto_work lianxi force 937,lianxi zixiashengong 937,dazuo`);
              await session.sendAsync(`dazuo`);
             // //await session.sendAsync(`xiulian`);
             // //await session.sendAsync(`fenpei`);
@@ -100,6 +101,8 @@ export class ShengJiTask extends Task {
             // //await session.sendAsync(`ok`);
             // self.priority=-1;
             // return;
+                self.priority=-1;
+                return;
    
         }
 
