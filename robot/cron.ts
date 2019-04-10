@@ -7,6 +7,7 @@
 import { selectServer } from "./utils";
 import { Session } from "../core";
 import { UserConfig } from "./interface";
+import { Promise } from 'bluebird';
 import { TaskSchedule } from "./task-schedule";
 import * as tasks from "./tasks";
 
@@ -29,7 +30,8 @@ async function start() {
         const server = await selectServer(config);
         const session = new Session(server);
         //运行
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
         config = {
             key: "test4",
@@ -44,7 +46,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
 
@@ -55,7 +58,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -65,7 +69,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -75,7 +80,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -85,7 +91,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -95,7 +102,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -105,7 +113,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -115,7 +124,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -125,7 +135,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -135,7 +146,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -145,7 +157,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
         config = {
             key: "test4", name: "魏磊征", server: 2, account: { code: "huashanwushi", pwd: "jiqiren" },
@@ -154,7 +167,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
         config = {
             key: "test4", name: "何魁晸", server: 2, account: { code: "huashanwushi", pwd: "jiqiren" },
@@ -163,7 +177,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
         config = {
             key: "test4", name: "吕曾守", server: 2, account: { code: "huashanwushi", pwd: "jiqiren" },
@@ -172,7 +187,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
         config = {
             key: "test4", name: "轩辕闻", server: 2, account: { code: "huashanwushi", pwd: "jiqiren" },
@@ -181,7 +197,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -191,7 +208,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -201,7 +219,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -211,7 +230,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -221,7 +241,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -231,7 +252,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -241,7 +263,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -251,7 +274,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -261,7 +285,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -271,7 +296,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -281,7 +307,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
 
@@ -294,7 +321,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -304,7 +332,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -314,7 +343,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -324,7 +354,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -334,7 +365,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -344,7 +376,8 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
@@ -354,42 +387,48 @@ async function start() {
             ]
         }
         //console.log("begin ......................................" + config.name);
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
             key: "test4", name: "申屠辈", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]
         }
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
             key: "test4", name: "皇甫佺", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]
         }
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
             key: "test4", name: "吴有操", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]
         }
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
             key: "test4", name: "王世马", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]
         }
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         config = {
             key: "test4", name: "仲孙煜", server: 2, account: { code: "huashanwushi2", pwd: "jiqiren" },
             tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明")]
         }
-        await new TaskSchedule(config.tasks, session, config).Run();
+        new TaskSchedule(config.tasks, session, config).Run();
+        await Promise.delay(1000 * 60 * 10);
         session.close();
 
         // config = {key: "test4",name: "赫连侃璟",server: 2,account: {code: "apollozz4",pwd: "1982525"},
@@ -398,7 +437,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "巫马碧",server: 2,account: {code: "apollozz4",pwd: "1982525"},
@@ -407,7 +447,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "窦封",server: 2,account: {code: "apollozz5",pwd: "1982525"},
@@ -416,7 +457,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "宗政鲛众",server: 2,account: {code: "apollozz5",pwd: "1982525"},
@@ -425,7 +467,8 @@ async function start() {
         //     ]
         // }
         // console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "戚弩",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -434,7 +477,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "吕榜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -443,7 +487,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "尤琮铿",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -452,7 +497,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "邹子仝",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -461,7 +507,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "韩宪炜",server: 2,account: {code: "apollozz6",pwd: "1982525"},
@@ -470,7 +517,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "金浩振一",server: 2,account: {code: "apollozz7",pwd: "1982525"},
@@ -479,7 +527,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "金浩振二",server: 2,account: {code: "apollozz7",pwd: "1982525"},
@@ -488,7 +537,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "金浩振三",server: 2,account: {code: "apollozz7",pwd: "1982525"},
@@ -497,7 +547,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "金浩振四",server: 2,account: {code: "apollozz7",pwd: "1982525"},
@@ -506,7 +557,8 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4",name: "金浩振五",server: 2,account: {code: "apollozz7",pwd: "1982525"},
@@ -515,121 +567,144 @@ async function start() {
         //     ]
         // }
         // //console.log("begin ......................................" + config.name);
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔一", server: 2, account: { code: "apollozz8", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔二", server: 2, account: { code: "apollozz8", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔三", server: 2, account: { code: "apollozz8", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔四", server: 2, account: { code: "apollozz8", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔五", server: 2, account: { code: "apollozz8", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔六", server: 2, account: { code: "apollozz9", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔八", server: 2, account: { code: "apollozz9", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔九", server: 2, account: { code: "apollozz9", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔十", server: 2, account: { code: "apollozz9", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "太叔十一", server: 2, account: { code: "apollozz9", pwd: "1982525" },
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "讓六招", server: 2, account: { code: "0123456780", pwd: "87654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "讓七招", server: 2, account: { code: "0123456780", pwd: "87654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "讓八招", server: 2, account: { code: "0123456780", pwd: "87654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "讓九招", server: 2, account: { code: "0123456780", pwd: "87654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "讓十招", server: 2, account: { code: "0123456780", pwd: "87654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "洛玖尧", server: 2, account: { code: "llfxgx", pwd: "497970474"},
         //     tasks: [new tasks.ShimenTask("jh fam 5 start", "苏星河", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "让一套", server: 2, account: { code: "01234560", pwd: "654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "让二套", server: 2, account: { code: "01234560", pwd: "654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "让三套", server: 2, account: { code: "01234560", pwd: "654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "让四套", server: 2, account: { code: "01234560", pwd: "654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "让五套", server: 2, account: { code: "01234560", pwd: "654321"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
         // config = {key: "test4", name: "沐倾", server: 2, account: { code: "xiaozhi986", pwd: "860820"},
         //     tasks: [new tasks.ShimenTask("jh fam 3 start", "高根明", "bhb2291736e", new Date(2018, 4, 21))]}
-        // await new TaskSchedule(config.tasks, session, config).Run();
+        // new TaskSchedule(config.tasks, session, config).Run();
+        // await Promise.delay(1000 * 60 * 10);
         // session.close();
 
-        //session.close();
-        //console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
+        // session.close();
+        // console.log("ALL JOBS DONE !!!!!!!!!!!!!!!!!!!!!!!!");
     }
     //var rule = new RecurrenceRule();
     //var rule = new schedule.RecurrenceRule();

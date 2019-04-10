@@ -32,10 +32,11 @@ export class ShimenTask extends Task {
         let idOfBaoZi = '';
         let msgs = [""];
         async function callback() {
-            await session.sendAsync("setting off_move 1");
-            await session.sendAsync("setting no_message 1");
-            await session.sendAsync("setting no_combatmsg 1");
+            //await session.sendAsync("setting off_move 1");
+            //await session.sendAsync("setting no_message 1");
+            //await session.sendAsync("setting no_combatmsg 1");
             await session.sendAsync("stopstate");
+            await Promise.delay(1000);
             let taskPaths: string[] = self.taskPath.split(";");
             for (let i = 0; i < taskPaths.length; i++) {
                 //console.log('Execute:'+cmdss[i].content);
