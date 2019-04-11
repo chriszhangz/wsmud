@@ -35,13 +35,17 @@ export class ShimenTask extends Task {
             //await session.sendAsync("setting off_move 1");
             //await session.sendAsync("setting no_message 1");
             //await session.sendAsync("setting no_combatmsg 1");
-            await session.sendAsync("stopstate");
-            await Promise.delay(1000);
             let taskPaths: string[] = self.taskPath.split(";");
-            for (let i = 0; i < taskPaths.length; i++) {
-                //console.log('Execute:'+cmdss[i].content);
-                await session.sendAsync(taskPaths[i]);
-                await Promise.delay(500);
+
+            while(doingShimen==0){
+                await session.sendAsync("stopstate");
+                await Promise.delay(1000);
+                for (let i = 0; i < taskPaths.length; i++) {
+                    //console.log('Execute:'+cmdss[i].content);
+                    await session.sendAsync(taskPaths[i]);
+                    await Promise.delay(500);
+                }
+                await Promise.delay(10000);
             }
             //await session.sendAsync(self.taskPath);
             // await Promise.delay(5050);
@@ -152,6 +156,27 @@ export class ShimenTask extends Task {
             //     return;
             // }
    
+            await Promise.delay(1000*60*9);
+            if (config.name != "新月") {
+                await session.sendAsync("wakuang");
+            }else{
+                await session.sendAsync("jh fam 0 start");
+                await Promise.delay(500);
+                await session.sendAsync("go west");
+                await Promise.delay(500);
+                await session.sendAsync("go west");
+                await Promise.delay(500);
+                await session.sendAsync("go north");
+                await Promise.delay(500);
+                await session.sendAsync("go enter");
+                await Promise.delay(500);
+                await session.sendAsync("go west");
+                await Promise.delay(500);
+                await session.sendAsync("xiulian");
+
+            }
+            self.priority=-1;
+            return;
         }
 
         async function processMessage(msg: string) {
