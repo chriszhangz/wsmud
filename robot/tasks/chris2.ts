@@ -290,7 +290,7 @@ export class ChrisTask2 extends Task {
             } else if (data.ch === ch) {
                 //console.log(data.name+":"+data.content);
                 var matches;
-                if (new Date().getTime() - lastchat.getTime() > 1000 * 5 && data.name != "" && data.name != "江湖精灵") {
+                if (new Date().getTime() - lastchat.getTime() > 1000 * 6 && data.name != "" && data.name != "江湖精灵") {
                     //console.log(data.name+"::"+data.content);
                     var content = data.content.trim().toLowerCase();
                     var userName = data.name;
