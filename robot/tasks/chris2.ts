@@ -337,7 +337,10 @@ export class ChrisTask2 extends Task {
                         } else if (data.name === '锦里') {
                             await session.sendAsync(`${ch} 😄最弱宗师小锦里好！`);
                         } else if (data.name === '濔不够资格') {
-                            await session.sendAsync(`${ch} 😄月夜之狼~资格姐姐好！`);
+                            //await session.sendAsync(`${ch} 😄月夜之狼~资格姐姐好！`);
+                            await session.sendAsync(`${ch} 你就是被桃栀七进七出的资格么~....（我是被逼的T-T）`);
+                        } else if (data.name === '云菊') {
+                            await session.sendAsync(`${ch} 😄桃老大好~~~`);
                         } else if (data.name === '金战弓') {
                             await session.sendAsync(`${ch} 😄呃..我没有网站给你哦..我也看不清你的宝贝..2区最污~金战弓`);
                         } else if (data.name === '独步迪克') {
