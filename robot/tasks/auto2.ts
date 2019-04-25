@@ -184,7 +184,8 @@ export class AutoTask2 extends Task {
                         //     //return;
                         // }
                     } else {
-                        await Promise.promisify(appendFile)(fileName, new Date() + `place = null 任务end!!!!!!!!!!!!!!!!! \n`);                        
+                        await Promise.promisify(appendFile)(fileName, new Date() + `place = null 任务end!!!!!!!!!!!!!!!!! \n`);   
+                        await xiulian(1000);                                          
                         cancelled=true;
                     }
                 }
@@ -385,7 +386,7 @@ export class AutoTask2 extends Task {
             await session.sendAsync("enable dodge anyingfuxiang");
             await session.sendAsync("eq opst2f7f72f");
         }else if(config.name=='咬人的馒头'){
-            await session.sendAsync("enable force mingyugong");
+            //await session.sendAsync("enable force mingyugong");
             await session.sendAsync("enable dodge anyingfuxiang");
             await session.sendAsync("eq rm4h3247f48");
         }else if(config.name=='半俗'){

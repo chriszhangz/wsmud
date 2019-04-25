@@ -99,7 +99,7 @@ async function start() {
         //console.log("start !");
         //await callback(self);
         callback();
-        callback2();
+        //callback2();
         callback3();
     }, null, true, 'Asia/Shanghai');
     // new CronJob('55 0 14 * * *', async function() {
