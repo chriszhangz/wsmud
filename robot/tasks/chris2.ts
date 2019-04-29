@@ -581,7 +581,7 @@ export class ChrisTask2 extends Task {
                         if (matches[2] != '') {
                             connection.query(`select a.user_name,a.user_lastchat from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ? or a.user_name like ? `, [matches[2], matches[2] + ',%', '%,' + matches[2], '%,' + matches[2] + ',%'], (err, rows) => {
                                 if (err){ 
-                                    console.log("err:"+err);
+                                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `${data.content}checkUser error\n`);
                                     throw err;
                                 }
                                 if (rows.length == 0) {
@@ -609,7 +609,7 @@ export class ChrisTask2 extends Task {
                         if (matches[2] != '') {
                             connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ? order by user_lastchat desc`, [matches[2], '%,' + matches[2]], (err, rows) => {
                                 if (err){ 
-                                    console.log("err:"+err);
+                                    Promise.promisify(appendFile)(`./core/rooms/error.json`, new Date() + JSON.stringify(err, null, 4) + `${data.content}lookUser error\n`);
                                     throw err;
                                 }
                                 if (rows.length == 0) {
@@ -786,7 +786,7 @@ export class ChrisTask2 extends Task {
         session.on('data', processData);
 
         async function callback() {
-            console.log("start shimen..")
+            //console.log("start..")
             if (expNow != '') {
                 expYesterday = expNow;
                 expNow = '';
@@ -911,7 +911,7 @@ export class ChrisTask2 extends Task {
                     }
                 }
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
-                console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
                 return;
             }
         }
