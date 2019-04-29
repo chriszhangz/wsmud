@@ -580,7 +580,10 @@ export class ChrisTask2 extends Task {
                     else if ((matches = check.exec(data.content)) != null) {
                         if (matches[2] != '') {
                             connection.query(`select a.user_name,a.user_lastchat from ws_user a where a.user_name = ? or a.user_name like ? or a.user_name like ? or a.user_name like ? `, [matches[2], matches[2] + ',%', '%,' + matches[2], '%,' + matches[2] + ',%'], (err, rows) => {
-                                if (err) throw err;
+                                if (err){ 
+                                    console.log("err:"+err);
+                                    throw err;
+                                }
                                 if (rows.length == 0) {
                                     //console.log('抱歉，暂无 ' + userName + ' 的数据记录');
                                     session.sendAsync(`${ch} 抱歉，暂无 ${matches[2]} 的数据记录`);
@@ -590,9 +593,9 @@ export class ChrisTask2 extends Task {
                                     var foundMsg = '';
                                     for (const row in rows) {
                                         if (matches[2] != rows[row].user_name) {
-                                            foundMsg += matches[2] + '(' + rows[row].user_name + ') 最后一次发言日期:' + date.toISOString().split("T")[0] + '。 ';
+                                            foundMsg += matches[2] + '(' + rows[row].user_name + ') 最后一次发言日期:' + rows[row].user_lastchat.toISOString().split("T")[0] + '。 ';
                                         } else {
-                                            foundMsg += matches[2] + ' 最后一次发言日期:' + date.toISOString().split("T")[0] + ' ';
+                                            foundMsg += matches[2] + ' 最后一次发言日期:' + rows[row].user_lastchat.toISOString().split("T")[0] + ' ';
                                         }
                                     }
                                     //console.log(foundMsg);
@@ -605,7 +608,10 @@ export class ChrisTask2 extends Task {
                         //var userName = matches[2];
                         if (matches[2] != '') {
                             connection.query(`select a.user_id from ws_user a where a.user_name = ? or a.user_name like ? order by user_lastchat desc`, [matches[2], '%,' + matches[2]], (err, rows) => {
-                                if (err) throw err;
+                                if (err){ 
+                                    console.log("err:"+err);
+                                    throw err;
+                                }
                                 if (rows.length == 0) {
                                     //console.log('抱歉，暂无 ' + matches[2] + ' 的数据记录');
                                     connection.query(`select a.user_id from ws_user a where a.user_name like ? or a.user_name like ? order by user_lastchat desc`, [matches[2] + ',%', '%,' + matches[2] + ',%'], (err, rows) => {
@@ -780,7 +786,7 @@ export class ChrisTask2 extends Task {
         session.on('data', processData);
 
         async function callback() {
-            //console.log("start..")
+            console.log("start shimen..")
             if (expNow != '') {
                 expYesterday = expNow;
                 expNow = '';
@@ -905,7 +911,7 @@ export class ChrisTask2 extends Task {
                     }
                 }
                 await session.sendAsync(`${pty} 所有任务完毕，小的告退..`);
-                //console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
+                console.log(new Date() + "任务完成!!!!!!!!!!!!!!!!!")
                 return;
             }
         }
