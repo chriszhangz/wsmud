@@ -337,8 +337,8 @@ export class ChrisTask2 extends Task {
                         } else if (data.name === '锦里') {
                             await session.sendAsync(`${ch} 😄最弱宗师小锦里好！`);
                         } else if (data.name === '濔不够资格') {
-                            //await session.sendAsync(`${ch} 😄月夜之狼~资格姐姐好！`);
-                            await session.sendAsync(`${ch} 你就是被桃栀七进七出的资格么~....（我是被逼的T-T）`);
+                            await session.sendAsync(`${ch} 😄月夜之狼~资格姐姐好！`);
+                            //await session.sendAsync(`${ch} 你就是被桃栀七进七出的资格么~....（我是被逼的T-T）`);
                         } else if (data.name === '云菊') {
                             await session.sendAsync(`${ch} 😄桃老大好~~~`);
                         } else if (data.name === '金战弓') {
@@ -347,6 +347,8 @@ export class ChrisTask2 extends Task {
                             await session.sendAsync(`${ch} 😄嘤嘤怪独步小姐姐好~~嘤嘤嘤~`);
                         } else if (data.name === '西门木清') {
                             await session.sendAsync(`${ch} 😄西门少侠~你好！`);
+                        } else if (data.name === '一梦黄梁') {
+                            await session.sendAsync(`${ch} 😄逍遥少侠一梦黄梁~你好！`);
                         } else if (data.name === '洛心依雨') {
                             await session.sendAsync(`${ch} 😄洛心小姐姐好~~！`);
                         } else if (data.name === '深井镔') {
