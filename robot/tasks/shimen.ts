@@ -157,7 +157,7 @@ export class ShimenTask extends Task {
             // }
    
             await Promise.delay(1000*60*9);
-            if (config.name != "新月") {
+            if (config.name != "七羽") {
                 await session.sendAsync("wakuang");
             }else{
                 await session.sendAsync("jh fam 0 start");
@@ -255,7 +255,7 @@ export class ShimenTask extends Task {
                     }
                     await session.sendAsync(`${pty} 师门任务完成，开始刷副本..`);
                     //console.log(new Date() + "开始副本..")
-                    if (config.name == "新月") {
+                    if (config.name == "七羽") {
                         //await session.sendAsync("cr gumu/gumukou 0 20");
                         //await Promise.delay(20000);
                     }else if(config.name!="赫连侃璟"){
@@ -271,7 +271,7 @@ export class ShimenTask extends Task {
                     //console.log(new Date() + "开始追捕..")
                     await session.sendAsync("taskover signin");
                     await Promise.delay(1000);
-                    if (config.name != "新月") {
+                    if (config.name != "七羽") {
                         await session.sendAsync("shop 0 20");
                     }else{
                         await session.sendAsync("shop 0 40");
