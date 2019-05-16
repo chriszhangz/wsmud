@@ -392,7 +392,7 @@ async function start() {
         // session.close();
 
         config = {
-            key: "test4", name: "新月", server: 2, account: { code: "llfxgx", pwd: "497970474" },
+            key: "test4", name: "七羽", server: 2, account: { code: "llfxgx", pwd: "497970474" },
             tasks: [new tasks.ShimenTask("jh fam 4 start;go west", "苏梦清")]
         }
         new TaskSchedule(config.tasks, session, config).Run();
