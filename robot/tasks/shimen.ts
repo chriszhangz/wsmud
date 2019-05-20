@@ -298,7 +298,7 @@ export class ShimenTask extends Task {
                     await session.sendAsync(`ask3 ${zhifu.id}`);
                     await Promise.delay(10000);
                     //console.log("完成追捕..");
-                    if (config.name != "新月") {
+                    if (config.name != "七羽") {
                         await session.sendAsync("wakuang");
                     }else{
                         await session.sendAsync("jh fam 0 start");
