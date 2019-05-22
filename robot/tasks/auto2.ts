@@ -293,10 +293,21 @@ export class AutoTask2 extends Task {
                     masterId = master.id;
                     //await Promise.promisify(appendFile)(fileName, new Date() + `Find Master:`+JSON.stringify(master, null, 4)+`\n`);
                     //await session.sendAsync(`kill ${masterId}`);
-                await session.sendAsync(`perform sword.yi`);
-                await session.sendAsync(`perform throwing.jiang`);
-                await session.sendAsync(`perform unarmed.duo`);
-                await session.sendAsync(`perform unarmed.juan`);
+                    if(config.name == "咬人的豆包"){
+                        inCombat=1;
+                        await session.sendAsync(`kill ${master.id}`);
+                        await session.sendAsync(`perform force.power`);
+                        await session.sendAsync(`perform force.wang`);
+                        await session.sendAsync(`perform blade.shi`);
+                        await session.sendAsync(`perform blade.xue`);
+                        await session.sendAsync(`perform unarmed.wu`);
+                        await session.sendAsync(`perform unarmed.dai`);
+                    }else{
+                        await session.sendAsync(`perform sword.yi`);
+                        await session.sendAsync(`perform throwing.jiang`);
+                        await session.sendAsync(`perform unarmed.duo`);
+                        await session.sendAsync(`perform unarmed.juan`);
+                    }
                 }
             }
             if (data.type === 'combat' && data.end === 1 && die!=1) {
@@ -311,15 +322,21 @@ export class AutoTask2 extends Task {
             if (data.type === 'sc' && data.hp != null&&data.id==masterId&&inCombat==0) {
                 await Promise.promisify(appendFile)(fileName, new Date() + `detect hp loose start combat!!!!!!!!!!!!!!!!! \n`);  
                 inCombat=1;
-                //await session.sendAsync(`kill ${masterId}`);
-                //await session.sendAsync(`perform dodge.power`);
-                //await session.sendAsync(`perform force.power`);
-                //await session.sendAsync(`perform force.cui`);
-                //await session.sendAsync(`perform parry.yi`);
+                if(config.name=='咬人的豆包'){
+                await session.sendAsync(`kill ${masterId}`);
+                await session.sendAsync(`perform force.power`);
+                await session.sendAsync(`perform force.wang`);
+                await session.sendAsync(`perform blade.shi`);
+                await session.sendAsync(`perform blade.xue`);
+                await session.sendAsync(`perform unarmed.wu`);
+                await session.sendAsync(`perform unarmed.dai`);
+                await session.sendAsync(`perform throwing.jiang`);
+                }else{
                 await session.sendAsync(`perform sword.yi`);
                 await session.sendAsync(`perform throwing.jiang`);
                 await session.sendAsync(`perform unarmed.duo`);
                 await session.sendAsync(`perform unarmed.juan`);
+                }
                 // while(inCombat==1){
                 // await Promise.delay(5000);
                 // await session.sendAsync(`perform force.cui`);
@@ -384,7 +401,7 @@ export class AutoTask2 extends Task {
             await session.sendAsync("enable parry hengshanwushenjian");
             await session.sendAsync("enable force mingyugong");
             await session.sendAsync("enable dodge anyingfuxiang");
-            await session.sendAsync("eq opst2f7f72f");
+            await session.sendAsync("eq gzac401f23d");
         }else if(config.name=='咬人的馒头'){
             //await session.sendAsync("enable force mingyugong");
             await session.sendAsync("enable dodge anyingfuxiang");
