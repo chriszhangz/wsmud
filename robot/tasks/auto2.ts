@@ -398,9 +398,21 @@ export class AutoTask2 extends Task {
         await session.sendAsync("stopstate");
 
         if(config.name=='咬人的豆包'){
+            await session.sendAsync("eq eeb5367bd2c");
+            await session.sendAsync("eq 94f6354632f");
+            await session.sendAsync("eq sn1v32c6941");
+            await session.sendAsync("eq 1ilj2bc7f74");
+            await session.sendAsync("enable sword xuantiejianfa");
+            await session.sendAsync("enable unarmed anranxiaohun");
             await session.sendAsync("enable parry hengshanwushenjian");
             await session.sendAsync("enable force mingyugong");
             await session.sendAsync("enable dodge anyingfuxiang");
+            await session.sendAsync("eq g7da30ea8c6");
+            await session.sendAsync("eq t3oh35831ab");
+            await session.sendAsync("eq swvl276c971");
+            await session.sendAsync("eq 897f2f6a67b");
+            await session.sendAsync("eq qtoj3a0620f");
+            await session.sendAsync("eq 7umw35abb08");
             await session.sendAsync("eq gzac401f23d");
         }else if(config.name=='咬人的馒头'){
             //await session.sendAsync("enable force mingyugong");
