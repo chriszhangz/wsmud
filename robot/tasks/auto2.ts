@@ -406,7 +406,7 @@ export class AutoTask2 extends Task {
                 session.removeAllListeners('data');
                 break;
             }
-            await Promise.delay(1000 * 60 * 1);
+            await Promise.delay(2000 * 60 * 1);
             await session.sendAsync("look");
         }
         this.priority = -1;
