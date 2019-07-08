@@ -35,6 +35,7 @@ export class AutoTask2 extends Task {
         //const pty = "pty";
         //const rumor = "rumor";
         let cancelled = false;
+        let biguan = false;
         let fileName = `./core/rooms/` + config.name;
         let attackName: String;
         let defenseName: String;
@@ -303,7 +304,8 @@ export class AutoTask2 extends Task {
                     await session.sendAsync(`perform blade.xue`);
                     await session.sendAsync(`perform unarmed.wu`);
                     await session.sendAsync(`perform unarmed.dai`);
-                    await session.sendAsync(`perform throwing.jiang`);
+                    await session.sendAsync(`perform throwing.ding`);
+                    await session.sendAsync(`perform throwing.luo`);
                 } else {
                     await session.sendAsync(`perform sword.yi`);
                     await session.sendAsync(`perform throwing.jiang`);
@@ -320,6 +322,11 @@ export class AutoTask2 extends Task {
                 // await session.sendAsync(`perform unarmed.juan`);
                 // }
                 //console.log(new Date()+JSON.stringify(data, null, 4) + `\n`);
+            }
+            if(data.type==='dialog'&&data.dialog==='score'){
+                if(data.name.includes('闭关')){
+                    biguan=true;
+                }
             }
         };
         async function wumiao(time: number) {
@@ -345,6 +352,8 @@ export class AutoTask2 extends Task {
             await session.sendAsync("go west");
             await Promise.delay(500);
             await session.sendAsync("xiulian");
+            await Promise.delay(1000);
+            await session.sendAsync("score");
             await Promise.delay(time);
         }
         // var CronJob = require('cron').CronJob;
@@ -401,6 +410,10 @@ export class AutoTask2 extends Task {
 
         while (true) {
             if (this.isCancellationRequested || cancelled) {
+                while(!biguan){
+                    await xiulian(1000);
+                    await Promise.delay(1000 * 10);
+                }
                 session.removeAllListeners('message');
                 session.removeAllListeners('msg');
                 session.removeAllListeners('data');
