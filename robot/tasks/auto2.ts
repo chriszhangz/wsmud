@@ -268,12 +268,11 @@ export class AutoTask2 extends Task {
                     if (config.name == '咬人的豆包') {
                         inCombat = 1;
                         await session.sendAsync(`kill ${master.id}`);
-                        await session.sendAsync(`perform force.power`);
-                        await session.sendAsync(`perform force.wang`);
+                        await session.sendAsync(`perform force.cui`);
                         await session.sendAsync(`perform blade.shi`);
                         await session.sendAsync(`perform blade.xue`);
-                        await session.sendAsync(`perform unarmed.wu`);
-                        await session.sendAsync(`perform unarmed.dai`);
+                        await session.sendAsync(`perform unarmed.liu`);
+                        await session.sendAsync(`perform unarmed.qi`);
                         await session.sendAsync(`perform throwing.ding`);
                         await session.sendAsync(`perform throwing.luo`);
                     } else {
@@ -298,12 +297,11 @@ export class AutoTask2 extends Task {
                 inCombat = 1;
                 if (config.name == '咬人的豆包') {
                     await session.sendAsync(`kill ${masterId}`);
-                    await session.sendAsync(`perform force.power`);
-                    await session.sendAsync(`perform force.wang`);
+                    await session.sendAsync(`perform force.cui`);
                     await session.sendAsync(`perform blade.shi`);
                     await session.sendAsync(`perform blade.xue`);
-                    await session.sendAsync(`perform unarmed.wu`);
-                    await session.sendAsync(`perform unarmed.dai`);
+                    await session.sendAsync(`perform unarmed.liu`);
+                    await session.sendAsync(`perform unarmed.qi`);
                     await session.sendAsync(`perform throwing.ding`);
                     await session.sendAsync(`perform throwing.luo`);
                 } else {
@@ -385,9 +383,9 @@ export class AutoTask2 extends Task {
             await session.sendAsync("eq sn1v32c6941");
             await session.sendAsync("eq 1ilj2bc7f74");
             await session.sendAsync("enable sword xuantiejianfa");
-            await session.sendAsync("enable unarmed anranxiaohun");
-            await session.sendAsync("enable parry hengshanwushenjian");
-            await session.sendAsync("enable force mingyugong");
+            await session.sendAsync("enable unarmed liumaishenjian");
+            await session.sendAsync("enable parry hengshanwushenjian"); 
+            await session.sendAsync("enable force jiuyinshengong");
             await session.sendAsync("enable dodge anyingfuxiang");
             await session.sendAsync("eq g7da30ea8c6");
             await session.sendAsync("eq t3oh35831ab");
