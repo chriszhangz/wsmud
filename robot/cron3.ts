@@ -676,8 +676,8 @@ async function start() {
         // config = {key: "test4", name: "洛玖尧", server: 2, account: { code: "llfxgx", pwd: "497970474"},
         //     tasks: [new tasks.ShimenTask("jh fam 5 start", "苏星河", "bhb2291736e", new Date(2018, 4, 21))]}
         // new TaskSchedule(config.tasks, session, config).Run();
-        await Promise.delay(1000 * 60 * 10);
-        session.close();
+        //await Promise.delay(1000 * 60 * 10);
+        //session.close();
 
         config = {
             key: "test4", name: "让一套", server: 2, account: { code: "01234560", pwd: "654321" },
