@@ -316,8 +316,6 @@ export class ChrisTask2 extends Task {
                             await session.sendAsync(`${ch} 😊辣鸡俗~ 紫药王分解了没^^？`);
                         } else if (data.name === '法王孙笑川') {
                             await session.sendAsync(`${ch} ‍🧙‍♂️新人导师法王孙笑川~ 您好^^！`);
-                        } else if (data.name === '森鹿予夏' || data.name === '冷鸢') {
-                            await session.sendAsync(`${ch} ‍😄Cold Bird~ 小女子这厢有礼了^^！`);
                         } else if (data.name === '诸葛擎') {
                             await session.sendAsync(`${ch} ‍‍‍‍你好~诸葛家最*的^^！`);
                         } else if (data.name === '东方友利') {
