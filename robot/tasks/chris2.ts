@@ -387,6 +387,8 @@ export class ChrisTask2 extends Task {
                             await session.sendAsync(`${ch} 😄全区最攻~紫云轩逸你好！`);
                         } else if (data.name === '故里') {
                             await session.sendAsync(`${ch} 😄二区最菜萌新~武帝故里~你好！`);
+                        } else if (data.name === '清岚') {
+                            await session.sendAsync(`${ch} 清风伴山岚，明月邀君来，清岚公子，你好！`);
                         } else if (data.lv === 5) {
                             await session.sendAsync(`${ch} 哇武。。。武帝您好😻, ${userName}！`);
                         } else if (data.lv === 4) {
