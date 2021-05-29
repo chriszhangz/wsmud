@@ -13,7 +13,7 @@
     "node-schedule-tz": "^1.2.1-4",
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
-    "ws": "^5.1.0"
+    "ws": "^7.4.6"
   },
   "main": "./robot/index.js",
   "scripts": {
